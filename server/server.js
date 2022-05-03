@@ -10,19 +10,9 @@ app.use('/static', express.static(path.join(__dirname, 'client')))
 
 const spotifyRecsBaseURL = 'https://api.spotify.com/v1/recommendations/'
 
-let filters = {
-    genre: 'french',
-    acousticness: .85,
-    danceability: .5,
-    energy: null,
-    instrumentalness: null,
-    liveness: null, //binary
-    popularity: 10,
-    speechiness: .1, //questionable whether this works
-    tempo: null, //exact tempo narrows down too much
-    valence: .8
-    //year wasnt included in spotify's get recommendations
-}
+// require filters and OAuthToken from index.js...
+const { filters, OAuthToken } = require('../client/index.js')
+console.log(filters)
 
 const {genre, acousticness, danceability, energy, instrumentalness, liveness, popularity, speechiness, tempo, valence} = filters
 
@@ -45,7 +35,7 @@ const getFilteredMusic = (genre, acousticness, danceability, energy, instrumenta
         params += `&seed_genres=${genre.toLowerCase()}`
     }
     if (acousticness) {
-        params += `&min_acousticness=${Math.round(100*(acousticness-.15))/100}&max_acousticness=${Math.round(100*(acousticness+.15))/100}`
+        params += `&min_acousticness=${Math.round(100*(acousticness-.22))/100}&max_acousticness=${Math.round(100*(acousticness+.22))/100}`
     }
     if (danceability) {
         params += `&min_danceability=${Math.round(100*(danceability-.2))/100}&max_danceability=${Math.round(100*(danceability+.2))/100}`
@@ -60,7 +50,7 @@ const getFilteredMusic = (genre, acousticness, danceability, energy, instrumenta
         params += `&target_liveness=${Math.round(liveness)}` //binary. Can probably take math.round out later if you set input up correctly
     }
     if (popularity) {
-        params += `&min_popularity=${popularity-20}&max_popularity=${popularity+20}`
+        params += `&min_popularity=${popularity-25}&max_popularity=${popularity+25}`
     }
     if (speechiness) {
         params += `&min_speechiness=${Math.round(100*(speechiness-.25))/100}&max_speechiness=${Math.round(100*(speechiness+.25))/100}`
@@ -76,7 +66,7 @@ const getFilteredMusic = (genre, acousticness, danceability, energy, instrumenta
 
     const reqConfig = {
         headers: {
-            'Authorization': 'Bearer BQArh1AoKKWMlutDHR4lxwh2yQG9-uZvAMnVWUMbUdh9vVzMYV8U03LD5Ap6SVqkYanYZSFW1Nfa1_7OaTB5LdbmGhKFfJqyd-FwwIr536d6gM9jrMdQ6pOKFFdJjS1b2A5QAlDVpO_hx2Wi9LvXvs7nKBod1Wfir0E',
+            'Authorization': OAuthToken,
             'Content-Type': 'application/json'
         }}
     
