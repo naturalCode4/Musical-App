@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music App</title>
+</head>
+<body>
+    <form action="/action_page.php" method="get">
+        <p>Genre (try Pop, Rock, Grunge, Ambient, or Classical)</p>
+        <input type="text" id="genre" name="genre" value="Pop">
+        <p>Acousticness</p>
+        <input type="range" id="acousticness" name="acousticness" min="0" max="100">
+        <p>Danceability</p>
+        <input type="range" id="danceability" name="danceability" min="0" max="100">
+        <input type="submit" value="Submit">
+      </form>
+</body>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="localhost:4444/static/index.js"></script>
+</html>
