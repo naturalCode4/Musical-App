@@ -4,19 +4,41 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles.css">
+    <!-- <link rel="stylesheet" href="/styles"> -->
     <title>Music App</title>
 </head>
 <body>
+    <h2>Song Info</h2>
+    <section id="song-section">
+      <!-- <table id="song-table"></table> -->
+    </section>
+    <br><br><br>
     <form action="/action_page.php" method="get">
         <p>Genre (try pop, alt-rock, grunge, ambient, classical...)</p>
         <input type="text" id="genre" name="genre" value="Pop">
         <p>Acousticness</p>
         <input type="range" id="acousticness" name="acousticness" min="0" max="100">
         <p>Danceability</p>
-        <input type="range" id="danceability" name="danceability" min="0" max="100">
-        <input type="submit" value="Submit">
+        <input type="range" id="danceability" name="danceability" value="50" min="0" max="100" oninput="this.nextElementSibling.value = this.value">
+        <output>50</output>
+        <p>Energy</p>
+        <input type="range" id="energy" name="energy" min="0" max="100">
+        <p>Instrumentalness</p>
+        <input type="range" id="instrumentalness" name="instrumentalness" min="0" max="100">
+        <p>Liveness</p>
+        <input type="range" id="liveness" name="liveness" min="0" max="1">
+        <p>Popularity</p>
+        <input type="range" id="popularity" name="popularity" min="0" max="100">
+        <p>Speechiness</p>
+        <input type="range" id="speechiness" name="speechiness" min="0" max="100">
+        <p>Tempo</p>
+        <input type="number" id="tempo" name="tempo" step="10" value="100" min="10" max="300">
+        <p>Valence</p>
+        <input type="range" id="valence" name="valence" min="0" max="100"><br><br>
       </form>
+        <button id="filters-button">Update Filters</button>
 </body>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<script src="localhost:4444/static/index.js"></script>
+<script src="./index.js"></script>
 </html>

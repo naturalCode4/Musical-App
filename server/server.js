@@ -1,33 +1,53 @@
 const express = require('express')
+const cors = require('cors')
 const axios = require('axios')
 const path = require('path')
-
 const app = express()
 
+//this line of code routes frontend to backend. useful for getting things to log in terminal
+// const frontEnd = require('../client/index.js')
+
 app.use(express.json())
+app.use(cors())
 
 app.use('/static', express.static(path.join(__dirname, 'client')))
 
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, '../client/index.html'))
+})
+
+app.get('/styles', (req, res) => {
+    res.sendFile(path.join(__dirname, '/styles.js'))
+})
+
+app.get('/js', (req, res) => {
+    res.sendFile(path.join(__dirname, '/index.js'))
+})
+
+const OAuthToken = 'Bearer BQBjkVVBV9Hdt3QAfIHSZFXC1ocME4qxKCJWlVLjKr7FeY6zxiCb_t0Tdpr8r4Tvma0m_4arQEBeTLZppkhKVeMUNIA1MqVggk2uZVgF030GwIs7WXBl3hRPbtYhQWFFpUHnRNyEq6aIDeN-MqQsVkt1zvCUaLaPtP4'
+
+app.post('/songRec', async (req, res) => {
+    console.log('songRec endpoint hit on server')
+    try {
+    const songRec = await getSongRec(req.body.sampleFilters)
+    console.log(songRec)
+    //.json (vs .send) makes it a json file. you need to send http requests in json form.
+    //if data was already in json you could .send it
+    //could also either of below:
+    res.status(200).send(JSON.stringify(songRec))
+    // res.status(200).json(songRec)
+    }
+    catch (err) {
+        console.log('There was an error ==>:', err)
+    }
+})
+
 const spotifyRecsBaseURL = 'https://api.spotify.com/v1/recommendations/'
 
-// require filters and OAuthToken from index.js...
-const { filters, OAuthToken } = require('../client/index.js')
-console.log(filters)
+// const {genre, acousticness, danceability, energy, instrumentalness, liveness, popularity, speechiness, tempo, valence} = filters
 
-const {genre, acousticness, danceability, energy, instrumentalness, liveness, popularity, speechiness, tempo, valence} = filters
-
-// https://api.spotify.com/v1/recommendations
-// ?limit=1&market=US&seed_genres=classical&
-// target_acousticness=.5&target_danceability=.6&
-// target_energy=.7&target_valence=.8
-
-// https://api.spotify.com/v1/recommendations
-// ?limit=1&market=US&seed_genres=classical&
-// min_acousticness=.2&max_acousticness=.8&min_danceability=.3&
-// max_danceability=.7&target_danceability=.5
-
-const getFilteredMusic = (genre, acousticness, danceability, energy, instrumentalness, liveness, popularity, speechiness, tempo, valence) => {
-    
+const getSongRec = ({ genre, acousticness, danceability, energy, instrumentalness, liveness, popularity, speechiness, tempo, valence }) => {
+    console.log('getSongRec function called on server')
     // personal decision: probably want to write in min and max values instead of target.
     // could just do add .1 on either side of target rather than intake min and max values
     let params = `?limit=1&market=US`
@@ -50,7 +70,8 @@ const getFilteredMusic = (genre, acousticness, danceability, energy, instrumenta
         params += `&target_liveness=${Math.round(liveness)}` //binary. Can probably take math.round out later if you set input up correctly
     }
     if (popularity) {
-        params += `&min_popularity=${popularity-25}&max_popularity=${popularity+25}`
+        //fix popularity range later
+        params += `&min_popularity=${popularity-20}&max_popularity=${Number(popularity)+20}`
     }
     if (speechiness) {
         params += `&min_speechiness=${Math.round(100*(speechiness-.25))/100}&max_speechiness=${Math.round(100*(speechiness+.25))/100}`
@@ -66,32 +87,35 @@ const getFilteredMusic = (genre, acousticness, danceability, energy, instrumenta
 
     const reqConfig = {
         headers: {
+            //later we're going to retreive OAuthToken to front-end to be received by user and passed into header of request
             'Authorization': OAuthToken,
             'Content-Type': 'application/json'
         }}
     
-    axios.get(`${spotifyRecsBaseURL}${params}`, reqConfig)
-        .then(res => {
-        const trackName = res.data.tracks[0].name
-        const artistName = res.data.tracks[0].artists[0].name
-        const albumName = res.data.tracks[0].album.name
-        const trackLink = res.data.tracks[0].external_urls.spotify
-        const albumCover = res.data.tracks[0].album.images[1].url
-        // const sampleLink
-        console.log('track:', trackName, ', artist:', artistName, ', album:', albumName)
-        console.log('trackLink:', trackLink)
-        console.log('albumCover:', albumCover)
-        // console.log('sampleLink:', sampleLink)
-        // console.log(res.data)
-        
-        })
-        .catch(err => {
-            console.log('ERROR: something went wrong ==>', err.message)
-        })
-}
+    return new Promise((resolve, reject) => {
+        axios.get(`${spotifyRecsBaseURL}${params}`, reqConfig)
+            .then(res => {
+            const trackName = res.data.tracks[0].name
+            const artistName = res.data.tracks[0].artists[0].name
+            const albumName = res.data.tracks[0].album.name
+            const trackLink = res.data.tracks[0].external_urls.spotify
+            const albumCover = res.data.tracks[0].album.images[1].url
+            // const sampleLink
+            console.log('track:', trackName, ', artist:', artistName, ', album:', albumName)
+            console.log('trackLink:', trackLink)
+            console.log('albumCover:', albumCover)
+            // console.log('sampleLink:', sampleLink)
+            
+            //wrapping these items in curly braces makes them an object, where each value has key of same value. i.e. trackname: trackname
+            // resolve (JSON.stringify({trackName, artistName, albumName, trackLink, albumCover}))
+            resolve ({trackName, artistName, albumName, trackLink, albumCover})
 
-// getFilteredMusic('?limit=1&market=ES&seed_artists=4NHQUGzhtTLFvgF5SZesLK&seed_genres=classical%2Ccountry&seed_tracks=0c6xIDDpzE81m2q797ordA')
-getFilteredMusic(genre, acousticness, danceability, energy, instrumentalness, liveness, popularity, speechiness, tempo, valence)
+            })
+            .catch(err => {
+                console.log('ERROR: something went wrong ==>', err.message, err.data)
+            })
+    })
+}
 
 const port = process.env.PORT || 4444
 
