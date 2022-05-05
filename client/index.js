@@ -8,11 +8,20 @@ let sampleFilters = {
     instrumentalness: .75,
     liveness: 0, //binary
     popularity: null, // 0 to 100
-    // speechiness: null, //questionable whether this works
-    // tempo: null, //exact tempo narrows down too much
     valence: null
+    // speechiness: null, //questionable whether we want this
+    // tempo: null, //exact tempo narrows down too much
     //year wasnt included in spotify's get recommendations
 }
+
+const songSection = document.getElementById('song-section')
+const trackName = document.getElementById('track-name')
+const artistName = document.getElementById('artist-name')
+const albumName = document.getElementById('album-name')
+const albumCover = document.getElementById('album-cover')
+const trackLink = document.getElementById('track-link')
+const sampleLink = document.getElementById('sample-link')
+const sampleLinkP = document.getElementById("sample-link-p")
 
 const genre = document.getElementById('genre')
 const acousticness = document.getElementById('acousticness')
@@ -21,9 +30,9 @@ const energy = document.getElementById('energy')
 const instrumentalness = document.getElementById('instrumentalness')
 const liveness = document.getElementById('liveness')
 const popularity = document.getElementById('popularity')
+const valence = document.getElementById('valence')
 // const speechiness = document.getElementById('speechiness')
 // tempo = document.getElementById('tempo')
-const valence = document.getElementById('valence')
 
 const genreToggle = document.getElementById('genre-toggle')
 const acousticnessToggle = document.getElementById('acousticness-toggle')
@@ -36,86 +45,111 @@ const valenceToggle = document.getElementById('valence-toggle')
 // const speechinessToggle = document.getElementById('speechiness-toggle')
 // tempoToggle = document.getElementById('tempo-toggle')
 
-// const songSection = document.getElementById('song-section')
-const trackName = document.getElementById('track-name')
-const artistName = document.getElementById('artist-name')
-const albumName = document.getElementById('album-name')
-const albumCover = document.getElementById('album-cover')
-const trackLink = document.getElementById('track-link')
-const sampleLink = document.getElementById('sample-link')
+const addToggleButtonEventListener = (...filterAndToggles) => {
+    filterAndToggles.forEach(filterAndToggle => {
+        let filter = filterAndToggle[0]
+        let toggle = filterAndToggle[1]
+        toggle.addEventListener('click', () => {
+            event.preventDefault()
+            if (filter.disabled === false) {
+                filter.disabled = true
 
+            } else {
+            filter.disabled = false
+            }
+        })
+    })
+}
 
-genreToggle.addEventListener('click', () => {
-    event.preventDefault()
-    if (genre.disabled === false) {
-        genre.disabled = true
-    } else {
-        genre.disabled = false
-    }
-})
+addToggleButtonEventListener([genre, genreToggle], [acousticness, acousticnessToggle], [danceability, danceabilityToggle], [energy, energyToggle], [instrumentalness, instrumentalnessToggle], [liveness, livenessToggle], [popularity, popularityToggle], [valence, valenceToggle])
 
-acousticnessToggle.addEventListener('click', () => {
-    event.preventDefault()
-    if (acousticness.disabled === false) {
-        acousticness.disabled = true
-    } else {
-        acousticness.disabled = false
-    }
-})
+// const addToggleButtonEventListener = (...toggleButtons) => {
+//     toggleButtons.forEach(toggleButton => {
+//         toggleButton.addEventListener('click', () => {
+//             event.preventDefault()
+//             if (toggleButton.disabled === false) {
+//                 toggleButton.disabled = true
+//             } else {
+//                 toggleButton.disabled = true
+//             }
+//         })
+//     })
+// }
 
-danceabilityToggle.addEventListener('click', () => {
-    event.preventDefault()
-    if (danceability.disabled === false) {
-        danceability.disabled = true
-    } else {
-        danceability.disabled = false
-    }
-})
+// addToggleButtonEventListener(genreToggle, acousticnessToggle, danceabilityToggle, energyToggle, 
+//     instrumentalnessToggle, livenessToggle, popularityToggle, valenceToggle)
 
-energyToggle.addEventListener('click', () => {
-    event.preventDefault()
-    if (energy.disabled === false) {
-        energy.disabled = true
-    } else {
-        energy.disabled = false
-    }
-})
+// genreToggle.addEventListener('click', () => {
+//     event.preventDefault()
+//     if (genre.disabled === false) {
+//         genre.disabled = true
+//     } else {
+//         genre.disabled = false
+//     }
+// })
 
-instrumentalnessToggle.addEventListener('click', () => {
-    event.preventDefault()
-    if (instrumentalness.disabled === false) {
-        instrumentalness.disabled = true
-    } else {
-        instrumentalness.disabled = false
-    }
-})
+// acousticnessToggle.addEventListener('click', () => {
+//     event.preventDefault()
+//     if (acousticness.disabled === false) {
+//         acousticness.disabled = true
+//     } else {
+//         acousticness.disabled = false
+//     }
+// })
 
-livenessToggle.addEventListener('click', () => {
-    event.preventDefault()
-    if (liveness.disabled === false) {
-        liveness.disabled = true
-    } else {
-        liveness.disabled = false
-    }
-})
+// danceabilityToggle.addEventListener('click', () => {
+//     event.preventDefault()
+//     if (danceability.disabled === false) {
+//         danceability.disabled = true
+//     } else {
+//         danceability.disabled = false
+//     }
+// })
 
-popularityToggle.addEventListener('click', () => {
-    event.preventDefault()
-    if (popularity.disabled === false) {
-        popularity.disabled = true
-    } else {
-        popularity.disabled = false
-    }
-})
+// energyToggle.addEventListener('click', () => {
+//     event.preventDefault()
+//     if (energy.disabled === false) {
+//         energy.disabled = true
+//     } else {
+//         energy.disabled = false
+//     }
+// })
 
-valenceToggle.addEventListener('click', () => {
-    event.preventDefault()
-    if (valence.disabled === false) {
-        valence.disabled = true
-    } else {
-        valence.disabled = false
-    }
-})
+// instrumentalnessToggle.addEventListener('click', () => {
+//     event.preventDefault()
+//     if (instrumentalness.disabled === false) {
+//         instrumentalness.disabled = true
+//     } else {
+//         instrumentalness.disabled = false
+//     }
+// })
+
+// livenessToggle.addEventListener('click', () => {
+//     event.preventDefault()
+//     if (liveness.disabled === false) {
+//         liveness.disabled = true
+//     } else {
+//         liveness.disabled = false
+//     }
+// })
+
+// popularityToggle.addEventListener('click', () => {
+//     event.preventDefault()
+//     if (popularity.disabled === false) {
+//         popularity.disabled = true
+//     } else {
+//         popularity.disabled = false
+//     }
+// })
+
+// valenceToggle.addEventListener('click', () => {
+//     event.preventDefault()
+//     if (valence.disabled === false) {
+//         valence.disabled = true
+//     } else {
+//         valence.disabled = false
+//     }
+// })
 
 const displaySongInfo = (songInfo) => {
     console.log(songInfo.sampleLink)
@@ -127,12 +161,14 @@ const displaySongInfo = (songInfo) => {
     albumCover.alt = "Couldn't get album cover"
     trackLink.innerHTML = `<a href="${songInfo.trackLink}" target="_blank">
     Listen on Spotify</a>`
-    sampleLink.innerHTML = `<source src="${songInfo.sampleLink}">`
-    sampleLink.hidden = false
-    if (songInfo.sampleLink == null) {
-        sampleLink.innerHTML = `<source src="${songInfo.sampleLink}">`
+
+    if (songInfo.sampleLink != null) {
+        sampleLinkP.hidden = true // hide sample link if not hidden
+        sampleLink.hidden = false //started hidden. When sample link exists, removes hidden attribute to display
+        sampleLink.src = songInfo.sampleLink
     } else {
-    sampleLink.alt = "Spotify doesn't have a sample for this track"
+        sampleLink.hidden = true
+        sampleLinkP.hidden = false //started hidden. When sample link is null, removes attribute to display
     }
 }
 
@@ -140,11 +176,9 @@ const displaySongInfo = (songInfo) => {
 const requestSongUsingFilters = async (filters) => {
     try {
         console.log('request function logging', filters)
-        // console.log('from the request', filters)
         // use await keyword as in 'await a promise'. await and .then are the same thing -- just a convenient keyword
         //second argument of axios.post request is body
         const res = await axios.post('http://localhost:4444/songRec', {filters})
-        // console.log(res.data)
         displaySongInfo(res.data)
     } catch (err) {
         console.log('Here was the error ==>:', err)

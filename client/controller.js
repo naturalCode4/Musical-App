@@ -1,4 +1,3 @@
-
     genreToggle.addEventListener('click', () => {
         event.preventDefault()
         if (genre.disabled === false) {
@@ -70,3 +69,5 @@
             valence.disabled = false
         }
     })
+
+    

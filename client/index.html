@@ -9,7 +9,7 @@
     <title>Music App</title>
 </head>
 <body>
-    <h2>Song Info</h2>
+    <h2>DJ GENiUS</h2>
     <section id="song-section">
       <p id="track-name">
       <p id="artist-name">
@@ -19,7 +19,8 @@
       </figure>
         <p id="track-link"></p>
       <figure>
-        <audio autoplay controls id="sample-link" hidden>
+        <audio controls id="sample-link" hidden></audio>
+        <p id="sample-link-p" hidden>(spotify doesn't have a sample for this track)</p>
       </figure>
     </section>
     <br><br><br>
@@ -30,7 +31,7 @@
         <p>Genre (try pop, alt-rock, grunge, indian, ambient, classical, jazz, afrobeat, edm, bluegrass, chill, k-pop, indie, movies, reggae, trance, world-music ...)</p>
         <input type="text" id="genre" name="genre" value="rock">
         <button id="genre-toggle">Off/On</button>
-        <p>Electronic ---> Acoustic Instrumentation</p>
+        <p>Non-Acoustic ---> Acoustic Instrumentation</p>
         <input type="range" id="acousticness" name="acousticness" min="0" max="100" step="25" disabled>
         <button id="acousticness-toggle">Off/On</button>
         <p>Danceability</p>
@@ -48,7 +49,7 @@
         <p>Live Recording?</p>
         <input type="checkbox" id="liveness" name="liveness" autocomplete="off" >
         <button id="liveness-toggle">Off/On</button>
-        <p>Popularity</p>
+        <p>Rare ---> Popular</p>
         <input type="range" id="popularity" name="popularity" min="0" max="100" value="85">
         <button id="popularity-toggle">Off/On</button>
         <!-- <p>Speechiness</p>
