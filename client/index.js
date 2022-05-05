@@ -1,68 +1,144 @@
 console.log('Hello. client/index.js reporting here')
 
-let filters = {
-    genre: document.getElementById('genre').value,
-    acousticness: document.getElementById('acousticness').value/100,
-    danceability: document.getElementById('danceability').value/100,
-    energy: document.getElementById('energy').value/100,
-    instrumentalness: document.getElementById('instrumentalness').value/100,
-    liveness: document.getElementById('liveness').value,
-    popularity: document.getElementById('popularity').value,
-    speechiness: document.getElementById('speechiness').value/100,
-    tempo: document.getElementById('tempo').value,
-    valence: document.getElementById('valence').value/100,
-}
-
-const songSection = document.getElementById('song-section')
-
 let sampleFilters = {
-    genre: 'singer-songwriter',
-    acousticness: .8,
+    genre: 'jazz',
+    acousticness: .7,
     danceability: null,
-    energy: .25,
-    instrumentalness: null,
-    liveness: null, //binary
-    popularity: 0, // 0 to 100
-    speechiness: null, //questionable whether this works
-    tempo: null, //exact tempo narrows down too much
-    valence: .75
+    energy: null,
+    instrumentalness: .75,
+    liveness: 0, //binary
+    popularity: null, // 0 to 100
+    // speechiness: null, //questionable whether this works
+    // tempo: null, //exact tempo narrows down too much
+    valence: null
     //year wasnt included in spotify's get recommendations
 }
 
+const genre = document.getElementById('genre')
+const acousticness = document.getElementById('acousticness')
+const danceability = document.getElementById('danceability')
+const energy = document.getElementById('energy')
+const instrumentalness = document.getElementById('instrumentalness')
+const liveness = document.getElementById('liveness')
+const popularity = document.getElementById('popularity')
+// const speechiness = document.getElementById('speechiness')
+// tempo = document.getElementById('tempo')
+const valence = document.getElementById('valence')
+
+const genreToggle = document.getElementById('genre-toggle')
+const acousticnessToggle = document.getElementById('acousticness-toggle')
+const danceabilityToggle = document.getElementById('danceability-toggle')
+const energyToggle = document.getElementById('energy-toggle')
+const instrumentalnessToggle = document.getElementById('instrumentalness-toggle')
+const livenessToggle = document.getElementById('liveness-toggle')
+const popularityToggle = document.getElementById('popularity-toggle')
+const valenceToggle = document.getElementById('valence-toggle')
+// const speechinessToggle = document.getElementById('speechiness-toggle')
+// tempoToggle = document.getElementById('tempo-toggle')
+
+// const songSection = document.getElementById('song-section')
+const trackName = document.getElementById('track-name')
+const artistName = document.getElementById('artist-name')
+const albumName = document.getElementById('album-name')
+const albumCover = document.getElementById('album-cover')
+const trackLink = document.getElementById('track-link')
+const sampleLink = document.getElementById('sample-link')
+
+
+genreToggle.addEventListener('click', () => {
+    event.preventDefault()
+    if (genre.disabled === false) {
+        genre.disabled = true
+    } else {
+        genre.disabled = false
+    }
+})
+
+acousticnessToggle.addEventListener('click', () => {
+    event.preventDefault()
+    if (acousticness.disabled === false) {
+        acousticness.disabled = true
+    } else {
+        acousticness.disabled = false
+    }
+})
+
+danceabilityToggle.addEventListener('click', () => {
+    event.preventDefault()
+    if (danceability.disabled === false) {
+        danceability.disabled = true
+    } else {
+        danceability.disabled = false
+    }
+})
+
+energyToggle.addEventListener('click', () => {
+    event.preventDefault()
+    if (energy.disabled === false) {
+        energy.disabled = true
+    } else {
+        energy.disabled = false
+    }
+})
+
+instrumentalnessToggle.addEventListener('click', () => {
+    event.preventDefault()
+    if (instrumentalness.disabled === false) {
+        instrumentalness.disabled = true
+    } else {
+        instrumentalness.disabled = false
+    }
+})
+
+livenessToggle.addEventListener('click', () => {
+    event.preventDefault()
+    if (liveness.disabled === false) {
+        liveness.disabled = true
+    } else {
+        liveness.disabled = false
+    }
+})
+
+popularityToggle.addEventListener('click', () => {
+    event.preventDefault()
+    if (popularity.disabled === false) {
+        popularity.disabled = true
+    } else {
+        popularity.disabled = false
+    }
+})
+
+valenceToggle.addEventListener('click', () => {
+    event.preventDefault()
+    if (valence.disabled === false) {
+        valence.disabled = true
+    } else {
+        valence.disabled = false
+    }
+})
+
 const displaySongInfo = (songInfo) => {
     console.log(songInfo)
-    // It is going to make more sense to create the elements statically in HTML and add to them.
-    // Better for structuring intentionally and predictability
-    songSection.innerHTML = ''
-
-    const trackName = document.createElement('p')
-    const artistName = document.createElement('p')
-    const albumName = document.createElement('p')
-    const albumCover = document.createElement('img')
-    const trackLink = document.createElement('p')
 
     trackName.textContent = "Track: " + songInfo.trackName
     artistName.textContent = "Artist: " + songInfo.artistName
     albumName.textContent = "Album: " + songInfo.albumName
     albumCover.src = songInfo.albumCover
     albumCover.alt = "Couldn't get album cover"
-    trackLink.textContent = "Listen on Spotify: " + songInfo.trackLink
-
-    songSection.append(trackName)
-    songSection.append(artistName)
-    songSection.append(albumName)
-    songSection.append(albumCover)
-    songSection.append(trackLink)
+    trackLink.innerHTML = "Listen on Spotify: " + songInfo.trackLink
+    sampleLink.textContent
 }
 
 //asynchronous function making post request to back end
-const requestSongUsingFilters = async () => {
+const requestSongUsingFilters = async (filters) => {
     try {
-    // use await keyword as in 'await a promise'. await and .then are the same thing -- just a convenient keyword
-    //second argument of axios.post request is body
-    const res = await axios.post('http://localhost:4444/songRec', {sampleFilters})
-    // console.log(res.data)
-    displaySongInfo(res.data)
+        console.log('request function logging', filters)
+        // console.log('from the request', filters)
+        // use await keyword as in 'await a promise'. await and .then are the same thing -- just a convenient keyword
+        //second argument of axios.post request is body
+        const res = await axios.post('http://localhost:4444/songRec', {filters})
+        // console.log(res.data)
+        displaySongInfo(res.data)
     } catch (err) {
         console.log('Here was the error ==>:', err)
     }
@@ -70,8 +146,27 @@ const requestSongUsingFilters = async () => {
     
 document.getElementById('filters-button').addEventListener('click', () => {
     console.log('button clicked')
-    // console.log(filters)
-    requestSongUsingFilters()
+
+    if (liveness.checked == true) {
+        liveness.value = 1
+    } else {
+        liveness.value = 0
+    }
+    
+    let filters = {
+        genre: genre.disabled ? null: genre.value,
+        acousticness: acousticness.disabled ? null: acousticness.value/100,
+        danceability: danceability.disabled ? null: danceability.value/100,
+        energy: energy.disabled ? null: energy.value/100,
+        instrumentalness: instrumentalness.disabled ? null: instrumentalness.value/100,
+        liveness: liveness.disabled ? null: liveness.value,
+        popularity: popularity.disabled ? null: popularity.value,
+        valence: valence.disabled ? null: valence.value/100,
+        // speechiness: speechiness.disabled ? null: speechiness.value/100,
+        // tempo: tempo.disabled ? null: tempo.value,
+    }
+
+    console.log(filters)
+    requestSongUsingFilters(filters)
+
 })
-
-

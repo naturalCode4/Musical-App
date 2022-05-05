@@ -24,13 +24,14 @@ app.get('/js', (req, res) => {
     res.sendFile(path.join(__dirname, '/index.js'))
 })
 
-const OAuthToken = 'Bearer BQBjkVVBV9Hdt3QAfIHSZFXC1ocME4qxKCJWlVLjKr7FeY6zxiCb_t0Tdpr8r4Tvma0m_4arQEBeTLZppkhKVeMUNIA1MqVggk2uZVgF030GwIs7WXBl3hRPbtYhQWFFpUHnRNyEq6aIDeN-MqQsVkt1zvCUaLaPtP4'
+const OAuthToken = 'Bearer BQBW5BuJj1iRZNzBqlbICc2XYFDHsn6hEdVl63fszjQJT-jTkaSHKnwx9ZimRtqo8aHHFkC3eSkUW_U-qAPC8J6YucM3U4keBwZ9iaXp8EwyMWKBspl30-ODpKgGS1aEZcr_XBdTJoYVw3hFcsaJwvoiLx3MN0DjYXM'
+const spotifyRecsBaseURL = 'https://api.spotify.com/v1/recommendations/'
 
 app.post('/songRec', async (req, res) => {
     console.log('songRec endpoint hit on server')
     try {
-    const songRec = await getSongRec(req.body.sampleFilters)
-    console.log(songRec)
+    console.log(req.body.filters)
+    const songRec = await getSongRec(req.body.filters)
     //.json (vs .send) makes it a json file. you need to send http requests in json form.
     //if data was already in json you could .send it
     //could also either of below:
@@ -42,9 +43,6 @@ app.post('/songRec', async (req, res) => {
     }
 })
 
-const spotifyRecsBaseURL = 'https://api.spotify.com/v1/recommendations/'
-
-// const {genre, acousticness, danceability, energy, instrumentalness, liveness, popularity, speechiness, tempo, valence} = filters
 
 const getSongRec = ({ genre, acousticness, danceability, energy, instrumentalness, liveness, popularity, speechiness, tempo, valence }) => {
     console.log('getSongRec function called on server')
@@ -55,7 +53,7 @@ const getSongRec = ({ genre, acousticness, danceability, energy, instrumentalnes
         params += `&seed_genres=${genre.toLowerCase()}`
     }
     if (acousticness) {
-        params += `&min_acousticness=${Math.round(100*(acousticness-.22))/100}&max_acousticness=${Math.round(100*(acousticness+.22))/100}`
+        params += `&min_acousticness=${Math.round(100*(acousticness-.12))/100}&max_acousticness=${Math.round(100*(acousticness+.12))/100}`
     }
     if (danceability) {
         params += `&min_danceability=${Math.round(100*(danceability-.2))/100}&max_danceability=${Math.round(100*(danceability+.2))/100}`
@@ -67,7 +65,7 @@ const getSongRec = ({ genre, acousticness, danceability, energy, instrumentalnes
         params += `&min_instrumentalness=${Math.round(100*(instrumentalness-.2))/100}&max_instrumentalness=${Math.round(100*(instrumentalness+.2))/100}`
     }
     if (liveness) {
-        params += `&target_liveness=${Math.round(liveness)}` //binary. Can probably take math.round out later if you set input up correctly
+        params += `&min_liveness=${Math.round(liveness-25)}&max_liveness=${Math.round(liveness+25)}` //binary. Can probably take math.round out later if you set input up correctly
     }
     if (popularity) {
         //fix popularity range later
