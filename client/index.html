@@ -17,35 +17,39 @@
       <figure>
         <img id="album-cover">
       </figure>
-        <p id="track-link">
-      <p id="sample-link">
-        
+        <p id="track-link"></p>
+      <figure>
+        <audio autoplay controls id="sample-link" hidden>
+      </figure>
     </section>
     <br><br><br>
+
+    <button id="filters-button">I>I> next song</button>
+      <br><br>
     <form action="/action_page.php" method="get">
         <p>Genre (try pop, alt-rock, grunge, indian, ambient, classical, jazz, afrobeat, edm, bluegrass, chill, k-pop, indie, movies, reggae, trance, world-music ...)</p>
-        <input type="text" id="genre" name="genre" value="bluegrass">
+        <input type="text" id="genre" name="genre" value="rock">
         <button id="genre-toggle">Off/On</button>
-        <p>Electronic to Acoustic Instrumentation</p>
-        <input type="range" id="acousticness" name="acousticness" min="0" max="100" step="25">
+        <p>Electronic ---> Acoustic Instrumentation</p>
+        <input type="range" id="acousticness" name="acousticness" min="0" max="100" step="25" disabled>
         <button id="acousticness-toggle">Off/On</button>
         <p>Danceability</p>
         <input type="range" id="danceability" name="danceability" value="50" min="0" max="100" oninput="this.nextElementSibling.value = this.value">
         <output>50</output>
         <button id="danceability-toggle">Off/On</button>
-        <p>Chill --- Energetic</p>
-        <input type="range" id="energy" name="energy" min="0" max="100">
+        <p>Chill ---> Energetic</p>
+        <input type="range" id="energy" name="energy" min="0" max="100" disabled>
         <button id="energy-toggle">Off/On</button>
         <p>Vocals?</p>
-        <input type="range" class="right-to-left-slider" id="instrumentalness" name="instrumentalness" min="0" max="100" oninput="this.nextElementSibling.value = this.value">
+        <input type="range" class="right-to-left-slider" id="instrumentalness" name="instrumentalness" min="0" max="100" oninput="this.nextElementSibling.value = this.value" disabled>
         <output>50</output>
         <!-- call this Vocals and have lots of vocals on the right -->
         <button id="instrumentalness-toggle">Off/On</button>
-        <p>Live Music?</p>
+        <p>Live Recording?</p>
         <input type="checkbox" id="liveness" name="liveness" autocomplete="off" >
         <button id="liveness-toggle">Off/On</button>
         <p>Popularity</p>
-        <input type="range" id="popularity" name="popularity" min="0" max="100">
+        <input type="range" id="popularity" name="popularity" min="0" max="100" value="85">
         <button id="popularity-toggle">Off/On</button>
         <!-- <p>Speechiness</p>
         <input type="range" id="speechiness" name="speechiness" min="0" max="100">
@@ -56,8 +60,7 @@
         <input type="range" id="valence" name="valence" min="0" max="100">
         <button id="valence-toggle">Off/On</button>
       </form>
-      <br><br>
-        <button id="filters-button">Get song from filters</button>
+
 </body>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

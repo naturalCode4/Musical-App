@@ -24,7 +24,7 @@ app.get('/js', (req, res) => {
     res.sendFile(path.join(__dirname, '/index.js'))
 })
 
-const OAuthToken = 'Bearer BQBW5BuJj1iRZNzBqlbICc2XYFDHsn6hEdVl63fszjQJT-jTkaSHKnwx9ZimRtqo8aHHFkC3eSkUW_U-qAPC8J6YucM3U4keBwZ9iaXp8EwyMWKBspl30-ODpKgGS1aEZcr_XBdTJoYVw3hFcsaJwvoiLx3MN0DjYXM'
+const OAuthToken = 'Bearer BQDxEeRv2AWeL3tFyrZyBbZb8l8azIAJs6ocKfOVAJgZQ16ESqsd94Enyb-jwkTmLYbe9Qr2XLM6IUjCd8PG_IygHw3NwHhYYBYo-vaYz0S78LHsvYsV1PZHd2KX4rqw4CvxQQAUiNTpF7jEPwOFHSdqmpEaVMxerKo'
 const spotifyRecsBaseURL = 'https://api.spotify.com/v1/recommendations/'
 
 app.post('/songRec', async (req, res) => {
@@ -34,7 +34,7 @@ app.post('/songRec', async (req, res) => {
     const songRec = await getSongRec(req.body.filters)
     //.json (vs .send) makes it a json file. you need to send http requests in json form.
     //if data was already in json you could .send it
-    //could also either of below:
+    //could also either of 2 below:
     res.status(200).send(JSON.stringify(songRec))
     // res.status(200).json(songRec)
     }
@@ -48,7 +48,7 @@ const getSongRec = ({ genre, acousticness, danceability, energy, instrumentalnes
     console.log('getSongRec function called on server')
     // personal decision: probably want to write in min and max values instead of target.
     // could just do add .1 on either side of target rather than intake min and max values
-    let params = `?limit=1&market=US`
+    let params = `?limit=1`
     if (genre) {
         params += `&seed_genres=${genre.toLowerCase()}`
     }
@@ -98,15 +98,16 @@ const getSongRec = ({ genre, acousticness, danceability, energy, instrumentalnes
             const albumName = res.data.tracks[0].album.name
             const trackLink = res.data.tracks[0].external_urls.spotify
             const albumCover = res.data.tracks[0].album.images[1].url
-            // const sampleLink
+            const sampleLink = res.data.tracks[0].preview_url
+
             console.log('track:', trackName, ', artist:', artistName, ', album:', albumName)
             console.log('trackLink:', trackLink)
             console.log('albumCover:', albumCover)
-            // console.log('sampleLink:', sampleLink)
+            console.log('sampleLink:', sampleLink)
             
             //wrapping these items in curly braces makes them an object, where each value has key of same value. i.e. trackname: trackname
             // resolve (JSON.stringify({trackName, artistName, albumName, trackLink, albumCover}))
-            resolve ({trackName, artistName, albumName, trackLink, albumCover})
+            resolve ({trackName, artistName, albumName, trackLink, albumCover, sampleLink})
 
             })
             .catch(err => {

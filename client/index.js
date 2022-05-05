@@ -118,15 +118,22 @@ valenceToggle.addEventListener('click', () => {
 })
 
 const displaySongInfo = (songInfo) => {
-    console.log(songInfo)
+    console.log(songInfo.sampleLink)
 
     trackName.textContent = "Track: " + songInfo.trackName
     artistName.textContent = "Artist: " + songInfo.artistName
     albumName.textContent = "Album: " + songInfo.albumName
     albumCover.src = songInfo.albumCover
     albumCover.alt = "Couldn't get album cover"
-    trackLink.innerHTML = "Listen on Spotify: " + songInfo.trackLink
-    sampleLink.textContent
+    trackLink.innerHTML = `<a href="${songInfo.trackLink}" target="_blank">
+    Listen on Spotify</a>`
+    sampleLink.innerHTML = `<source src="${songInfo.sampleLink}">`
+    sampleLink.hidden = false
+    if (songInfo.sampleLink == null) {
+        sampleLink.innerHTML = `<source src="${songInfo.sampleLink}">`
+    } else {
+    sampleLink.alt = "Spotify doesn't have a sample for this track"
+    }
 }
 
 //asynchronous function making post request to back end
@@ -166,7 +173,6 @@ document.getElementById('filters-button').addEventListener('click', () => {
         // tempo: tempo.disabled ? null: tempo.value,
     }
 
-    console.log(filters)
     requestSongUsingFilters(filters)
 
 })
