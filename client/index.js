@@ -1,19 +1,3 @@
-console.log('Hello. client/index.js reporting here')
-
-let sampleFilters = {
-    genre: 'jazz',
-    acousticness: .7,
-    danceability: null,
-    energy: null,
-    instrumentalness: .75,
-    liveness: 0, //binary
-    popularity: null, // 0 to 100
-    valence: null
-    // speechiness: null, //questionable whether we want this
-    // tempo: null, //exact tempo narrows down too much
-    //year wasnt included in spotify's get recommendations
-}
-
 const songSection = document.getElementById('song-section')
 const trackName = document.getElementById('track-name')
 const artistName = document.getElementById('artist-name')
@@ -23,6 +7,7 @@ const trackLink = document.getElementById('track-link')
 const sampleLink = document.getElementById('sample-link')
 const sampleLinkP = document.getElementById("sample-link-p")
 
+const test = document.getElementById('test')
 const genre = document.getElementById('genre')
 const acousticness = document.getElementById('acousticness')
 const danceability = document.getElementById('danceability')
@@ -45,8 +30,21 @@ const valenceToggle = document.getElementById('valence-toggle')
 // const speechinessToggle = document.getElementById('speechiness-toggle')
 // tempoToggle = document.getElementById('tempo-toggle')
 
-const addToggleButtonEventListener = (...filterAndToggles) => {
-    filterAndToggles.forEach(filterAndToggle => {
+const testLeverInput = document.querySelector("form#test-lever input")
+const genreLeverInput = document.querySelector("form#genre-lever input")
+const acousticnessLeverInput = document.querySelector("form#acousticness-lever input")
+const danceabilityLeverInput = document.querySelector('form#danceability-lever input')
+const energyLeverInput = document.querySelector('form#energy-lever input')
+const instrumentalnessLeverInput = document.querySelector('form#instrumentalness-lever input')
+const livenessLeverInput = document.querySelector('form#liveness-lever input')
+const popularityLeverInput = document.querySelector('form#popularity-lever input')
+const valenceLeverInput = document.querySelector('form#valence-lever input')
+
+// let testLeverOnOff = () => testLeverInput.checked === true ? 'test lever is ON' : 'test lever is OFF'
+// let genreLeverOnOff = () => genreLeverInput.checked === true ? 'genre lever is ON' : 'genre lever is OFF'
+
+const addToggleButtonEventListener = (...filtersAndToggles) => {
+    filtersAndToggles.forEach(filterAndToggle => {
         let filter = filterAndToggle[0]
         let toggle = filterAndToggle[1]
         toggle.addEventListener('click', () => {
@@ -62,94 +60,6 @@ const addToggleButtonEventListener = (...filterAndToggles) => {
 }
 
 addToggleButtonEventListener([genre, genreToggle], [acousticness, acousticnessToggle], [danceability, danceabilityToggle], [energy, energyToggle], [instrumentalness, instrumentalnessToggle], [liveness, livenessToggle], [popularity, popularityToggle], [valence, valenceToggle])
-
-// const addToggleButtonEventListener = (...toggleButtons) => {
-//     toggleButtons.forEach(toggleButton => {
-//         toggleButton.addEventListener('click', () => {
-//             event.preventDefault()
-//             if (toggleButton.disabled === false) {
-//                 toggleButton.disabled = true
-//             } else {
-//                 toggleButton.disabled = true
-//             }
-//         })
-//     })
-// }
-
-// addToggleButtonEventListener(genreToggle, acousticnessToggle, danceabilityToggle, energyToggle, 
-//     instrumentalnessToggle, livenessToggle, popularityToggle, valenceToggle)
-
-// genreToggle.addEventListener('click', () => {
-//     event.preventDefault()
-//     if (genre.disabled === false) {
-//         genre.disabled = true
-//     } else {
-//         genre.disabled = false
-//     }
-// })
-
-// acousticnessToggle.addEventListener('click', () => {
-//     event.preventDefault()
-//     if (acousticness.disabled === false) {
-//         acousticness.disabled = true
-//     } else {
-//         acousticness.disabled = false
-//     }
-// })
-
-// danceabilityToggle.addEventListener('click', () => {
-//     event.preventDefault()
-//     if (danceability.disabled === false) {
-//         danceability.disabled = true
-//     } else {
-//         danceability.disabled = false
-//     }
-// })
-
-// energyToggle.addEventListener('click', () => {
-//     event.preventDefault()
-//     if (energy.disabled === false) {
-//         energy.disabled = true
-//     } else {
-//         energy.disabled = false
-//     }
-// })
-
-// instrumentalnessToggle.addEventListener('click', () => {
-//     event.preventDefault()
-//     if (instrumentalness.disabled === false) {
-//         instrumentalness.disabled = true
-//     } else {
-//         instrumentalness.disabled = false
-//     }
-// })
-
-// livenessToggle.addEventListener('click', () => {
-//     event.preventDefault()
-//     if (liveness.disabled === false) {
-//         liveness.disabled = true
-//     } else {
-//         liveness.disabled = false
-//     }
-// })
-
-// popularityToggle.addEventListener('click', () => {
-//     event.preventDefault()
-//     if (popularity.disabled === false) {
-//         popularity.disabled = true
-//     } else {
-//         popularity.disabled = false
-//     }
-// })
-
-// valenceToggle.addEventListener('click', () => {
-//     event.preventDefault()
-//     if (valence.disabled === false) {
-//         valence.disabled = true
-//     } else {
-//         valence.disabled = false
-//     }
-// })
 
 const displaySongInfo = (songInfo) => {
     console.log(songInfo.sampleLink)
@@ -201,7 +111,7 @@ document.getElementById('filters-button').addEventListener('click', () => {
         energy: energy.disabled ? null: energy.value/100,
         instrumentalness: instrumentalness.disabled ? null: instrumentalness.value/100,
         liveness: liveness.disabled ? null: liveness.value,
-        popularity: popularity.disabled ? null: popularity.value,
+        popularity: popularity.disabled ? null: +popularity.value,
         valence: valence.disabled ? null: valence.value/100,
         // speechiness: speechiness.disabled ? null: speechiness.value/100,
         // tempo: tempo.disabled ? null: tempo.value,
@@ -210,3 +120,35 @@ document.getElementById('filters-button').addEventListener('click', () => {
     requestSongUsingFilters(filters)
 
 })
+
+// lever stuff
+
+// adds event listener for disabling and javascript for animation
+const addLeverFunctionality = (...filtersAndLevers) => {
+    filtersAndLevers.forEach(filterAndLever => {
+
+    let filter = filterAndLever[0]
+    let lever = filterAndLever[1]
+
+    lever.addEventListener('change', () => {
+        event.preventDefault()
+
+        if (lever.checked === true) {
+            filter.disabled = false
+        }
+        if (lever.checked === false) {
+            filter.disabled = true
+        }
+
+        lever.classList.remove("pristine");
+
+        let ac = "aria-checked";
+        lever.setAttribute(ac, lever.getAttribute(ac) == "true" ? "false" : "true");
+
+        })
+    })
+}
+
+addLeverFunctionality([test, testLeverInput], [genre, genreLeverInput], [acousticness, acousticnessLeverInput], [danceability, danceabilityLeverInput], [energy, energyLeverInput], [instrumentalness, instrumentalnessLeverInput], [liveness, livenessLeverInput], [popularity, popularityLeverInput], [valence, valenceLeverInput])
+
+

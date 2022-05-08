@@ -18,13 +18,18 @@ app.get('/', (req, res) => {
 
 app.get('/styles', (req, res) => {
     res.sendFile(path.join(__dirname, '/styles.js'))
+    //^why is this .js not .css
 })
 
 app.get('/js', (req, res) => {
     res.sendFile(path.join(__dirname, '/index.js'))
 })
 
-const OAuthToken = 'Bearer BQBkkB8UPLpOX36RnPQKxhFh8XTpEFb-b1zPHckuu0sWHA6qQyMQs3ReGkQPQNGcK6eSldvfBCjXIwkBf55FMIwIwE_x3CuMdxBh3D-nEletNeE6Ud1I4EoUKtB73DNY78A0f7724nGjuW8GRvOyq1WY-JsA4ggY75w'
+app.get('/js', (req, res) => {
+    res.sendFile(path.join(__dirname, '/dial.js'))
+})
+
+const OAuthToken = 'Bearer BQAvZzu1HOyjS9XGMrZQU_nhP8gMVJ2eGdKiXyyhf4KHB8XQ0vNU9p9KkLVqgViGSamjuTcaaA3HDlSSEBDXl38R5SRkpbiL6oShsFsogsmDXG59uuray-N-bXvw6ehMZode_M3m1Cek-f-qLqZ3-jcMO85TVDHGOS0'
 const spotifyRecsBaseURL = 'https://api.spotify.com/v1/recommendations/'
 
 app.post('/songRec', async (req, res) => {
@@ -47,65 +52,36 @@ app.post('/songRec', async (req, res) => {
 const getSongRec = ({ genre, acousticness, danceability, energy, instrumentalness, liveness, popularity, speechiness, tempo, valence }) => {
    
     console.log('getSongRec function called on server')
-    
-    // personal decision: probably want to write in min and max values instead of target.
-    // could just do add .1 on either side of target rather than intake min and max values
+
+    const generateVariant = () => {
+        let val = 1
+        if (Math.random() < .5) { // this if block deterines whether variant will be positive or negative
+            val = -1 
+        }
+        return variant = Math.round(val*20*Math.random())/100
+    }
 
     let params = `?limit=1`
 
     if (genre) params += `&seed_genres=${genre.toLowerCase()}`
     
-    if (acousticness) params += `&target_acousticness=${acousticness}`
+    if (acousticness) params += `&target_acousticness=${acousticness+generateVariant()}`
     
-    if (danceability) params += `&target_danceability=${danceability}`
+    if (danceability) params += `&target_danceability=${danceability+generateVariant()}`
 
-    if (energy) params += `&target_energy=${energy}`
+    if (energy) params += `&target_energy=${energy+generateVariant()}`
 
-    if (instrumentalness) params += `&target_instrumentalness=${instrumentalness}`
+    if (instrumentalness) params += `&target_instrumentalness=${instrumentalness+generateVariant()}`
 
     if (liveness) params += `&target_liveness=${liveness}`
 
-    if (popularity) params += `&target_popularity=${popularity}`
+    if (popularity) params += `&target_popularity=${popularity+(100*generateVariant())}`
 
-    if (valence) params += `&target_valence=${valence}`
+    if (valence) params += `&target_valence=${valence+generateVariant()}`
 
     // if (speechiness) params += `&target_speechiness=${speechiness}`
 
     // if (tempo) params += `&target_tempo=${tempo}`
-
-
-
-    // if (genre) {
-    //     params += `&seed_genres=${genre.toLowerCase()}`
-    // }
-    // if (acousticness) {
-    //     params += `&min_acousticness=${Math.round(100*(acousticness-.12))/100}&max_acousticness=${Math.round(100*(acousticness+.12))/100}`
-    // }
-    // if (danceability) {
-    //     params += `&min_danceability=${Math.round(100*(danceability-.2))/100}&max_danceability=${Math.round(100*(danceability+.2))/100}`
-    // }
-    // if (energy) {
-    //     params += `&min_energy=${Math.round(100*(energy-.15))/100}&max_energy=${Math.round(100*(energy+.15))/100}`
-    // }
-    // if (instrumentalness) {
-    //     params += `&min_instrumentalness=${Math.round(100*(instrumentalness-.2))/100}&max_instrumentalness=${Math.round(100*(instrumentalness+.2))/100}`
-    // }
-    // if (liveness) {
-    //     params += `&min_liveness=${Math.round(liveness-25)}&max_liveness=${Math.round(liveness+25)}` //binary. Can probably take math.round out later if you set input up correctly
-    // }
-    // if (popularity) {
-    //     //fix popularity range later
-    //     params += `&min_popularity=${popularity-20}&max_popularity=${Number(popularity)+20}`
-    // }
-    // if (speechiness) {
-    //     params += `&min_speechiness=${Math.round(100*(speechiness-.25))/100}&max_speechiness=${Math.round(100*(speechiness+.25))/100}`
-    // }
-    // if (tempo) {
-    //     params += `&target_tempo=${tempo}` //tempo exact
-    // }
-    // if (valence) {
-    //     params += `&min_valence=${Math.round(100*(valence-.18))/100}&max_valence=${Math.round(100*(valence+.18))/100}`
-    // }
 
     console.log(params)
 
@@ -131,8 +107,8 @@ const getSongRec = ({ genre, acousticness, danceability, energy, instrumentalnes
             console.log('albumCover:', albumCover)
             console.log('sampleLink:', sampleLink)
             
-            //wrapping these items in curly braces makes them an object, where each value has key of same value. i.e. trackname: trackname
-            // resolve (JSON.stringify({trackName, artistName, albumName, trackLink, albumCover}))
+            //wrapping these items in curly braces makes them an object, where each value has key of same value. e.g. trackname: trackname
+            // resolve already as JSON format so dont need JSON.stringify({trackName, artistName, albumName, trackLink, albumCover}))
             resolve ({trackName, artistName, albumName, trackLink, albumCover, sampleLink})
 
             })

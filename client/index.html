@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./styles.css">
-    <!-- <link rel="stylesheet" href="/styles"> -->
+    <!-- <link rel="stylesheet" href="./styles.scss"> -->
     <title>Music App</title>
 </head>
 <body>
@@ -17,54 +17,165 @@
       <figure>
         <img id="album-cover">
       </figure>
-        <p id="track-link"></p>
       <figure>
         <audio controls id="sample-link" hidden></audio>
         <p id="sample-link-p" hidden>(spotify doesn't have a sample for this track)</p>
       </figure>
+      <p id="track-link"></p>
     </section>
     <br><br><br>
 
     <button id="filters-button">I>I> next song</button>
       <br><br>
-    <form action="/action_page.php" method="get">
+    <article action="/action_page.php" method="get">
+
         <p>Genre (try pop, alt-rock, grunge, indian, ambient, classical, jazz, afrobeat, edm, bluegrass, chill, k-pop, indie, movies, reggae, trance, world-music ...)</p>
         <input type="text" id="genre" name="genre" value="rock">
         <button id="genre-toggle">Off/On</button>
-        <p>Non-Acoustic ---> Acoustic Instrumentation</p>
-        <input type="range" id="acousticness" name="acousticness" min="0" max="100" step="25" disabled>
-        <button id="acousticness-toggle">Off/On</button>
+        <form class="leverform" id="genre-lever">
+          <input type="checkbox" name="lever" class="lever pristine" value="lever value" role="switch" aria-label="lever" aria-checked="false" checked>
+          <label for="lever">
+              <span>On</span>
+          </label>
+          <label for="lever">
+              <span>Off</span>
+          </label>
+        </form>
+
         <p>Danceability</p>
-        <input type="range" id="danceability" name="danceability" value="50" min="0" max="100" oninput="this.nextElementSibling.value = this.value">
+        <input type="range" id="danceability" name="danceability" value="50" min="1" max="100" oninput="this.nextElementSibling.value = this.value">
         <output>50</output>
         <button id="danceability-toggle">Off/On</button>
+        <form class="leverform" id="danceability-lever">
+          <input type="checkbox" name="lever" class="lever pristine" value="lever value" role="switch" aria-label="lever" aria-checked="false" checked>
+          <label for="lever">
+              <span>On</span>
+          </label>
+          <label for="lever">
+              <span>Off</span>
+          </label>
+        </form>
+
         <p>Chill ---> Energetic</p>
-        <input type="range" id="energy" name="energy" min="0" max="100" disabled>
+        <input type="range" id="energy" name="energy" min="1" max="100">
         <button id="energy-toggle">Off/On</button>
+        <form class="leverform" id="energy-lever">
+          <input type="checkbox" name="lever" class="lever pristine" value="lever value" role="switch" aria-label="lever" aria-checked="false" checked>
+          <label for="lever">
+              <span>On</span>
+          </label>
+          <label for="lever">
+              <span>Off</span>
+          </label>
+        </form>
+
+        <p>Mood</p>
+        <input type="range" id="valence" name="valence" min="1" max="100">
+        <button id="valence-toggle">Off/On</button>
+        <form class="leverform" id="valence-lever">
+          <input type="checkbox" name="lever" class="lever pristine" value="lever value" role="switch" aria-label="lever" aria-checked="false" checked>
+          <label for="lever">
+              <span>On</span>
+          </label>
+          <label for="lever">
+              <span>Off</span>
+          </label>
+        </form>
+
+        <p>Non-Acoustic ---> Acoustic Instrumentation</p>
+        <input type="range" id="acousticness" name="acousticness" min="1" max="100" step="25">
+        <button id="acousticness-toggle">Off/On</button>
+        <form class="leverform" id="acousticness-lever">
+          <input type="checkbox" name="lever" class="lever pristine" value="lever value" role="switch" aria-label="lever" aria-checked="false" checked>
+          <label for="lever">
+              <span>On</span>
+          </label>
+          <label for="lever">
+              <span>Off</span>
+          </label>
+        </form>
+
         <p>Vocals?</p>
-        <input type="range" class="right-to-left-slider" id="instrumentalness" name="instrumentalness" min="0" max="100" oninput="this.nextElementSibling.value = this.value" disabled>
+        <!-- maybe make this binaryish too -->
+        <input type="range" class="right-to-left-slider" id="instrumentalness" name="instrumentalness" min="1" max="100" oninput="this.nextElementSibling.value = this.value">
         <output>50</output>
-        <!-- call this Vocals and have lots of vocals on the right -->
         <button id="instrumentalness-toggle">Off/On</button>
-        <p>Live Recording?</p>
-        <input type="checkbox" id="liveness" name="liveness" autocomplete="off" >
-        <button id="liveness-toggle">Off/On</button>
-        <p>Rare ---> Popular</p>
-        <input type="range" id="popularity" name="popularity" min="0" max="100" value="85">
+        <form class="leverform" id="instrumentalness-lever">
+          <input type="checkbox" name="lever" class="lever pristine" value="lever value" role="switch" aria-label="lever" aria-checked="false" checked>
+          <label for="lever">
+              <span>On</span>
+          </label>
+          <label for="lever">
+              <span>Off</span>
+          </label>
+        </form>
+       
+        <p>Popularity</p>
+        <input type="range" id="popularity" name="popularity" min="1" max="100" value="85">
         <button id="popularity-toggle">Off/On</button>
+        <form class="leverform" id="popularity-lever">
+          <input type="checkbox" name="lever" class="lever pristine" value="lever value" role="switch" aria-label="lever" aria-checked="false" checked>
+          <label for="lever">
+              <span>On</span>
+          </label>
+          <label for="lever">
+              <span>Off</span>
+          </label>
+        </form>
+
         <!-- <p>Speechiness</p>
         <input type="range" id="speechiness" name="speechiness" min="0" max="100">
         <button id="speechiness-toggle">Off/On</button> -->
+
         <!-- <p>Tempo</p>
         <input type="number" id="tempo" name="tempo" step="10" value="100" min="10" max="300"> -->
-        <p>Mood</p>
-        <input type="range" id="valence" name="valence" min="0" max="100">
-        <button id="valence-toggle">Off/On</button>
-      </form>
+
+        <p>Live Recording? (doesnt work?)</p>
+        <input type="checkbox" id="liveness" name="liveness" autocomplete="off" disabled>
+        <button id="liveness-toggle">Off/On</button>
+        <form class="leverform" id="liveness-lever">
+          <input type="checkbox" name="lever" class="lever pristine" value="lever value" role="switch" aria-label="lever" aria-checked="false" checked>
+          <label for="lever">
+              <span>On</span>
+          </label>
+          <label for="lever">
+              <span>Off</span>
+          </label>
+        </form>
+        <br><br><br><br>
+
+        <p>Test Category for Lever</p>
+        <input type="range" id="test" name="test" min="1" max="100" value="33">
+        <form class="leverform" id="test-lever">
+          <input type="checkbox" name="lever" class="lever pristine" value="lever value" role="switch" aria-label="lever" aria-checked="false" checked>
+          <label for="lever">
+              <span>On</span>
+          </label>
+          <label for="lever">
+              <span>Off</span>
+          </label>
+        </form>
+      </article>
+
+  <!-- on/off power switch -->
+  <section>
+    <div class=round>
+          <input type=checkbox id=onoff name=onoff/>
+      <div class=back>
+          <label class=but for=onoff>
+              <span clfass=on>I</span>
+              <span class=off>0</span>
+        </label>
+      </div>
+    </div>
+</section>
+
 
 </body>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<!-- ^ajax framework above^ -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<!-- ^ajax. not latest framework, but matches circular dial's code's version^ -->
 <script src="./index.js"></script>
+<script src="./dial.js"></script>
 </html>
+
