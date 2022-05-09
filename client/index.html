@@ -51,21 +51,21 @@
         
         <label class="chart-label" orient='270deg' type='range' for="band" before="0" after="10">5</label>
         
-        <input class="chart-input danceability" orient='270deg' type='range' min='0' value='90' max='100' step='10' />
-        <input class="chart-input energy" orient='270deg' type='range' min='0' value='2' max='9' step='1' />
-        <input class="chart-input valence" orient='270deg' type='range' min='0' value='2' max='9' step='1' />
-        <input class="chart-input acousticness" orient='270deg' type='range' min='0' value='4' max='9' step='1' />
-        <input class="chart-input vocals" orient='270deg' type='range' min='0' value='3' max='9' step='1' />
-        <input class="chart-input popularity" orient='270deg' type='range' min='0' value='3' max='9' step='1' />
-        <input class="chart-input liveness" orient='270deg' type='range' min='0' value='6' max='9' step='1' />
-        <input class="chart-input" orient='270deg' type='range' min='0' value='7' max='9' step='1' />
-        <input class="chart-input" orient='270deg' type='range' min='0' value='7' max='9' step='1' />
-        <input class="chart-input" orient='270deg' type='range' min='0' value='8' max='9' step='1' />
-        <input class="chart-input" orient='270deg' type='range' min='0' value='8' max='9' step='1' />
-        <input class="chart-input" orient='270deg' type='range' min='0' value='6' max='9' step='1' />
-        <input class="chart-input" orient='270deg' type='range' min='0' value='5' max='9' step='1' />
-        <input class="chart-input" orient='270deg' type='range' min='0' value='6' max='9' step='1' />
-        <input class="chart-input" orient='270deg' type='range' min='0' value='6' max='9' step='1' />
+        <input class="chart-input danceability" orient='270deg' type='range' min='0' value='7' max='10' step='1' disabled/>
+        <input class="chart-input energy" orient='270deg' type='range' min='0' value='2' max='10' step='1' />
+        <input class="chart-input valence" orient='270deg' type='range' min='0' value='2' max='10' step='1' />
+        <input class="chart-input acousticness" orient='270deg' type='range' min='0' value='4' max='10' step='1' />
+        <input class="chart-input vocals" orient='270deg' type='range' min='0' value='3' max='10' step='1' />
+        <input class="chart-input popularity" orient='270deg' type='range' min='0' value='3' max='10' step='1' />
+        <input class="chart-input liveness" orient='270deg' type='range' min='0' value='0' max='10' step='10' />
+        <input class="chart-input" orient='270deg' type='range' min='0' value='7' max='10' step='1' />
+        <input class="chart-input" orient='270deg' type='range' min='0' value='7' max='10' step='1' />
+        <input class="chart-input" orient='270deg' type='range' min='0' value='8' max='10' step='1' />
+        <input class="chart-input" orient='270deg' type='range' min='0' value='8' max='10' step='1' />
+        <input class="chart-input" orient='270deg' type='range' min='0' value='6' max='10' step='1' />
+        <input class="chart-input" orient='270deg' type='range' min='0' value='5' max='10' step='1' />
+        <input class="chart-input" orient='270deg' type='range' min='0' value='6' max='10' step='1' />
+        <input class="chart-input" orient='270deg' type='range' min='0' value='6' max='10' step='1' />
       
         <label class="chart-label" orient='90deg' type='range' for="band" before="10" after="0">5</label>
       
@@ -134,7 +134,7 @@
 
         <div>
             <p>Non --> Acoustic</p>
-            <input type="range" class="custom-slider" id="acousticness" name="acousticness" min="1" max="101" step="25">
+            <input type="range" class="custom-slider" id="acousticness" name="acousticness" min="1" max="101">
             <!-- <button id="acousticness-toggle">Off/On</button> -->
             <form class="leverform" id="acousticness-lever">
               <input type="checkbox" name="lever" class="lever pristine" value="lever value" role="switch" aria-label="lever" aria-checked="false" checked>
@@ -151,7 +151,7 @@
         <div>
             <p>Vocals?</p>
             <!-- maybe make this binaryish too -->
-            <input type="range" class="custom-slider" id="instrumentalness" name="instrumentalness" min="1" max="100">
+            <input type="range" class="custom-slider" id="instrumentalness" name="instrumentalness" min="1" max="101" step="50">
             <!-- <button id="instrumentalness-toggle">Off/On</button> -->
             <form class="leverform" id="instrumentalness-lever">
               <input type="checkbox" name="lever" class="lever pristine" value="lever value" role="switch" aria-label="lever" aria-checked="false" checked>
@@ -168,7 +168,7 @@
 
         <div>   
             <p>Popularity</p>
-            <input type="range" class="custom-slider" id="popularity" name="popularity" min="1" max="100" value="85">
+            <input type="range" class="custom-slider" id="popularity" name="popularity" min="1" max="100">
             <!-- <button id="popularity-toggle">Off/On</button> -->
             <form class="leverform" id="popularity-lever">
               <input type="checkbox" name="lever" class="lever pristine" value="lever value" role="switch" aria-label="lever" aria-checked="false" checked>
@@ -185,10 +185,10 @@
 
         <div>
             <p>Live?</p>
-            <input type="checkbox" id="liveness" name="liveness" autocomplete="off" disabled>
+            <input type="checkbox" id="liveness" name="liveness" disabled>
             <!-- <button id="liveness-toggle">Off/On</button> -->
             <form class="leverform" id="liveness-lever">
-                <input type="checkbox" name="lever" class="lever pristine" value="lever value" role="switch" aria-label="lever" aria-checked="false" checked>
+                <input type="checkbox" name="lever" class="lever pristine" value="lever value" role="switch" aria-label="lever" aria-checked="false" unchecked>
                 <label for="lever">
                     <span>On</span>
                 </label>

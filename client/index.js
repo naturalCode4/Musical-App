@@ -1,3 +1,5 @@
+console.log('hello from index.js')
+
 const songSection = document.getElementById('song-section')
 const trackName = document.getElementById('track-name')
 const artistName = document.getElementById('artist-name')
@@ -25,14 +27,21 @@ const livenessLeverInput = document.querySelector('form#liveness-lever input')
 const popularityLeverInput = document.querySelector('form#popularity-lever input')
 const valenceLeverInput = document.querySelector('form#valence-lever input')
 
-let genreChart = document.getElementsByClassName('genre')[0]
-let acousticnessChart = document.getElementsByClassName('acousticness')[0]
-let danceabilityChart = document.getElementsByClassName('danceability')[0]
-let energyChart = document.getElementsByClassName('energy')[0]
-let instrumentalnessChart = document.getElementsByClassName('instrumentalness')[0]
-let livenessChart = document.getElementsByClassName('liveness')[0]
-let popularityChart = document.getElementsByClassName('popularity')[0]
-let valenceChart = document.getElementsByClassName('valence')[0]
+const acousticnessChart = document.getElementsByClassName('acousticness')[0]
+const danceabilityChart = document.getElementsByClassName('danceability')[0]
+const energyChart = document.getElementsByClassName('energy')[0]
+const valenceChart = document.getElementsByClassName('valence')[0]
+const instrumentalnessChart = document.getElementsByClassName('instrumentalness')[0]
+const livenessChart = document.getElementsByClassName('liveness')[0]
+const popularityChart = document.getElementsByClassName('popularity')[0]
+
+const livenessValue = () => {
+    if (liveness.checked == true) {
+        liveness.value = 1
+    } else {
+        liveness.value = 0
+    }
+}
 
 const displaySongInfo = (songInfo) => {
     console.log(songInfo.sampleLink)
@@ -71,11 +80,8 @@ const requestSongUsingFilters = async (filters) => {
 document.getElementById('filters-button').addEventListener('click', () => {
     console.log('button clicked')
 
-    if (liveness.checked == true) {
-        liveness.value = 1
-    } else {
-        liveness.value = 0
-    }
+    livenessValue()
+    // make sure this calls properly. scope is cool and stuff
     
     let filters = {
         genre: genre.disabled ? null: genre.value,
@@ -122,7 +128,51 @@ const addLeverFunctionality = (...filtersAndLevers) => {
 
 addLeverFunctionality([acousticness, acousticnessLeverInput], [danceability, danceabilityLeverInput], [energy, energyLeverInput], [instrumentalness, instrumentalnessLeverInput], [liveness, livenessLeverInput], [popularity, popularityLeverInput], [valence, valenceLeverInput])
 
-danceability.addEventListener('input', () => {
+const connectFilterInputs = (...inputsAndCharts) => {
+    inputsAndCharts.forEach(inputAndChart => {
+
+        let input = inputAndChart[0]
+        let chart = inputAndChart[1]
+
+        console.log('not live', input, chart)
+
+        input.addEventListener('input', () => {
+            event.preventDefault()
+            chart.value = input.value/10
+        })
+
+        chart.addEventListener('input', () => {
+            event.preventDefault()
+            input.value = chart.value*10
+        })
+    })
+}
+
+connectFilterInputs([acousticness, acousticnessChart], [danceability, danceabilityChart], [energy, energyChart], [instrumentalness, instrumentalnessChart], [popularity, popularityChart], [valence, valenceChart])
+
+input.addEventListener('change', () => {
     event.preventDefault()
-    danceabilityChart.value = danceability.value
+
+    if (input.checked === true) {
+        chart.value = 10
+    }
+    if (input.checked === false) {
+        chart.value = 0
+    }
 })
+
+chart.addEventListener('input', () => {
+    event.preventDefault()
+
+    if (chart.value === 10) {
+        input.checked = true
+    }
+    if (chart.value === 0) {
+        input.checked === false
+    }
+})
+
+// danceability.addEventListener('input', () => {
+//     event.preventDefault()
+//     danceabilityChart.value = danceability.value
+// })
