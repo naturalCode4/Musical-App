@@ -29,7 +29,7 @@ app.get('/js', (req, res) => {
     res.sendFile(path.join(__dirname, '/dial.js'))
 })
 
-const OAuthToken = 'Bearer BQAvZzu1HOyjS9XGMrZQU_nhP8gMVJ2eGdKiXyyhf4KHB8XQ0vNU9p9KkLVqgViGSamjuTcaaA3HDlSSEBDXl38R5SRkpbiL6oShsFsogsmDXG59uuray-N-bXvw6ehMZode_M3m1Cek-f-qLqZ3-jcMO85TVDHGOS0'
+const OAuthToken = 'Bearer BQC8xHAL8na62HGbJ4MWPSztrWvnFOs2rGldvX8vsutgN2L-0AxZMwCdJcbSZ0huUuIDx9_gXLNQP3REHt_YIadhgyKGvxpzL0FO94qu8HUePQbyrEE9SxQifnQvEmAcMRRfgEEaghZ6gJE67Dp2OsEFy0cAvg6WbZw'
 const spotifyRecsBaseURL = 'https://api.spotify.com/v1/recommendations/'
 
 app.post('/songRec', async (req, res) => {

@@ -7,7 +7,6 @@ const trackLink = document.getElementById('track-link')
 const sampleLink = document.getElementById('sample-link')
 const sampleLinkP = document.getElementById("sample-link-p")
 
-const test = document.getElementById('test')
 const genre = document.getElementById('genre')
 const acousticness = document.getElementById('acousticness')
 const danceability = document.getElementById('danceability')
@@ -19,19 +18,6 @@ const valence = document.getElementById('valence')
 // const speechiness = document.getElementById('speechiness')
 // tempo = document.getElementById('tempo')
 
-const genreToggle = document.getElementById('genre-toggle')
-const acousticnessToggle = document.getElementById('acousticness-toggle')
-const danceabilityToggle = document.getElementById('danceability-toggle')
-const energyToggle = document.getElementById('energy-toggle')
-const instrumentalnessToggle = document.getElementById('instrumentalness-toggle')
-const livenessToggle = document.getElementById('liveness-toggle')
-const popularityToggle = document.getElementById('popularity-toggle')
-const valenceToggle = document.getElementById('valence-toggle')
-// const speechinessToggle = document.getElementById('speechiness-toggle')
-// tempoToggle = document.getElementById('tempo-toggle')
-
-const testLeverInput = document.querySelector("form#test-lever input")
-const genreLeverInput = document.querySelector("form#genre-lever input")
 const acousticnessLeverInput = document.querySelector("form#acousticness-lever input")
 const danceabilityLeverInput = document.querySelector('form#danceability-lever input')
 const energyLeverInput = document.querySelector('form#energy-lever input')
@@ -39,27 +25,6 @@ const instrumentalnessLeverInput = document.querySelector('form#instrumentalness
 const livenessLeverInput = document.querySelector('form#liveness-lever input')
 const popularityLeverInput = document.querySelector('form#popularity-lever input')
 const valenceLeverInput = document.querySelector('form#valence-lever input')
-
-// let testLeverOnOff = () => testLeverInput.checked === true ? 'test lever is ON' : 'test lever is OFF'
-// let genreLeverOnOff = () => genreLeverInput.checked === true ? 'genre lever is ON' : 'genre lever is OFF'
-
-const addToggleButtonEventListener = (...filtersAndToggles) => {
-    filtersAndToggles.forEach(filterAndToggle => {
-        let filter = filterAndToggle[0]
-        let toggle = filterAndToggle[1]
-        toggle.addEventListener('click', () => {
-            event.preventDefault()
-            if (filter.disabled === false) {
-                filter.disabled = true
-
-            } else {
-            filter.disabled = false
-            }
-        })
-    })
-}
-
-addToggleButtonEventListener([genre, genreToggle], [acousticness, acousticnessToggle], [danceability, danceabilityToggle], [energy, energyToggle], [instrumentalness, instrumentalnessToggle], [liveness, livenessToggle], [popularity, popularityToggle], [valence, valenceToggle])
 
 const displaySongInfo = (songInfo) => {
     console.log(songInfo.sampleLink)
@@ -149,6 +114,4 @@ const addLeverFunctionality = (...filtersAndLevers) => {
     })
 }
 
-addLeverFunctionality([test, testLeverInput], [genre, genreLeverInput], [acousticness, acousticnessLeverInput], [danceability, danceabilityLeverInput], [energy, energyLeverInput], [instrumentalness, instrumentalnessLeverInput], [liveness, livenessLeverInput], [popularity, popularityLeverInput], [valence, valenceLeverInput])
-
-
+addLeverFunctionality([acousticness, acousticnessLeverInput], [danceability, danceabilityLeverInput], [energy, energyLeverInput], [instrumentalness, instrumentalnessLeverInput], [liveness, livenessLeverInput], [popularity, popularityLeverInput], [valence, valenceLeverInput])
