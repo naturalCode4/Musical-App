@@ -7,6 +7,7 @@ const trackLink = document.getElementById('track-link')
 const sampleLink = document.getElementById('sample-link')
 const sampleLinkP = document.getElementById("sample-link-p")
 
+// these pertain to the inputs for each filter
 const genre = document.getElementById('genre')
 const acousticness = document.getElementById('acousticness')
 const danceability = document.getElementById('danceability')
@@ -15,8 +16,6 @@ const instrumentalness = document.getElementById('instrumentalness')
 const liveness = document.getElementById('liveness')
 const popularity = document.getElementById('popularity')
 const valence = document.getElementById('valence')
-// const speechiness = document.getElementById('speechiness')
-// tempo = document.getElementById('tempo')
 
 const acousticnessLeverInput = document.querySelector("form#acousticness-lever input")
 const danceabilityLeverInput = document.querySelector('form#danceability-lever input')
@@ -25,6 +24,15 @@ const instrumentalnessLeverInput = document.querySelector('form#instrumentalness
 const livenessLeverInput = document.querySelector('form#liveness-lever input')
 const popularityLeverInput = document.querySelector('form#popularity-lever input')
 const valenceLeverInput = document.querySelector('form#valence-lever input')
+
+let genreChart = document.getElementsByClassName('genre')[0]
+let acousticnessChart = document.getElementsByClassName('acousticness')[0]
+let danceabilityChart = document.getElementsByClassName('danceability')[0]
+let energyChart = document.getElementsByClassName('energy')[0]
+let instrumentalnessChart = document.getElementsByClassName('instrumentalness')[0]
+let livenessChart = document.getElementsByClassName('liveness')[0]
+let popularityChart = document.getElementsByClassName('popularity')[0]
+let valenceChart = document.getElementsByClassName('valence')[0]
 
 const displaySongInfo = (songInfo) => {
     console.log(songInfo.sampleLink)
@@ -78,8 +86,6 @@ document.getElementById('filters-button').addEventListener('click', () => {
         liveness: liveness.disabled ? null: liveness.value,
         popularity: popularity.disabled ? null: +popularity.value,
         valence: valence.disabled ? null: valence.value/100,
-        // speechiness: speechiness.disabled ? null: speechiness.value/100,
-        // tempo: tempo.disabled ? null: tempo.value,
     }
 
     requestSongUsingFilters(filters)
@@ -115,3 +121,8 @@ const addLeverFunctionality = (...filtersAndLevers) => {
 }
 
 addLeverFunctionality([acousticness, acousticnessLeverInput], [danceability, danceabilityLeverInput], [energy, energyLeverInput], [instrumentalness, instrumentalnessLeverInput], [liveness, livenessLeverInput], [popularity, popularityLeverInput], [valence, valenceLeverInput])
+
+danceability.addEventListener('input', () => {
+    event.preventDefault()
+    danceabilityChart.value = danceability.value
+})

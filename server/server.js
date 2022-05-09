@@ -17,19 +17,18 @@ app.get('/', (req, res) => {
 })
 
 app.get('/styles', (req, res) => {
-    res.sendFile(path.join(__dirname, '/styles.js'))
-    //^why is this .js not .css
+    res.sendFile(path.join(__dirname, '/styles.css'))
+})
+
+app.get('/styles', (req, res) => {
+    res.sendFile(path.join(__dirname, '/styles.scss'))
 })
 
 app.get('/js', (req, res) => {
     res.sendFile(path.join(__dirname, '/index.js'))
 })
 
-app.get('/js', (req, res) => {
-    res.sendFile(path.join(__dirname, '/dial.js'))
-})
-
-const OAuthToken = 'Bearer BQC8xHAL8na62HGbJ4MWPSztrWvnFOs2rGldvX8vsutgN2L-0AxZMwCdJcbSZ0huUuIDx9_gXLNQP3REHt_YIadhgyKGvxpzL0FO94qu8HUePQbyrEE9SxQifnQvEmAcMRRfgEEaghZ6gJE67Dp2OsEFy0cAvg6WbZw'
+const OAuthToken = 'Bearer BQAKmp2idiPI1emvkvHirSJazHcU6F_RnZT7dcJkx2x6nVz97VXmh-ISxbm0VftJhvWpgrb98UjMBboFRZKSe5Fjk6_x_6WcM12mjEeY3nq9NDnxdVXSAFotKpWiDPZxOQsxBFWMFBL4jkVB6_CauETttur2fGiKSqQ'
 const spotifyRecsBaseURL = 'https://api.spotify.com/v1/recommendations/'
 
 app.post('/songRec', async (req, res) => {

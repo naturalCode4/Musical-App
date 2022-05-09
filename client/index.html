@@ -9,7 +9,21 @@
     <title>Music App</title>
 </head>
 <body>
-    <h2>DJ GENiUS</h2>
+
+    <h2>MUSiC GENERATOR</h2>
+    <!-- on/off power switch -->
+    <section class="on-off-switch">
+        <div class=round>
+                <input type=checkbox id=onoff name=onoff/>
+            <div class=back>
+                <label class=but for=onoff>
+                    <span class=on>I</span>
+                    <span class=off>0</span>
+                </label>
+            </div>
+        </div>
+    </section>
+
     <section id="song-section">
       <p id="track-name">
       <p id="artist-name">
@@ -23,145 +37,169 @@
       </figure>
       <p id="track-link"></p>
     </section>
+
     <br><br><br>
 
     <button id="filters-button"> I>I> Next Song</button>
       <br><br>
-    <article action="/action_page.php" method="get">
 
+    <!-- <article action="/action_page.php" method="get"> -->
+    <!-- ^i have no idea what this is^ -->
+
+    <fieldset id="filters-chart">
+        <legend>Filters</legend>
+        
+        <label class="chart-label" orient='270deg' type='range' for="band" before="0" after="10">5</label>
+        
+        <input class="chart-input danceability" orient='270deg' type='range' min='0' value='90' max='100' step='10' />
+        <input class="chart-input energy" orient='270deg' type='range' min='0' value='2' max='9' step='1' />
+        <input class="chart-input valence" orient='270deg' type='range' min='0' value='2' max='9' step='1' />
+        <input class="chart-input acousticness" orient='270deg' type='range' min='0' value='4' max='9' step='1' />
+        <input class="chart-input vocals" orient='270deg' type='range' min='0' value='3' max='9' step='1' />
+        <input class="chart-input popularity" orient='270deg' type='range' min='0' value='3' max='9' step='1' />
+        <input class="chart-input liveness" orient='270deg' type='range' min='0' value='6' max='9' step='1' />
+        <input class="chart-input" orient='270deg' type='range' min='0' value='7' max='9' step='1' />
+        <input class="chart-input" orient='270deg' type='range' min='0' value='7' max='9' step='1' />
+        <input class="chart-input" orient='270deg' type='range' min='0' value='8' max='9' step='1' />
+        <input class="chart-input" orient='270deg' type='range' min='0' value='8' max='9' step='1' />
+        <input class="chart-input" orient='270deg' type='range' min='0' value='6' max='9' step='1' />
+        <input class="chart-input" orient='270deg' type='range' min='0' value='5' max='9' step='1' />
+        <input class="chart-input" orient='270deg' type='range' min='0' value='6' max='9' step='1' />
+        <input class="chart-input" orient='270deg' type='range' min='0' value='6' max='9' step='1' />
+      
+        <label class="chart-label" orient='90deg' type='range' for="band" before="10" after="0">5</label>
+      
+    </fieldset>
+
+    <div>
         <p>Genre (try pop, alt-rock, grunge, indian, ambient, classical, jazz, afrobeat, edm, bluegrass, chill, k-pop, indie, movies, reggae, trance, world-music ...)</p>
         <br>
         <input type="text" id="genre" name="genre" value="rock">
-
-        <br><br><br><br><br><br>
-        <p>Danceability</p>
-        <input type="range" class="custom-slider" id="danceability" name="danceability" value="50" min="1" max="100" oninput="this.nextElementSibling.value = this.value">
-        <output>50</output>
-        <!-- <button id="danceability-toggle">Off/On</button> -->
-        <form class="leverform" id="danceability-lever">
-          <input type="checkbox" name="lever" class="lever pristine" value="lever value" role="switch" aria-label="lever" aria-checked="false" checked>
-          <label for="lever">
-              <span>On</span>
-          </label>
-          <label for="lever">
-              <span>Off</span>
-          </label>
-        </form>
-        <br><br><br><br><br><br><br><br>
-
-
-        <p>Chill ---> Energetic</p>
-        <input type="range" class="custom-slider" id="energy" name="energy" min="1" max="100">
-        <!-- <button id="energy-toggle">Off/On</button> -->
-        <form class="leverform" id="energy-lever">
-          <input type="checkbox" name="lever" class="lever pristine" value="lever value" role="switch" aria-label="lever" aria-checked="false" checked>
-          <label for="lever">
-              <span>On</span>
-          </label>
-          <label for="lever">
-              <span>Off</span>
-          </label>
-        </form>
-        <br><br><br><br><br><br><br><br>
-
-
-        <p>Mood</p>
-        <input type="range" class="custom-slider" id="valence" name="valence" min="1" max="100">
-        <!-- <button id="valence-toggle">Off/On</button> -->
-        <form class="leverform" id="valence-lever">
-          <input type="checkbox" name="lever" class="lever pristine" value="lever value" role="switch" aria-label="lever" aria-checked="false" checked>
-          <label for="lever">
-              <span>On</span>
-          </label>
-          <label for="lever">
-              <span>Off</span>
-          </label>
-        </form>
-        <br><br><br><br><br><br><br><br>
-
-
-        <p>Non-Acoustic ---> Acoustic Instrumentation</p>
-        <input type="range" class="custom-slider" id="acousticness" name="acousticness" min="1" max="101" step="25">
-        <!-- <button id="acousticness-toggle">Off/On</button> -->
-        <form class="leverform" id="acousticness-lever">
-          <input type="checkbox" name="lever" class="lever pristine" value="lever value" role="switch" aria-label="lever" aria-checked="false" checked>
-          <label for="lever">
-              <span>On</span>
-          </label>
-          <label for="lever">
-              <span>Off</span>
-          </label>
-        </form>
-        <br><br><br><br><br><br><br><br>
-
-
-        <p>Vocals?</p>
-        <!-- maybe make this binaryish too -->
-        <input type="range" class="custom-slider right-to-left-slider" id="instrumentalness" name="instrumentalness" min="1" max="100" oninput="this.nextElementSibling.value = this.value">
-        <output>50</output>
-        <!-- <button id="instrumentalness-toggle">Off/On</button> -->
-        <form class="leverform" id="instrumentalness-lever">
-          <input type="checkbox" name="lever" class="lever pristine" value="lever value" role="switch" aria-label="lever" aria-checked="false" checked>
-          <label for="lever">
-              <span>On</span>
-          </label>
-          <label for="lever">
-              <span>Off</span>
-          </label>
-        </form>
-        <br><br><br><br><br><br><br><br>
-
-       
-        <p>Popularity</p>
-        <input type="range" class="custom-slider" id="popularity" name="popularity" min="1" max="100" value="85">
-        <!-- <button id="popularity-toggle">Off/On</button> -->
-        <form class="leverform" id="popularity-lever">
-          <input type="checkbox" name="lever" class="lever pristine" value="lever value" role="switch" aria-label="lever" aria-checked="false" checked>
-          <label for="lever">
-              <span>On</span>
-          </label>
-          <label for="lever">
-              <span>Off</span>
-          </label>
-        </form>
-        <br><br><br><br><br><br><br><br>
-
-
-        <!-- <p>Speechiness</p>
-        <input type="range" id="speechiness" name="speechiness" min="0" max="100">
-        <button id="speechiness-toggle">Off/On</button> -->
-
-        <!-- <p>Tempo</p>
-        <input type="number" id="tempo" name="tempo" step="10" value="100" min="10" max="300"> -->
-
-        <p>Live Recording? (doesnt work?)</p>
-        <input type="checkbox" id="liveness" name="liveness" autocomplete="off" disabled>
-        <!-- <button id="liveness-toggle">Off/On</button> -->
-        <form class="leverform" id="liveness-lever">
-          <input type="checkbox" name="lever" class="lever pristine" value="lever value" role="switch" aria-label="lever" aria-checked="false" checked>
-          <label for="lever">
-              <span>On</span>
-          </label>
-          <label for="lever">
-              <span>Off</span>
-          </label>
-        </form>
-        <br><br><br><br><br><br><br><br>
-
-  <!-- on/off power switch -->
-  <section class="on-off-switch">
-    <div class=round>
-          <input type=checkbox id=onoff name=onoff/>
-      <div class=back>
-          <label class=but for=onoff>
-              <span class=on>I</span>
-              <span class=off>0</span>
-        </label>
-      </div>
     </div>
-</section>
 
-<input class="custom-slider" type="range" value="50"/>
+    <br><br><br><br><br><br>
+
+    <section id="filters-section">
+    
+        <div>
+            <p>Danceability</p>
+            <input type="range" class="custom-slider" id="danceability" name="danceability" value='70' min="1" max="100">
+            <!-- <button id="danceability-toggle">Off/On</button> -->
+            <form class="leverform" id="danceability-lever">
+              <input type="checkbox" name="lever" class="lever pristine" value="lever value" role="switch" aria-label="lever" aria-checked="false" checked>
+              <label for="lever">
+                  <span>On</span>
+              </label>
+              <!-- <label for="lever">
+                <span>Off</span>
+              </label> -->
+            </form>
+        </div>
+
+        <br><br><br><br><br><br><br><br>
+
+        <div>
+            <p>Chill ---> High Energy</p>
+            <input type="range" class="custom-slider" id="energy" name="energy" min="1" max="100">
+            <!-- <button id="energy-toggle">Off/On</button> -->
+            <form class="leverform" id="energy-lever">
+              <input type="checkbox" name="lever" class="lever pristine" value="lever value" role="switch" aria-label="lever" aria-checked="false" checked>
+              <label for="lever">
+                  <span>On</span>
+              </label>
+              <!-- <label for="lever">
+                  <span>Off</span>
+              </label> -->
+            </form>
+        </div>
+
+        <br><br><br><br><br><br><br><br>
+
+        <div>
+            <p>Mood</p>
+            <input type="range" class="custom-slider" id="valence" name="valence" min="1" max="100">
+            <!-- <button id="valence-toggle">Off/On</button> -->
+            <form class="leverform" id="valence-lever">
+              <input type="checkbox" name="lever" class="lever pristine" value="lever value" role="switch" aria-label="lever" aria-checked="false" checked>
+              <label for="lever">
+                  <span>On</span>
+              </label>
+              <!-- <label for="lever">
+                  <span>Off</span>
+              </label> -->
+            </form>
+        </div>
+
+        <br><br><br><br><br><br><br><br>
+
+        <div>
+            <p>Non-Acoustic ---> Acoustic Instrumentation</p>
+            <input type="range" class="custom-slider" id="acousticness" name="acousticness" min="1" max="101" step="25">
+            <!-- <button id="acousticness-toggle">Off/On</button> -->
+            <form class="leverform" id="acousticness-lever">
+              <input type="checkbox" name="lever" class="lever pristine" value="lever value" role="switch" aria-label="lever" aria-checked="false" checked>
+              <label for="lever">
+                  <span>On</span>
+              </label>
+              <!-- <label for="lever">
+                  <span>Off</span>
+              </label> -->
+            </form>
+        </div>
+        <br><br><br><br><br><br><br><br>
+
+        <div>
+            <p>Vocals?</p>
+            <!-- maybe make this binaryish too -->
+            <input type="range" class="custom-slider" id="instrumentalness" name="instrumentalness" min="1" max="100">
+            <!-- <button id="instrumentalness-toggle">Off/On</button> -->
+            <form class="leverform" id="instrumentalness-lever">
+              <input type="checkbox" name="lever" class="lever pristine" value="lever value" role="switch" aria-label="lever" aria-checked="false" checked>
+              <label for="lever">
+                  <span>On</span>
+              </label>
+              <!-- <label for="lever">
+                  <span>Off</span>
+              </label> -->
+            </form>
+        </div>
+
+        <br><br><br><br><br><br><br><br>
+
+        <div>   
+            <p>Popularity</p>
+            <input type="range" class="custom-slider" id="popularity" name="popularity" min="1" max="100" value="85">
+            <!-- <button id="popularity-toggle">Off/On</button> -->
+            <form class="leverform" id="popularity-lever">
+              <input type="checkbox" name="lever" class="lever pristine" value="lever value" role="switch" aria-label="lever" aria-checked="false" checked>
+              <label for="lever">
+                  <span>On</span>
+              </label>
+              <!-- <label for="lever">
+                  <span>Off</span>
+              </label> -->
+            </form>
+        </div>
+
+        <br><br><br><br><br><br><br><br>
+
+        <div>
+            <p>Live Recording? (doesnt work?)</p>
+            <input type="checkbox" id="liveness" name="liveness" autocomplete="off" disabled>
+            <!-- <button id="liveness-toggle">Off/On</button> -->
+            <form class="leverform" id="liveness-lever">
+                <input type="checkbox" name="lever" class="lever pristine" value="lever value" role="switch" aria-label="lever" aria-checked="false" checked>
+                <label for="lever">
+                    <span>On</span>
+                </label>
+                <!-- <label for="lever">
+                    <span>Off</span>
+                </label> -->
+            </form>
+        </div>
+    </section>
+
+        <br><br><br><br><br><br><br><br>
 
 
 </body>
@@ -169,6 +207,4 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <!-- ^ajax. not latest framework, but matches circular dial's code's version^ -->
 <script src="./index.js"></script>
-<script src="./dial.js"></script>
 </html>
-

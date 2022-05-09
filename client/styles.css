@@ -1,3 +1,311 @@
+@import url(https://fonts.googleapis.com/css?family=Lobster);
+#filters-chart {
+  color: #BBB;
+  background-color: #444;
+  text-align: center;
+  font-size: 2em;
+}
+
+fieldset {
+  border: #999 solid .2em;
+  border-radius: .5em;
+  display: inline-block;
+  text-align: left;
+  position: relative;
+  -webkit-transition: border-color .25s linear;
+  transition: border-color .25s linear;
+}
+
+fieldset:hover {
+  border: #BBB solid .2em;
+}
+
+legend {
+  font-size: 1.8em;
+  font-family: "Lobster", sans-serif;
+  padding-left: .3em;
+  padding-right: .2em;
+  color: #ACE;
+  text-shadow: -.125em .05em 0 #214893, -.25em .1em 0 #313131;
+}
+
+/* Slider *
+ * ====== */
+/* ## Slider main element */
+.chart-input {
+  display: block;
+  margin: 0;
+  padding: 0;
+  font-size: inherit;
+  width: 9.9em;
+  height: 1em;
+  border-radius: .25em;
+  border: 0.2em solid #242424;
+  background-color: #242424;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  cursor: pointer;
+  -webkit-transition: -webkit-box-shadow .2s linear;
+  transition: -webkit-box-shadow .2s linear;
+  transition: box-shadow .2s linear;
+  transition: box-shadow .2s linear, -webkit-box-shadow .2s linear;
+  -webkit-box-shadow: 0 0 0 0 transparent;
+          box-shadow: 0 0 0 0 transparent;
+}
+
+.chart-input:focus {
+  -webkit-box-shadow: 0 0 0 .1em  #AAAAAA;
+          box-shadow: 0 0 0 .1em  #AAAAAA;
+}
+
+.chart-input:hover {
+  -webkit-box-shadow: 0 0 0 .15em #6FC5F0;
+          box-shadow: 0 0 0 .15em #6FC5F0;
+}
+
+/* ## Orientation tweak, with [orient] attribute in degrees */
+/* > I know it's not standard, but that's the cleaner way I was thinking of. */
+.chart-input {
+  /* > Would be cool heh :-) : */
+  -webkit-transform: rotate(attr(orient));
+          transform: rotate(attr(orient));
+}
+
+.chart-label[type='range'][orient='180deg'] {
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+}
+
+.chart-input[orient='270deg'] {
+  -webkit-transform: rotate(270deg);
+          transform: rotate(270deg);
+}
+
+/* ### all vertical ranges : */
+input[type='range'][orient='90deg'], input[type='range'][orient='270deg'] {
+  margin: 4.5em -4.5em;
+  display: inline-block;
+}
+
+input[type='range'][orient='90deg']::-webkit-slider-thumb, input[type='range'][orient='270deg']::-webkit-slider-thumb {
+  cursor: ns-resize;
+}
+
+input[type='range'][orient='90deg']::-moz-range-thumb, input[type='range'][orient='270deg']::-moz-range-thumb {
+  cursor: ns-resize;
+}
+
+input[type='range'][orient='90deg']::-ms-thumb, input[type='range'][orient='270deg']::-ms-thumb {
+  cursor: ns-resize;
+}
+
+/* ## Slider components */
+/* ### Slider::-track */
+.chart-input::-webkit-slider-runnable-track {
+  border: none;
+  background: none;
+  height: 100%;
+  width: 100%;
+}
+
+.chart-input::-moz-range-track {
+  border: none;
+  background: none;
+  height: 100%;
+  width: 100%;
+}
+
+.chart-input::-ms-track {
+  border: none;
+  background: none;
+  height: 100%;
+  width: 100%;
+}
+
+/* ### Slider::-thumb */
+.chart-input::-webkit-slider-thumb {
+  margin: .05em;
+  padding: 0;
+  height: .9em;
+  width: .9em;
+  border-radius: .1em;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border: none;
+  background-color: #6FC5F0;
+  -webkit-box-shadow: -10em 0 0 0 #313131, -9em 0 0 0 #313131, -8em 0 0 0 #2F343F, -7em 0 0 0 #283F6B, -6em 0 0 0 #214893, -5em 0 0 0 #1A52BC, -4em 0 0 0 #2769D3, -3em 0 0 0 #3E87DC, -2em 0 0 0 #55A5E6, -1em 0 0 0 #6FC5F0, 1em 0 0 0 #181818, 2em 0 0 0 #181818, 3em 0 0 0 #181818, 4em 0 0 0 #181818, 5em 0 0 0 #181818, 6em 0 0 0 #181818, 7em 0 0 0 #181818, 8em 0 0 0 #181818, 9em 0 0 0 #181818;
+          box-shadow: -10em 0 0 0 #313131, -9em 0 0 0 #313131, -8em 0 0 0 #2F343F, -7em 0 0 0 #283F6B, -6em 0 0 0 #214893, -5em 0 0 0 #1A52BC, -4em 0 0 0 #2769D3, -3em 0 0 0 #3E87DC, -2em 0 0 0 #55A5E6, -1em 0 0 0 #6FC5F0, 1em 0 0 0 #181818, 2em 0 0 0 #181818, 3em 0 0 0 #181818, 4em 0 0 0 #181818, 5em 0 0 0 #181818, 6em 0 0 0 #181818, 7em 0 0 0 #181818, 8em 0 0 0 #181818, 9em 0 0 0 #181818;
+  cursor: ew-resize;
+}
+
+.chart-input::-moz-range-thumb {
+  margin: .05em;
+  padding: 0;
+  height: .9em;
+  width: .9em;
+  border-radius: .1em;
+  box-sizing: border-box;
+  border: none;
+  background-color: #6FC5F0;
+  box-shadow: -10em 0 0 0 #313131, -9em 0 0 0 #313131, -8em 0 0 0 #2F343F, -7em 0 0 0 #283F6B, -6em 0 0 0 #214893, -5em 0 0 0 #1A52BC, -4em 0 0 0 #2769D3, -3em 0 0 0 #3E87DC, -2em 0 0 0 #55A5E6, -1em 0 0 0 #6FC5F0, 1em 0 0 0 #181818, 2em 0 0 0 #181818, 3em 0 0 0 #181818, 4em 0 0 0 #181818, 5em 0 0 0 #181818, 6em 0 0 0 #181818, 7em 0 0 0 #181818, 8em 0 0 0 #181818, 9em 0 0 0 #181818;
+  cursor: ew-resize;
+}
+
+.chart-input::-ms-thumb {
+  margin: .05em;
+  padding: 0;
+  height: .9em;
+  width: .9em;
+  border-radius: .1em;
+  box-sizing: border-box;
+  border: none;
+  background-color: #6FC5F0;
+  box-shadow: -10em 0 0 0 #313131, -9em 0 0 0 #313131, -8em 0 0 0 #2F343F, -7em 0 0 0 #283F6B, -6em 0 0 0 #214893, -5em 0 0 0 #1A52BC, -4em 0 0 0 #2769D3, -3em 0 0 0 #3E87DC, -2em 0 0 0 #55A5E6, -1em 0 0 0 #6FC5F0, 1em 0 0 0 #181818, 2em 0 0 0 #181818, 3em 0 0 0 #181818, 4em 0 0 0 #181818, 5em 0 0 0 #181818, 6em 0 0 0 #181818, 7em 0 0 0 #181818, 8em 0 0 0 #181818, 9em 0 0 0 #181818;
+  cursor: ew-resize;
+}
+
+/* ## Browser tweaks */
+/* ### webkit */
+.chart-input, .chart-input::-webkit-slider-runnable-track, .chart-input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+}
+
+/* ### IE */
+.chart-input::-ms-track {
+  color: transparent;
+}
+
+.chart-input::-ms-fill-lower, .chart-input::-ms-fill-upper, .chart-input::-ms-tooltip {
+  display: none;
+}
+
+/* Label *
+ * ====== */
+/* ## Label main element */
+.chart-label {
+  display: block;
+  position: relative;
+  margin: 0;
+  padding: 0;
+  font-size: inherit;
+  line-height: .6em;
+  width: 9.9em;
+  height: 1em;
+  border-radius: .25em;
+  color: #242424;
+  font-family: arial;
+  border: .2em solid transparent;
+  text-align: center;
+  border-bottom-color: #242424;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#242424), to(#242424));
+  background-image: linear-gradient(#242424 calc(50% - .1em), #242424 calc(50% + .1em));
+  background-position: bottom center;
+  background-repeat: no-repeat;
+  background-size: .2em .2em;
+  color: #999;
+}
+
+.chart-label:first-letter {
+  font-size: .6em;
+}
+
+.chart-label::before, .chart-label::after {
+  display: block;
+  position: absolute;
+  height: 1em;
+  line-height: 1em;
+  width: 1em;
+}
+
+.chart-label::before {
+  content: attr(before);
+  left: -.2em;
+  text-align: left;
+}
+
+.chart-label::after {
+  content: attr(after);
+  top: 0;
+  right: -.2em;
+  text-align: right;
+}
+
+.chart-label[orient='90deg'], .chart-label[orient='270deg'] {
+  border-bottom-color: transparent;
+  display: inline-block;
+  width: 1em;
+  height: 10.1em;
+  line-height: 10.1em;
+  vertical-align: top;
+}
+
+.chart-label[orient='90deg'] {
+  border-bottom-color: transparent;
+  border-left-color: #242424;
+  background-position: center left;
+  text-align: center;
+}
+
+.chart-label[orient='90deg']::before {
+  top: -.2em;
+  bottom: auto;
+  left: .1em;
+}
+
+.chart-label[orient='90deg']::after {
+  left: .1em;
+  top: auto;
+  bottom: -.2em;
+  right: 0;
+  text-align: left;
+}
+
+.chart-label[orient='180deg'] {
+  border-bottom-color: transparent;
+  border-top-color: #242424;
+  background-position: top center;
+  line-height: 1.4em;
+}
+
+.chart-label[orient='180deg']::before {
+  bottom: 0;
+  left: auto;
+  right: -.2em;
+  text-align: right;
+}
+
+.chart-label[orient='180deg']::after {
+  bottom: 0;
+  left: -.2em;
+  right: auto;
+  text-align: left;
+}
+
+.chart-label[orient='270deg'] {
+  border-bottom-color: transparent;
+  border-right-color: #242424;
+  background-position: center right;
+  text-align: center;
+}
+
+.chart-label[orient='270deg']::before {
+  bottom: -.2em;
+  top: auto;
+  right: .1em;
+  left: auto;
+  text-align: right;
+}
+
+.chart-label[orient='270deg']::after {
+  right: .1em;
+  bottom: auto;
+  top: -.2em;
+  left: auto;
+  text-align: right;
+}
+/*# sourceMappingURL=styles.css.map */
+
 body{
 	background: #323570;
 	width:100%;
@@ -8,7 +316,7 @@ body{
 
 p, h2, button {
 	background: rgba(1, 141, 255, 0.99);
-	font-size:32px;
+	font-size: 16px;
 	font-family: 'HelveticaNeue-UltraLight', 'Helvetica Neue UltraLight', Roboto, Arial, Sans-serif;
 }
 
@@ -153,10 +461,13 @@ transform:scaleY(0.85);
 
 .leverform {
 	display: flex;
-	justify-content: space-between;
+  flex-direction: row-reverse;
+	justify-content: space-around;
 	align-items: center;
 	margin: 3em auto 0 auto;
-	width: 23em;
+	width: 18em;
+  /* max-width: 12vw; */
+  transform: scale(.5);
 }
 form > label {
 	background-color: rgba(1, 141, 255, 0.99);
@@ -205,8 +516,8 @@ label span {
 	display: block;
 	outline: 0;
 	position: relative;
-	width: 12em;
-	height: 12em;
+	width: 8em;
+	height: 8em;
 	-webkit-appearance: none;
 	-moz-appearance: none;
 	appearance: none;
@@ -349,6 +660,8 @@ label span {
 	background-repeat:no-repeat;
 	overflow:hidden;
 	outline: none;
+  transform: rotate(270deg);
+
   }
   
   .custom-slider:first-of-type{
@@ -363,6 +676,7 @@ label span {
 	position:relative;
 	z-index:3;
 	box-shadow:0 0 10px 3px rgba(0,0,0,0.5);
+  cursor: pointer;
   }
   
   .custom-slider::-webkit-slider-thumb:after{
@@ -380,9 +694,9 @@ label span {
   .custom-slider:disabled {
 	background: grey;
   }
-
- 
-
+  .custom-slider::-webkit-slider-thumb:disabled {
+  cursor: not-allowed;
+  }
 
 /* direction of slider */
 .right-to-left-slider {
@@ -394,5 +708,22 @@ label span {
     transform: rotateY(180deg);
 }
 
-/* reds: #f00 and #500 */
-/* greens: #050 and #0D
+#filters-section {
+  display: flex;
+  justify-content: space-evenly;
+  /* flex-wrap: wrap; */
+}
+
+#filters-section > div {
+  max-width: 10vw;
+  min-height: fit-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#filters-section > div > * {
+
+}
+

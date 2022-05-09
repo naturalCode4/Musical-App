@@ -15,5 +15,13 @@
     "cors": "^2.8.5",
     "express": "^4.18.1",
     "scss": "^0.2.4"
-  }
+  },
+  "tasks": [
+    {
+      "label": "Sass Compile",
+      "type": "shell",
+      "command": "sass styles.scss styles.css",
+      "group": "build"
+    }
+  ]
 }

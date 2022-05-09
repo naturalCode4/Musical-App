@@ -1,0 +1,258 @@
+@import url(https://fonts.googleapis.com/css?family=Lobster);
+$base-color: #71c8f1;
+$background-color: #181818;
+$border-color: #242424;
+
+#filters-chart {
+  color: #BBB;
+  background-color: #444;
+  text-align: center;
+  font-size: 2em;
+}
+fieldset {
+  border: #999 solid .2em;
+  border-radius: .5em;
+  display: inline-block;
+  text-align: left;
+  position: relative;
+  transition: border-color .25s linear;
+  &:hover {
+    border: #BBB solid .2em;
+  }
+}
+legend {
+  font-size: 1.8em;
+  font-family: "Lobster", sans-serif;
+  padding-left: .3em;
+  padding-right: .2em;
+  color: #ACE;
+  text-shadow: 
+    -.125em .05em 0 #214893,
+    -.25em .1em 0 #313131;
+}
+
+
+/* Slider *
+ * ====== */
+/* ## Slider main element */
+.chart-input {
+  display: block;
+  margin: 0; padding: 0;
+  font-size: inherit;
+  width: 9.9em; height: 1em;
+  border-radius: .25em;
+  border: .2em solid $border-color;
+  background-color: $border-color;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  cursor: pointer;
+  transition: box-shadow .2s linear;
+  box-shadow: 0 0 0 0 transparent;
+  &:focus { box-shadow: 0 0 0 .1em  #AAAAAA; }
+  &:hover { box-shadow: 0 0 0 .15em #6FC5F0; }
+}  
+
+/* ## Orientation tweak, with [orient] attribute in degrees */
+/* > I know it's not standard, but that's the cleaner way I was thinking of. */
+.chart-input {
+  /* > Would be cool heh :-) : */
+  transform: rotate( attr(orient) );
+}
+
+// .chart-label[orient='90deg'] {  transform: rotate( 90deg );  }
+.chart-label[type='range'][orient='180deg'] { transform: rotate( 180deg ); }
+.chart-input[orient='270deg'] { transform: rotate( 270deg ); }
+
+/* ### all vertical ranges : */
+input[type='range'] {
+  &[orient='90deg'], &[orient='270deg'] {
+    &::-webkit-slider-thumb { cursor: ns-resize; }
+        &::-moz-range-thumb { cursor: ns-resize; }
+               &::-ms-thumb { cursor: ns-resize; }
+    margin: 4.5em -4.5em;
+    display: inline-block;
+  }
+}
+
+
+
+/* ## Slider components */
+/* ### Slider::-track */
+.chart-input {
+  @mixin track() {
+    border: none;
+    background: none;
+    height: 100%;
+    width: 100%;
+  }
+  &::-webkit-slider-runnable-track { @include track(); }
+               &::-moz-range-track { @include track(); }
+                      &::-ms-track { @include track(); }
+}
+
+/* ### Slider::-thumb */
+.chart-input {
+  @mixin thumb() {
+    margin: .05em; padding: 0;
+    height: .9em; width: .9em;
+    border-radius: .1em;
+    box-sizing: border-box;
+    border: none;
+    background-color: #6FC5F0;
+    box-shadow:
+      -10em 0 0 0 #313131, -9em 0 0 0 #313131,
+       -8em 0 0 0 #2F343F, -7em 0 0 0 #283F6B,
+       -6em 0 0 0 #214893, -5em 0 0 0 #1A52BC,
+       -4em 0 0 0 #2769D3, -3em 0 0 0 #3E87DC,
+       -2em 0 0 0 #55A5E6, -1em 0 0 0 #6FC5F0,
+
+        1em 0 0 0 $background-color, 2em 0 0 0 $background-color,
+        3em 0 0 0 $background-color, 4em 0 0 0 $background-color,
+        5em 0 0 0 $background-color, 6em 0 0 0 $background-color,
+        7em 0 0 0 $background-color, 8em 0 0 0 $background-color,
+        9em 0 0 0 $background-color;
+    cursor: ew-resize;
+  }
+  &::-webkit-slider-thumb { @include thumb(); }
+      &::-moz-range-thumb { @include thumb(); }
+             &::-ms-thumb { @include thumb(); }
+}
+  
+  
+/* ## Browser tweaks */
+/* ### webkit */
+.chart-input {
+  &,
+  &::-webkit-slider-runnable-track, 
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+  }
+}
+
+/* ### IE */
+.chart-input {
+  &::-ms-track {
+    color: transparent;
+  }
+  &::-ms-fill-lower, 
+  &::-ms-fill-upper, 
+  &::-ms-tooltip {
+    display: none;
+  }
+}
+
+/* Label *
+ * ====== */
+/* ## Label main element */
+.chart-label {
+  display: block;
+  position: relative;
+  margin: 0; padding: 0;
+  font-size: inherit;
+  &:first-letter { font-size: .6em; }
+  line-height: .6em;
+  width: 9.9em; height: 1em;
+  border-radius: .25em;
+  color: $border-color;
+  font-family: arial;
+  //font-weight: bold;
+  border: .2em solid transparent;
+  text-align: center;
+  border-bottom-color: $border-color;
+  background-image: linear-gradient(
+    $border-color calc(50% - .1em),
+    $border-color calc(50% + .1em)
+  );
+  background-position: bottom center;
+  background-repeat: no-repeat;
+  background-size: .2em .2em;
+  color: #999;
+
+  &::before,
+  &::after {
+    display: block;
+    position: absolute;
+    height: 1em;
+    line-height: 1em;
+    width: 1em;
+  }
+  &::before {
+    content: attr(before);
+    left: -.2em;
+    text-align: left;
+  }
+  &::after {
+    content: attr(after);
+    top: 0;
+    right: -.2em;
+    text-align: right;
+  }
+
+  &[orient='90deg'],
+  &[orient='270deg'] {
+    border-bottom-color: transparent;
+    display: inline-block;
+    width: 1em; height: 10.1em;
+    line-height: 10.1em;
+    vertical-align: top;
+
+  }
+  &[orient='90deg'] {
+    border-bottom-color: transparent;
+    border-left-color: $border-color;
+    background-position: center left;
+    text-align: center;
+    &::before {
+      top: -.2em;
+      bottom: auto;
+      left: .1em;
+    }
+    &::after {
+      left: .1em;
+      top: auto;
+      bottom: -.2em;
+      right: 0;
+      text-align: left;
+    }
+  }
+  &[orient='180deg'] {
+    border-bottom-color: transparent;
+    border-top-color: $border-color;
+    background-position: top center;
+    line-height: 1.4em;
+    
+    &::before {
+      bottom: 0;
+      left: auto;
+      right: -.2em;
+      text-align: right;
+    }
+    &::after {
+      bottom: 0;
+      left: -.2em;
+      right: auto;
+      text-align: left;
+    }
+  }
+  &[orient='270deg'] {
+    border-bottom-color: transparent;
+    border-right-color: $border-color;
+    background-position: center right;
+    text-align: center;
+    &::before {
+      bottom: -.2em;
+      top: auto;
+      right: .1em;
+      left: auto;
+      text-align: right;
+    }
+    &::after {
+      right: .1em;
+      bottom: auto;
+      top: -.2em;
+      left: auto;
+      text-align: right;
+    }
+  }
+}  
