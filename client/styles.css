@@ -652,10 +652,11 @@ label span {
   .custom-slider{
 	-webkit-appearance:none;
 	width:160px;
-	height:20px;
-	margin:10px 50px;
+	height:80px;
+	/* margin:0px 0px 0px 0px; */
+  /* top right bottom left */
 	background: linear-gradient(to right, rgba(1, 141, 255, 0.99) 0%, #9A2720 85%);
-	background-size:150px 10px;
+	background-size:160px 50px;
 	background-position:center;
 	background-repeat:no-repeat;
 	overflow:hidden;
@@ -665,17 +666,17 @@ label span {
   }
   
   .custom-slider:first-of-type{
-	margin-top:30px;
+	margin-top:60px;
   }
   
   .custom-slider::-webkit-slider-thumb{
 	-webkit-appearance:none;
 	width:20px;
-	height:20px;
-	background:rgb(60,120,150);
+	height:70px;
+	background:rgb(4, 26, 37);
 	position:relative;
 	z-index:3;
-	box-shadow:0 0 10px 3px rgba(0,0,0,0.5);
+	box-shadow:0 0 1px 3px rgba(2, 10, 244, 0.301);
   cursor: pointer;
   }
   
@@ -693,12 +694,17 @@ label span {
 
   .custom-slider:disabled {
 	background: grey;
-  }
-  .custom-slider::-webkit-slider-thumb:disabled {
-  cursor: not-allowed;
-  }
+  width:160px;
+	height:50px;
+}
 
-/* direction of slider */
+  /* .custom-slider::-webkit-slider-thumb:disabled {
+    width:20px;
+    height:70px;
+  } */
+/* slider thumb not working for disabled^^ */
+
+/* change direction of slider values and possibly more about it */
 .right-to-left-slider {
     /* direction: rtl; */
     -webkit-transform: rotateY(180deg);
@@ -716,14 +722,30 @@ label span {
 
 #filters-section > div {
   max-width: 10vw;
+  height: 350px;0
   min-height: fit-content;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  margin: 0px, 0px, 0px, 0px;
 }
 
-#filters-section > div > * {
+/* max-width: 10vw;
+  height: 350px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-top: 0px;
+  margin-bottom: 0px; */
 
+#filters-section > div > form {
+  margin-left: -50px;
+  display: flex;
+  height: fit-content;
+  justify-content: space-around;
 }
 
