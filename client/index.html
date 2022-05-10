@@ -12,86 +12,73 @@
 
     <h2 class="engraved">MUSiC GENERATOR</h2>
 
-    <!-- on/off power switch
-    <section class="on-off-switch">
-        <div class=round>
-                <input type=checkbox id=onoff name=onoff/>
-            <div class=back>
-                <label class=but for=onoff>
-                    <span class=on>I</span>
-                    <span class=off>0</span>
-                </label>
-            </div>
-        </div>
-    </section> -->
-
     <br><br><br>
 
-    <section id="song-section">
-        <div id="">
-            <img id="album-cover">
+    <figure id="feature-section">
+
+        <div>
+            <section id="song-section">
+                <div id="">
+                    <img id="album-cover">
+                </div>
+                <div id="song-text">
+                    <p id="track-name">
+                    <p id="artist-name">
+                    <p id="album-name">
+                    <p id="track-link"></p>
+                    <p id="sample-link-p" hidden>(no sample available)</p>
+
+                </div>
+            </section>
+
+            <br><br>
+
+            <section>
+                <audio controls id="sample-link" controlsList="nodownload noplaybackrate"></audio>
+            </section>
+
+            <br><br>
+
+            <button id="filters-button">New Song</button>
         </div>
-        <div id="song-text">
-            <p id="track-name">
-            <p id="artist-name">
-            <p id="album-name">
-            <p id="track-link"></p>
+
+        <br><br>
+
+        <div>
+            <fieldset id="filters-chart">
+                <legend>Filters</legend>
+                
+                <label class="chart-label" orient='270deg' type='range' for="band" before="0" after="10">5</label>
+                
+                <input class="chart-input danceability" orient='270deg' type='range' min='0' value='7' max='10' step='1'/>
+                <input class="chart-input energy" orient='270deg' type='range' min='0' value='2' max='10' step='1' />
+                <input class="chart-input valence" orient='270deg' type='range' min='0' value='2' max='10' step='1' />
+                <input class="chart-input acousticness" orient='270deg' type='range' min='0' value='4' max='10' step='1' />
+                <input class="chart-input instrumentalness" orient='270deg' type='range' min='0' value='4' max='10' step='1' />
+                <input class="chart-input popularity" orient='270deg' type='range' min='0' value='3' max='10' step='1' />
+            
+                <label class="chart-label" orient='90deg' type='range' for="band" before="10" after="0">5</label>
+            
+            </fieldset>
         </div>
-      </section>
 
-    <figure>
-        <audio controls id="sample-link" hidden></audio>
-        <p id="sample-link-p" hidden>(spotify doesn't have a sample for this track)</p>
-     </figure>
-
-    <br><br><br>
-
-    <button id="filters-button"> I>I> Next Song</button>
-      <br><br>
-
-    <!-- <article action="/action_page.php" method="get"> -->
-    <!-- ^i have no idea what this is^ -->
-
-    <fieldset id="filters-chart">
-        <legend>Filters</legend>
-        
-        <label class="chart-label" orient='270deg' type='range' for="band" before="0" after="10">5</label>
-        
-        <input class="chart-input danceability" orient='270deg' type='range' min='0' value='7' max='10' step='1'/>
-        <input class="chart-input energy" orient='270deg' type='range' min='0' value='2' max='10' step='1' />
-        <input class="chart-input valence" orient='270deg' type='range' min='0' value='2' max='10' step='1' />
-        <input class="chart-input acousticness" orient='270deg' type='range' min='0' value='4' max='10' step='1' />
-        <input class="chart-input instrumentalness" orient='270deg' type='range' min='0' value='4' max='10' step='1' />
-        <input class="chart-input popularity" orient='270deg' type='range' min='0' value='3' max='10' step='1' />
-        <!-- <input class="chart-input liveness" orient='270deg' type='range' min='0' value='0' max='10' step='10' /> -->
-        <!-- <input class="chart-input" orient='270deg' type='range' min='0' value='7' max='10' step='1' />
-        <input class="chart-input" orient='270deg' type='range' min='0' value='7' max='10' step='1' />
-        <input class="chart-input" orient='270deg' type='range' min='0' value='8' max='10' step='1' />
-        <input class="chart-input" orient='270deg' type='range' min='0' value='8' max='10' step='1' />
-        <input class="chart-input" orient='270deg' type='range' min='0' value='6' max='10' step='1' />
-        <input class="chart-input" orient='270deg' type='range' min='0' value='5' max='10' step='1' />
-        <input class="chart-input" orient='270deg' type='range' min='0' value='6' max='10' step='1' />
-        <input class="chart-input" orient='270deg' type='range' min='0' value='6' max='10' step='1' /> -->
-      
-        <label class="chart-label" orient='90deg' type='range' for="band" before="10" after="0">5</label>
-      
-    </fieldset>
-    <br><br><br><br><br><br>
+        <br><br><br><br><br><br>
 
 
-    <aside>
-        <p>Genre (try pop, alt-rock, grunge, indian, ambient, classical, jazz, afrobeat, edm, bluegrass, chill, k-pop, indie, movies, reggae, trance, world-music ...)</p>
-        <br>
-        <input type="text" id="genre" name="genre" value="rock">
-    </aside>
+        <div>
+            <p>Genre (try pop, alt-rock, grunge, indian, ambient, classical, jazz, afrobeat, edm, bluegrass, chill, k-pop, indie, movies, reggae, trance, world-music ...)</p>
+            <br>
+            <input type="text" id="genre" name="genre" autocomplete="off" value="afrobeat">
+        </div>
 
+    </figure>
     <br><br><br><br><br><br>
 
     <section id="filters-section">
     
         <div>
             <p>Danceability</p>
-            <input type="range" class="custom-slider" id="danceability" name="danceability" value='70' min="1" max="100">
+            <input type="range" class="custom-slider" id="danceability" name="danceability" value='80' min="1" max="100">
             <!-- <button id="danceability-toggle">Off/On</button> -->
             <form class="leverform" id="danceability-lever">
               <input type="checkbox" name="lever" class="lever pristine" value="lever value" role="switch" aria-label="lever" aria-checked="false" checked>
@@ -108,7 +95,7 @@
 
         <div>
             <p>Chill ---> High Energy</p>
-            <input type="range" class="custom-slider" id="energy" name="energy" min="1" max="100">
+            <input type="range" class="custom-slider" id="energy" name="energy" min="1" max="100" value="50">
             <!-- <button id="energy-toggle">Off/On</button> -->
             <form class="leverform" id="energy-lever">
               <input type="checkbox" name="lever" class="lever pristine" value="lever value" role="switch" aria-label="lever" aria-checked="false" checked>
@@ -125,7 +112,7 @@
 
         <div>
             <p>Mood</p>
-            <input type="range" class="custom-slider" id="valence" name="valence" min="1" max="100">
+            <input type="range" class="custom-slider" id="valence" name="valence" min="1" max="100" value="40">
             <!-- <button id="valence-toggle">Off/On</button> -->
             <form class="leverform" id="valence-lever">
               <input type="checkbox" name="lever" class="lever pristine" value="lever value" role="switch" aria-label="lever" aria-checked="false" checked>
@@ -142,7 +129,7 @@
 
         <div>
             <p>Non --> Acoustic</p>
-            <input type="range" class="custom-slider" id="acousticness" name="acousticness" min="1" max="101">
+            <input type="range" class="custom-slider" id="acousticness" name="acousticness" min="1" max="101" value="80">
             <!-- <button id="acousticness-toggle">Off/On</button> -->
             <form class="leverform" id="acousticness-lever">
               <input type="checkbox" name="lever" class="lever pristine" value="lever value" role="switch" aria-label="lever" aria-checked="false" checked>
@@ -157,9 +144,9 @@
         <br><br><br><br><br><br><br><br>
 
         <div>
-            <p>Vocals?</p>
+            <p>Vocals Presence</p>
             <!-- maybe make this binaryish too -->
-            <input type="range" class="custom-slider" id="instrumentalness" name="instrumentalness" min="1" max="101" step="50">
+            <input type="range" class="custom-slider right-to-left-slider" id="instrumentalness" name="instrumentalness" min="1" max="101" step="50" value="1">
             <!-- <button id="instrumentalness-toggle">Off/On</button> -->
             <form class="leverform" id="instrumentalness-lever">
               <input type="checkbox" name="lever" class="lever pristine" value="lever value" role="switch" aria-label="lever" aria-checked="false" checked>
@@ -176,7 +163,7 @@
 
         <div>   
             <p>Popularity</p>
-            <input type="range" class="custom-slider" id="popularity" name="popularity" min="1" max="100">
+            <input type="range" class="custom-slider" id="popularity" name="popularity" min="1" max="100" value="50">
             <!-- <button id="popularity-toggle">Off/On</button> -->
             <form class="leverform" id="popularity-lever">
               <input type="checkbox" name="lever" class="lever pristine" value="lever value" role="switch" aria-label="lever" aria-checked="false" checked>

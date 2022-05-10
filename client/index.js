@@ -46,9 +46,9 @@ const popularityChart = document.getElementsByClassName('popularity')[0]
 const displaySongInfo = (songInfo) => {
     console.log(songInfo.sampleLink)
 
-    trackName.textContent = "Track: " + songInfo.trackName
-    artistName.textContent = "Artist: " + songInfo.artistName
-    albumName.textContent = "Album: " + songInfo.albumName
+    trackName.textContent = "TRACK: " + songInfo.trackName
+    artistName.textContent = "ARTIST: " + songInfo.artistName
+    albumName.textContent = "ALBUM: " + songInfo.albumName
     albumCover.src = songInfo.albumCover
     albumCover.alt = "Couldn't get album cover"
     trackLink.innerHTML = `<a href="${songInfo.trackLink}" target="_blank">
@@ -56,10 +56,10 @@ const displaySongInfo = (songInfo) => {
 
     if (songInfo.sampleLink != null) {
         sampleLinkP.hidden = true // hide sample link if not hidden
-        sampleLink.hidden = false //started hidden. When sample link exists, removes hidden attribute to display
+        // sampleLink.hidden = false //started hidden. When sample link exists, removes hidden attribute to display
         sampleLink.src = songInfo.sampleLink
     } else {
-        sampleLink.hidden = true
+        // sampleLink.hidden = true
         sampleLinkP.hidden = false //started hidden. When sample link is null, removes attribute to display
     }
 }
@@ -137,8 +137,6 @@ const connectFilterInputs = (...inputsAndCharts) => {
         let input = inputAndChart[0]
         let chart = inputAndChart[1]
 
-        console.log('HIHIHI', input, chart)
-
         input.addEventListener('input', () => {
             event.preventDefault()
             chart.value = input.value/10
@@ -153,5 +151,5 @@ const connectFilterInputs = (...inputsAndCharts) => {
 
 connectFilterInputs([acousticness, acousticnessChart], [valence, valenceChart], [danceability, danceabilityChart], [energy, energyChart], [instrumentalness, instrumentalnessChart], [popularity, popularityChart])
 
-// 
+
 
