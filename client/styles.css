@@ -4,6 +4,7 @@
   background-color: #444;
   text-align: center;
   font-size: 2em;
+  height: 100%;
 }
 
 fieldset {
@@ -23,8 +24,6 @@ fieldset:hover {
 legend {
   font-size: 1.8em;
   font-family: "Lobster", sans-serif;
-  padding-left: .3em;
-  padding-right: .2em;
   color: #ACE;
   text-shadow: -.125em .05em 0 #214893, -.25em .1em 0 #313131;
 }
@@ -324,9 +323,9 @@ form, *:before, *:after {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: column-reverse;
+          flex-direction: column-reverse;
   -ms-flex-pack: distribute;
       justify-content: space-around;
   -webkit-box-align: center;
@@ -334,10 +333,7 @@ form, *:before, *:after {
           align-items: center;
   margin: 3em auto 0 auto;
   width: 18em;
-  gap: 75px;
-  /* max-width: 12vw; */
-  -webkit-transform: scale(0.5);
-          transform: scale(0.5);
+  gap: 40px;
 }
 
 form > label {
@@ -351,12 +347,12 @@ form > label {
   transition: all var(--dur2) var(--dur2) linear;
   width: 1.5em;
   height: 1.5em;
-  -webkit-transform: scale(1.5);
-          transform: scale(1.5);
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
 }
 
 form label:first-of-type {
-  background-color: #16128f;
+  background-color: rgba(28, 154, 72, 0.369);
   -webkit-box-shadow: 0 0.5em 0.75em rgba(0, 0, 0, 0.3);
           box-shadow: 0 0.5em 0.75em rgba(0, 0, 0, 0.3);
   -webkit-box-ordinal-group: 0;
@@ -441,13 +437,13 @@ label span {
 }
 
 .lever:checked + label {
-  background-color: rgba(1, 141, 255, 0.99);
-  -webkit-box-shadow: 0 0 0.5em rgba(0, 81, 255, 0.686), 0 0.25em 0.75em rgba(0, 0, 0, 0.3);
-          box-shadow: 0 0 0.5em rgba(0, 81, 255, 0.686), 0 0.25em 0.75em rgba(0, 0, 0, 0.3);
+  background-color: rgba(30, 215, 96, 0.9);
+  -webkit-box-shadow: 0 0 0.5em rgba(12, 221, 85, 0.75), 0 0.25em 0.75em rgba(0, 0, 0, 0.3);
+          box-shadow: 0 0 0.5em rgba(12, 221, 85, 0.75), 0 0.25em 0.75em rgba(0, 0, 0, 0.3);
 }
 
 .lever:checked + label + label {
-  background-color: #16128f;
+  background-color: rgba(30, 215, 96, 0.3);
   -webkit-box-shadow: 0 0.5em 0.75em rgba(0, 0, 0, 0.3);
           box-shadow: 0 0.5em 0.75em rgba(0, 0, 0, 0.3);
 }
@@ -609,34 +605,24 @@ label span {
 /* sliders */
 .custom-slider {
   -webkit-appearance: none;
-  width: 160px;
-  height: 80px;
-  /* padding-top: 100px;
-	padding-bottom: 100px; */
-  background: -webkit-gradient(linear, left top, right top, from(rgba(1, 141, 255, 0.99)), color-stop(85%, #9A2720));
-  background: linear-gradient(to right, rgba(1, 141, 255, 0.99) 0%, #9A2720 85%);
-  background-size: 160px 50px;
+  width: 350px;
+  height: 70px;
+  background: -webkit-gradient(linear, left top, right top, from(rgba(1, 141, 255, 0.99)), color-stop(80%, #9a2020));
+  background: linear-gradient(to right, rgba(1, 141, 255, 0.99) 0%, #9a2020 80%);
   background-position: center;
-  background-repeat: no-repeat;
-  /* overflow: hidden; */
-  outline: none;
-  -webkit-transform: rotate(270deg);
-          transform: rotate(270deg);
-}
-
-#instrumentalness {
   -webkit-transform: rotate(270deg);
           transform: rotate(270deg);
 }
 
 .custom-slider:first-of-type {
   margin-top: 80px;
+  margin-bottom: 140px;
 }
 
 .custom-slider::-webkit-slider-thumb {
   -webkit-appearance: none;
-  width: 20px;
-  height: 70px;
+  width: 22px;
+  height: 90px;
   background: #041a25;
   position: relative;
   z-index: 3;
@@ -651,24 +637,21 @@ label span {
   height: 10px;
   position: absolute;
   z-index: 1;
-  /* right:20px; */
   top: 5px;
-  background: #ff5b32;
   background: -webkit-gradient(linear, left top, right top, color-stop(1%, #f088fc), color-stop(70%, #AC6CFF));
   background: linear-gradient(to right, #f088fc 1%, #AC6CFF 70%);
 }
 
 .custom-slider:disabled {
   background: grey;
-  width: 160px;
-  height: 50px;
 }
 
-/* .custom-slider::-webkit-slider-thumb:disabled {
-    width:20px;
-    height:70px;
-  } */
 /* slider thumb not working for disabled^^ */
+#instrumentalness {
+  -webkit-transform: rotate(270deg);
+          transform: rotate(270deg);
+}
+
 /* direction of slider */
 .right-to-left-slider {
   direction: rtl;
@@ -684,7 +667,7 @@ body {
 h2, p {
   margin: auto;
   font-family: "Century Gothic", "Helvetica", sans-serif;
-  font-size: 60px;
+  font-size: 80px;
   text-align: center;
   color: #3b5957;
   text-shadow: 0.25px 1px 0.25px #5c8a87, -0.75px -2px 1px black;
@@ -730,7 +713,7 @@ button:active {
 
 #filters-section > div {
   /* min-height: 350px; */
-  height: 350px;
+  height: 800px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -819,6 +802,25 @@ button:active {
   height: auto;
   border-top-left-radius: 3px;
   border-bottom-left-radius: 3px;
+}
+
+#feature-section {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+#feature-section div p {
+  max-width: -webkit-fit-content;
+  max-width: -moz-fit-content;
+  max-width: fit-content;
 }
 
 audio {

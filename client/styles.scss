@@ -1,9 +1,11 @@
 @import url(https://fonts.googleapis.com/css?family=Lobster);
+
 #filters-chart {
   color: #BBB;
   background-color: #444;
   text-align: center;
   font-size: 2em;
+  height: 100%;
 }
 
 fieldset {
@@ -23,8 +25,8 @@ fieldset:hover {
 legend {
   font-size: 1.8em;
   font-family: "Lobster", sans-serif;
-  padding-left: .3em;
-  padding-right: .2em;
+  // padding-left: .3em;
+  // padding-right: .2em;
   color: #ACE;
   text-shadow: -.125em .05em 0 #214893, -.25em .1em 0 #313131;
 }
@@ -306,6 +308,7 @@ legend {
   left: auto;
   text-align: right;
 }
+
 /* # sourceMappingURL=styles.css.map */
 
 /* tall switch for filters */
@@ -319,18 +322,17 @@ form, *:before, *:after {
 	--dur: 0.3s;
 	--dur2: 0.15s;
 	font-size: 16px;
+  
 }
 
 .leverform {
 	display: flex;
-  	flex-direction: column;
+  flex-direction: column-reverse;
 	justify-content: space-around;
 	align-items: center;
 	margin: 3em auto 0 auto;
 	width: 18em;
-	gap: 75px;
-    /* max-width: 12vw; */
-  	transform: scale(.5);
+	gap: 40px;
 }
 form > label {
 	background-color: rgba(1, 141, 255, 0.99);
@@ -345,10 +347,10 @@ form > label {
 	transition: all var(--dur2) var(--dur2) linear;
 	width: 1.5em;
 	height: 1.5em;
-	transform: scale(1.5)
+	transform: scale(1.2)
 }
 form label:first-of-type {
-	background-color: rgb(22, 18, 143);
+	background-color: rgba(28, 154, 72, 0.369);
 	box-shadow: 0 0.5em 0.75em rgba(0,0,0,0.3);
 	order: -1;
 }
@@ -393,6 +395,7 @@ label span {
 	position: absolute;
 	top: 50%;
 	left: 50%;
+  
 }
 .lever:before {
 	animation: leverAOff var(--dur) linear forwards;
@@ -412,6 +415,7 @@ label span {
 	height: 4em;
 	transform: translate(100%,-50%);
 	z-index: 1;
+
 }
 .lever:checked {
 	background-position: -0.5em 0, -0.5em 0, 0 0, 0 0, 0 0, 0 0, 0 0, 0 0, 0 0, 0 0, 0 0, 0 0;
@@ -432,12 +436,12 @@ label span {
 	animation: leverBOn var(--dur) linear forwards;
 }
 .lever:checked + label {
-	background-color: rgba(1, 141, 255, 0.99);;
-	box-shadow: 0 0 0.5em rgba(0, 81, 255, 0.686), 0 0.25em 0.75em rgba(0,0,0,0.3)
+	background-color: rgba(30, 215, 96, 0.9);
+	box-shadow: 0 0 0.5em rgba(12, 221, 85, 0.75), 0 0.25em 0.75em rgba(0,0,0,0.3)
 }
 
 .lever:checked + label + label {
-	background-color: rgb(22, 18, 143);
+	background-color: rgba(30, 215, 96, .3);
 	box-shadow: 0 0.5em 0.75em rgba(0,0,0,0.3);
 }
 /* To stop animations from running on load */
@@ -454,6 +458,7 @@ label span {
 			-2em 9em 4em rgba(0,0,0,0.2),
 			-2em 11em 4em rgba(0,0,0,0.2);
 		transform: translate(100%,-50%);
+    
 	}
 	50% {
 		box-shadow:
@@ -482,6 +487,7 @@ label span {
 			2em 9em 4em rgba(0,0,0,0.2),
 			2em 11em 4em rgba(0,0,0,0.2);
 		transform: translate(-200%,-50%);
+    
 	}
 	50% {
 		box-shadow:
@@ -516,31 +522,22 @@ label span {
   
 .custom-slider{
 	-webkit-appearance:none;
-	width:160px;
-	height:80px;
-	/* padding-top: 100px;
-	padding-bottom: 100px; */
-	background: linear-gradient(to right, rgba(1, 141, 255, 0.99) 0%, #9A2720 85%);
-	background-size:160px 50px;
+	width:350px;
+	height:70px;
+	background: linear-gradient(to right, rgba(1, 141, 255, 0.99) 0%, #9a2020 80%);
 	background-position:center;
-	background-repeat:no-repeat;
-	/* overflow: hidden; */
-	outline: none;
   transform: rotate(270deg);
   }
 
-  #instrumentalness{
-    transform: rotate(270deg);
-  }
-
   .custom-slider:first-of-type{
-	margin-top:80px;
+	margin-top: 80px;
+  margin-bottom: 140px;
   }
   
   .custom-slider::-webkit-slider-thumb{
 	-webkit-appearance:none;
-	width:20px;
-	height:70px;
+	width:22px;
+	height:90px;
 	background:rgb(4, 26, 37);
 	position:relative;
 	z-index:3;
@@ -554,23 +551,20 @@ label span {
 	height:10px;
 	position:absolute;
 	z-index:1;
-	/* right:20px; */
 	top:5px;
-	background: #ff5b32;
 	background: linear-gradient(to right, #f088fc 1%, #AC6CFF 70%);
   }
 
-  .custom-slider:disabled {
-	background: grey;
-  	width:160px;
-	height:50px;
+.custom-slider:disabled {
+  background: grey;
+  // background-size: 350px 70px;
 }
 
-  /* .custom-slider::-webkit-slider-thumb:disabled {
-    width:20px;
-    height:70px;
-  } */
 /* slider thumb not working for disabled^^ */
+
+#instrumentalness{
+  transform: rotate(270deg);
+}
 
 /* direction of slider */
 .right-to-left-slider {
@@ -589,7 +583,7 @@ body{
 h2, p{ 
   margin: auto;
   font-family: "Century Gothic", "Helvetica", sans-serif;
-  font-size: 60px;
+  font-size: 80px;
   text-align: center;
   color: rgb(59, 89, 87);
   text-shadow: .25px 1px .25px rgb(92, 138, 135), -.75px -2px 1px rgb(0, 0, 0);
@@ -628,9 +622,8 @@ button:active {
 }
 
 #filters-section > div {
-  // max-width: 10vw;
   /* min-height: 350px; */
-  height: 350px;
+  height: 800px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -688,6 +681,16 @@ button:active {
   height: auto;
   border-top-left-radius: 3px;
   border-bottom-left-radius: 3px;
+}
+
+#feature-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+#feature-section div p {
+  max-width:fit-content
 }
 
 audio {
