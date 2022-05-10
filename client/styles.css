@@ -5,6 +5,8 @@
   text-align: center;
   font-size: 2em;
   height: 100%;
+  -webkit-transform: scale(1.25);
+          transform: scale(1.25);
 }
 
 fieldset {
@@ -667,14 +669,14 @@ body {
 h2, p {
   margin: auto;
   font-family: "Century Gothic", "Helvetica", sans-serif;
-  font-size: 80px;
+  font-size: 120px;
   text-align: center;
-  color: #3b5957;
-  text-shadow: 0.25px 1px 0.25px #5c8a87, -0.75px -2px 1px black;
+  color: #393838;
+  text-shadow: 0.25px 1px 0.25px #828282, -0.75px -2px 1px black;
 }
 
 p {
-  font-size: 30px;
+  font-size: 42px;
   font-weight: bold;
   font-family: 'HelveticaNeue-UltraLight', 'Helvetica Neue UltraLight', Roboto, Arial, Sans-serif;
 }
@@ -682,7 +684,7 @@ p {
 button, input[type=text] {
   background-color: #9586af;
   color: black;
-  font-size: 30px;
+  font-size: 42px;
   font-family: "Courier New";
   font-weight: bolder;
   border-radius: 6px;
@@ -830,6 +832,8 @@ audio {
   border-color: #3f636f;
   -webkit-box-shadow: 0px 0px 7px 4px #214893;
           box-shadow: 0px 0px 7px 4px #214893;
+  -webkit-transform: scale(1.5);
+          transform: scale(1.5);
 }
 
 audio::-webkit-media-controls-panel {
