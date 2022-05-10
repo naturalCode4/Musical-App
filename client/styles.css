@@ -17,11 +17,10 @@ button {
 	color: purple
 }
 
-#liveness {
-	background-color: red;
-    width: 80px;
-    height: 80px;
-}
+/* #liveness {
+    width: 1000px;
+    height: 1000px;
+} */
 
 @import url(https://fonts.googleapis.com/css?family=Lobster);
 #filters-chart {
@@ -728,20 +727,16 @@ label span {
 
 #filters-section > div {
   max-width: 10vw;
+  /* min-height: 350px; */
   height: 350px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: center;
 
 }
 #filters-section > div > form {
-	/* justify-self: center; */
 	display: flex;
 	height: fit-content;
 	justify-content: space-around;
-	margin-left: -25px;
-
-	/* padding-right: 200px; */
-
+	margin-left: -60px;
 }

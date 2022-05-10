@@ -101,20 +101,23 @@ document.getElementById('filters-button').addEventListener('click', () => {
 // lever stuff
 
 // adds event listener for disabling and javascript for animation
-const addLeverFunctionality = (...filtersAndLevers) => {
-    filtersAndLevers.forEach(filterAndLever => {
+const addLeverFunctionality = (...filtersLeversAndCharts) => {
+    filtersLeversAndCharts.forEach(filterLeverAndChart => {
 
-    let filter = filterAndLever[0]
-    let lever = filterAndLever[1]
+    let filter = filterLeverAndChart[0]
+    let lever = filterLeverAndChart[1]
+    let chart = filterLeverAndChart[2]
 
     lever.addEventListener('change', () => {
         event.preventDefault()
 
         if (lever.checked === true) {
             filter.disabled = false
+            chart.disabled = false
         }
         if (lever.checked === false) {
             filter.disabled = true
+            chart.disabled = true
         }
 
         lever.classList.remove("pristine");
@@ -126,7 +129,7 @@ const addLeverFunctionality = (...filtersAndLevers) => {
     })
 }
 
-addLeverFunctionality([acousticness, acousticnessLeverInput], [danceability, danceabilityLeverInput], [energy, energyLeverInput], [instrumentalness, instrumentalnessLeverInput], [liveness, livenessLeverInput], [popularity, popularityLeverInput], [valence, valenceLeverInput])
+addLeverFunctionality([acousticness, acousticnessLeverInput, acousticnessChart], [danceability, danceabilityLeverInput, danceabilityChart], [energy, energyLeverInput, energyChart], [instrumentalness, instrumentalnessLeverInput, instrumentalnessChart], [liveness, livenessLeverInput, livenessChart], [popularity, popularityLeverInput, popularityChart], [valence, valenceLeverInput, valenceChart])
 
 const connectFilterInputs = (...inputsAndCharts) => {
     inputsAndCharts.forEach(inputAndChart => {
@@ -134,7 +137,7 @@ const connectFilterInputs = (...inputsAndCharts) => {
         let input = inputAndChart[0]
         let chart = inputAndChart[1]
 
-        console.log('not live', input, chart)
+        console.log('HIHIHI', input, chart)
 
         input.addEventListener('input', () => {
             event.preventDefault()
@@ -148,27 +151,27 @@ const connectFilterInputs = (...inputsAndCharts) => {
     })
 }
 
-connectFilterInputs([acousticness, acousticnessChart], [danceability, danceabilityChart], [energy, energyChart], [instrumentalness, instrumentalnessChart], [popularity, popularityChart], [valence, valenceChart])
+connectFilterInputs([acousticness, acousticnessChart], [valence, valenceChart], [danceability, danceabilityChart], [energy, energyChart], [instrumentalness, instrumentalnessChart], [popularity, popularityChart])
 
-input.addEventListener('change', () => {
+liveness.addEventListener('change', () => {
     event.preventDefault()
 
-    if (input.checked === true) {
-        chart.value = 10
+    if (liveness.checked === true) {
+        livenessChart.value = 10
     }
-    if (input.checked === false) {
-        chart.value = 0
+    if (liveness.checked === false) {
+        livenessChart.value = 0
     }
 })
 
-chart.addEventListener('input', () => {
+livenessChart.addEventListener('input', () => {
     event.preventDefault()
 
-    if (chart.value === 10) {
-        input.checked = true
+    if (livenessChart.value == 10) {
+        liveness.checked = true
     }
-    if (chart.value === 0) {
-        input.checked === false
+    if (livenessChart.value == 0) {
+        liveness.checked = false
     }
 })
 
