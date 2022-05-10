@@ -28,7 +28,7 @@ app.get('/', (req, res) => {
 //     res.sendFile(path.join(__dirname, '/index.js'))
 // })
 
-const OAuthToken = 'Bearer BQAOMoBCtx24sMkGGliaJwgg0lvB6dr12gmpzE9LzEcPnLZ9fmpHWCDTweCeSAKHft1GAFbfqubdG1oOxMaAxHC0OeoBGjSZ00nKCwDIzAj9-gUDkcwho5rS_5_G22lKA64CsiYiUKoi40tReeBVbuAk6fI_SoYPt7I'
+const OAuthToken = 'Bearer BQBC0HOqPbjBvCCrLGw-XASy6L47tU-svPTxjq8seMp-IsQZ-1krNasfr_Atz_aivLfbyaswqgE_xCcaeEhZ-a3DbL5HwMJuJ273JK-jKNEx-BEqVltKipSk-TSJXLFcMtJsWF_GYgASDdWrz0PVGRdpvgyq59P9-tI'
 const spotifyRecsBaseURL = 'https://api.spotify.com/v1/recommendations/'
 
 app.post('/songRec', async (req, res) => {

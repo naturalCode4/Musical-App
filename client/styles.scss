@@ -1,70 +1,3 @@
-.engraved { 
-  // width: 25vw;
-  // height: auto;
-  margin: auto;
-  line-height: 60px;
-  font-family: "Century Gothic", "Helvetica", sans-serif;
-  font-size: 60px;
-  font-weight: bold;
-  text-align: center;
-  color: rgb(59, 89, 87);
-  // background-color: #5D8D89;
-  text-shadow: 0px 1px 0px rgb(92, 138, 135), 0px -1.5px 0px rgba(0,0,0,1);
-
-}
-
-body{
-  // background-color: #75afab;
-  background-color: rgb(35, 35, 35);
-	width:100%;
-	text-align:center;
-	color:white;
-	margin-top:30px;
-  }
-
-p, h2, button {
-	font-size: 30px;
-  font-weight: bold;
-	font-family: 'HelveticaNeue-UltraLight', 'Helvetica Neue UltraLight', Roboto, Arial, Sans-serif;
-}
-
-button {
-	font-weight: bold;
-	color: purple
-}
-
-#song-section {
-  background-color: #6cbce4;
-  width: 600px;
-  height: 200px;
-  margin: auto;
-  border-radius: 5px;
-  border-style: inset;
-  border-width: 1.5px;
-  border-color: rgb(63, 99, 111);
-  box-shadow: 0px 0px 4px 4px #214893;
-}
-
-#song-section p {
-  color: black;
-  font-weight: normal;
-  font-family: "Courier New";
-  font-size: 22px;
-  margin: 7px;
-}
-
-#album-cover {
-  width: 200px;
-  height: auto;
-  border-top-left-radius: 3px;
-  border-bottom-left-radius: 3px;
-}
-
-/* #liveness {
-    width: 1000px;
-    height: 1000px;
-} */
-
 @import url(https://fonts.googleapis.com/css?family=Lobster);
 #filters-chart {
   color: #BBB;
@@ -763,6 +696,34 @@ label span {
     transform: rotateY(180deg);
 }
 
+body{
+  // background-color: #75afab;
+  background-color: rgb(35, 35, 35);
+	width:100%;
+	text-align:center;
+	margin-top:30px;
+  }
+
+h2, p{ 
+  margin: auto;
+  font-family: "Century Gothic", "Helvetica", sans-serif;
+  font-size: 60px;
+  text-align: center;
+  color: rgb(59, 89, 87);
+  text-shadow: .25px 1px .25px rgb(92, 138, 135), -.75px -2px 1px rgb(0, 0, 0);
+}
+
+p {
+	font-size: 30px;
+  font-weight: bold;
+	font-family: 'HelveticaNeue-UltraLight', 'Helvetica Neue UltraLight', Roboto, Arial, Sans-serif;
+}
+
+button {
+	font-weight: bold;
+	color: purple
+}
+
 #filters-section {
   display: flex;
   justify-content: space-evenly;
@@ -776,8 +737,8 @@ label span {
   flex-direction: column;
   justify-content: space-between;
   align-items: center
-
 }
+
 #filters-section > div > form {
 	display: flex;
 	height: fit-content;
@@ -790,6 +751,15 @@ label span {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  background-color: #6cbce4;
+  width: 600px;
+  height: 200px;
+  margin: auto;
+  border-radius: 5px;
+  border-style: inset;
+  border-width: 1.5px;
+  border-color: rgb(63, 99, 111);
+  box-shadow: 0px 0px 4px 4px #214893;
 }
 
 #song-text {
@@ -798,4 +768,26 @@ label span {
   justify-content: space-evenly;
   align-items: center;
   width: 100%;
+  height: 100%;
+}
+
+#song-text p {
+  color: black;
+  font-weight: normal;
+  font-family: "Courier New";
+  font-size: 22px;
+  margin: 7px;
+  text-shadow: none;
+
+}
+
+#album-holder {
+  height: 100%;
+}
+
+#album-cover {
+  width: 200px;
+  height: auto;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
 }
