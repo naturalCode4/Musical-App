@@ -31,21 +31,30 @@ button {
 
 #song-section {
   background-color: #6cbce4;
-  width: 350px;
-  height: 130px;
-  margin: 20px;
+  width: 600px;
+  height: 200px;
+  margin: auto;
   border-radius: 5px;
   border-style: inset;
   border-width: 1.5px;
   border-color: #3f636f;
   -webkit-box-shadow: 0px 0px 4px 4px #214893;
           box-shadow: 0px 0px 4px 4px #214893;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 #song-section p {
   color: black;
-  font-weight: lighter;
+  font-weight: normal;
+  font-family: "Courier New";
+  font-size: 22px;
+  margin: 7px;
+}
+
+#album-cover {
+  width: 200px;
+  height: auto;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
 }
 
 /* #liveness {
@@ -878,5 +887,38 @@ label span {
   height: fit-content;
   -ms-flex-pack: distribute;
       justify-content: space-around;
+}
+
+#song-section {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#song-text {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
 }
 /*# sourceMappingURL=styles.css.map */
