@@ -116,3 +116,27 @@
 //           valence.disabled = false
 //       }
 //   })
+
+
+
+// liveness.addEventListener('change', () => {
+    //     event.preventDefault()
+    
+    //     if (liveness.checked === true) {
+    //         livenessChart.value = 10
+    //     }
+    //     if (liveness.checked === false) {
+    //         livenessChart.value = 0
+    //     }
+    // })
+    
+    // livenessChart.addEventListener('input', () => {
+    //     event.preventDefault()
+    
+    //     if (livenessChart.value == 10) {
+    //         liveness.checked = true
+    //     }
+    //     if (livenessChart.value == 0) {
+    //         liveness.checked = false
+    //     }
+    // })

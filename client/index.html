@@ -10,8 +10,9 @@
 </head>
 <body>
 
-    <h2>MUSiC GENERATOR</h2>
-    <!-- on/off power switch -->
+    <h2 class="engraved">MUSiC GENERATOR</h2>
+
+    <!-- on/off power switch
     <section class="on-off-switch">
         <div class=round>
                 <input type=checkbox id=onoff name=onoff/>
@@ -22,10 +23,10 @@
                 </label>
             </div>
         </div>
-    </section>
+    </section> -->
 
     <section id="song-section">
-      <p id="track-name">
+      <p id="track-name">hello
       <p id="artist-name">
       <p id="album-name">
       <figure>
@@ -57,7 +58,7 @@
         <input class="chart-input acousticness" orient='270deg' type='range' min='0' value='4' max='10' step='1' />
         <input class="chart-input instrumentalness" orient='270deg' type='range' min='0' value='4' max='10' step='1' />
         <input class="chart-input popularity" orient='270deg' type='range' min='0' value='3' max='10' step='1' />
-        <input class="chart-input liveness" orient='270deg' type='range' min='0' value='0' max='10' step='10' />
+        <!-- <input class="chart-input liveness" orient='270deg' type='range' min='0' value='0' max='10' step='10' /> -->
         <!-- <input class="chart-input" orient='270deg' type='range' min='0' value='7' max='10' step='1' />
         <input class="chart-input" orient='270deg' type='range' min='0' value='7' max='10' step='1' />
         <input class="chart-input" orient='270deg' type='range' min='0' value='8' max='10' step='1' />
@@ -70,12 +71,14 @@
         <label class="chart-label" orient='90deg' type='range' for="band" before="10" after="0">5</label>
       
     </fieldset>
+    <br><br><br><br><br><br>
 
-    <div>
+
+    <aside>
         <p>Genre (try pop, alt-rock, grunge, indian, ambient, classical, jazz, afrobeat, edm, bluegrass, chill, k-pop, indie, movies, reggae, trance, world-music ...)</p>
         <br>
         <input type="text" id="genre" name="genre" value="rock">
-    </div>
+    </aside>
 
     <br><br><br><br><br><br>
 
@@ -183,20 +186,16 @@
 
         <br><br><br><br><br><br><br><br>
 
-        <div>
+        <!-- <div>
             <p>Live?</p>
             <input type="checkbox" id="liveness" name="liveness" disabled>
-            <!-- <button id="liveness-toggle">Off/On</button> -->
             <form class="leverform" id="liveness-lever">
                 <input type="checkbox" name="lever" class="lever pristine" value="lever value" role="switch" aria-label="lever" aria-checked="false" unchecked>
                 <label for="lever">
                     <span>On</span>
                 </label>
-                <!-- <label for="lever">
-                    <span>Off</span>
-                </label> -->
             </form>
-        </div>
+        </div> -->
     </section>
 
         <br><br><br><br><br><br><br><br>

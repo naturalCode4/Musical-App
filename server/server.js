@@ -16,19 +16,19 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../client/index.html'))
 })
 
-app.get('/styles', (req, res) => {
-    res.sendFile(path.join(__dirname, '/styles.css'))
-})
+// app.get('/styles', (req, res) => {
+//     res.sendFile(path.join(__dirname, '/styles.css'))
+// })
 
-app.get('/styles', (req, res) => {
-    res.sendFile(path.join(__dirname, '/styles.scss'))
-})
+// app.get('/styles', (req, res) => {
+//     res.sendFile(path.join(__dirname, '/styles.scss'))
+// })
 
-app.get('/js', (req, res) => {
-    res.sendFile(path.join(__dirname, '/index.js'))
-})
+// app.get('/js', (req, res) => {
+//     res.sendFile(path.join(__dirname, '/index.js'))
+// })
 
-const OAuthToken = 'Bearer BQAKmp2idiPI1emvkvHirSJazHcU6F_RnZT7dcJkx2x6nVz97VXmh-ISxbm0VftJhvWpgrb98UjMBboFRZKSe5Fjk6_x_6WcM12mjEeY3nq9NDnxdVXSAFotKpWiDPZxOQsxBFWMFBL4jkVB6_CauETttur2fGiKSqQ'
+const OAuthToken = 'Bearer BQDCx7QJrimolrwizmnPVLYxXCv2l1mb9QcRMSsmLqejnmq7bgx0MBuh5OLCWBav___ki9P0_dz8vxcqRY0xTALi9kyJM4_odpFkfyms1kVuhhQFiFBdlYad7fMTnMODfisBp764WflJv2UTZ2aiSYPQ784Ny3upSAo'
 const spotifyRecsBaseURL = 'https://api.spotify.com/v1/recommendations/'
 
 app.post('/songRec', async (req, res) => {
