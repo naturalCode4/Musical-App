@@ -1,4 +1,4 @@
-console.log('hello from index.js')
+console.log('Here are the valid genres:\nacoustic, afrobeat, alt-rock, alternative, ambient, anime, black-metal, bluegrass, blues, bossanova, brazil, breakbeat, british, cantopop, chicago-house, children, chill, classical, club, comedy, country, dance, dancehall, death-metal, deep-house, detroit-techno, disco, disney, drum-and-bass, dub, dubstep, edm, electro, electronic, emo, folk, forro, french, funk, garage, german, gospel, goth, grindcore, groove, grunge, guitar, happy, hard-rock, hardcore, hardstyle, heavy-metal, hip-hop, holidays, honky-tonk, house, idm, indian, indie, indie-pop, industrial, iranian, j-dance, j-idol, j-pop, j-rock, jazz, k-pop, kids, latin, latino, malay, mandopop, metal, metal-misc, metalcore, minimal-techno, movies, mpb, new-age, new-release, opera, pagode, party, philippines-opm, piano, pop, pop-film, post-dubstep, power-pop, progressive-house, psych-rock, punk, punk-rock, r-n-b, rainy-day, reggae, reggaeton, road-trip, rock, rock-n-roll, rockabilly, romance, sad, salsa, samba, sertanejo, show-tunes, singer-songwriter, ska, sleep, songwriter, soul, soundtracks, spanish, study, summer, swedish, synth-pop, tango, techno, trance, trip-hop, turkish, work-out, world-music')
 
 const songSection = document.getElementById('song-section')
 const trackName = document.getElementById('track-name')
@@ -56,10 +56,8 @@ const displaySongInfo = (songInfo) => {
 
     if (songInfo.sampleLink != null) {
         sampleLinkP.hidden = true // hide sample link if not hidden
-        // sampleLink.hidden = false //started hidden. When sample link exists, removes hidden attribute to display
         sampleLink.src = songInfo.sampleLink
     } else {
-        // sampleLink.hidden = true
         sampleLinkP.hidden = false //started hidden. When sample link is null, removes attribute to display
     }
 }
@@ -81,7 +79,6 @@ document.getElementById('filters-button').addEventListener('click', () => {
     console.log('button clicked')
 
     // livenessValue()
-    // make sure this calls properly. scope is cool and stuff
     
     let filters = {
         genre: genre.disabled ? null: genre.value,
@@ -98,9 +95,8 @@ document.getElementById('filters-button').addEventListener('click', () => {
 
 })
 
-// lever stuff
+// lever animation //
 
-// adds event listener for disabling and javascript for animation
 const addLeverFunctionality = (...filtersLeversAndCharts) => {
     filtersLeversAndCharts.forEach(filterLeverAndChart => {
 
@@ -150,6 +146,3 @@ const connectFilterInputs = (...inputsAndCharts) => {
 }
 
 connectFilterInputs([acousticness, acousticnessChart], [valence, valenceChart], [danceability, danceabilityChart], [energy, energyChart], [instrumentalness, instrumentalnessChart], [popularity, popularityChart])
-
-
-

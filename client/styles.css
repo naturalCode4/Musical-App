@@ -8,6 +8,7 @@
   -webkit-transform: scale(1.25);
           transform: scale(1.25);
   margin-left: 50px;
+  margin-right: 50px;
   padding-top: 20px;
 }
 
@@ -26,13 +27,9 @@ fieldset {
 }
 
 fieldset:hover {
-  /* border: #BBB solid .4em; */
-
 /* offset-x | offset-y | blur-radius | color */
-
 /* Any number of shadows, separated by commas */
 box-shadow: -12px 0px 10px rgb(33, 48, 61), 12px 0px 10px rgb(95, 70, 70), 0px -12px 10px rgb(81, 80, 80), 0px 12px 10px rgb(46, 49, 54);
-
 }
 
 legend {
@@ -622,7 +619,6 @@ label span {
   -webkit-appearance: none;
   width: 350px;
   height: 70px;
-  background: -webkit-gradient(linear, left top, right top, from(rgba(1, 141, 255, 0.99)), color-stop(80%, #9a2020));
   background: linear-gradient(to right, rgba(1, 141, 255, 0.99) 0%, #9a2020 80%);
   background-position: center;
   border-radius: 4px;
@@ -632,8 +628,8 @@ label span {
 	border-left: 6px solid rgb(33, 48, 61);
 	border-right: 5px solid rgb(112, 82, 82);
 	border-bottom: 5px solid rgb(81, 80, 80);
-  -webkit-transform: rotate(270deg);
-          transform: rotate(270deg);
+  box-shadow: 0px 0px 20px 2px #563160;
+  transform: rotate(270deg);
 }
 
 .custom-slider:first-of-type {
@@ -665,8 +661,14 @@ label span {
 }
 
 .custom-slider:disabled {
-  background: grey;
+  background: #2d2d2d;
+  box-shadow: none;
+  border-top: 6px solid rgb(37, 37, 37);
+	border-left: 6px solid rgb(37, 37, 37);
+	border-right: 5px solid rgb(57, 57, 57);
+	border-bottom: 5px solid rgb(50, 50, 50);
 }
+
 
 /* slider thumb not working for disabled^^ */
 #instrumentalness {
@@ -706,15 +708,18 @@ button, input[type=text] {
   color: black;
   font-size: 42px;
   font-family: "Courier New";
-  /* font-weight: bolder; */
   border-radius: 6px;
   border-style: inset;
   border-width: 2px;
   border-color: #8b7f96;
-  /* -webkit-box-shadow: 0px 0px 8px 4px #8261aa; */
   box-shadow: 0px 0px 20px 10px #8261aa;
   padding: 15px 25px 15px 25px;
   text-align: center;
+  /* cursor: url('/images/musicalnotes.png'); */
+}
+
+button {
+  cursor: pointer
 }
 
 button:active, input[type=text]:hover {
@@ -821,7 +826,7 @@ button:active, input[type=text]:hover {
 }
 
 #song-controller-button-section section{
-  margin: 15px
+  margin: 90px
 }
 
 #feature-section {
@@ -838,6 +843,7 @@ button:active, input[type=text]:hover {
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   margin: auto;
+  margin-right: 24px
 }
 
 #feature-section div {

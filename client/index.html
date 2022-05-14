@@ -12,15 +12,14 @@
 
     <h2 class="engraved">MUSIC GENiUS</h2>
 
-    <br><br><br><br><br><br>
-
     <figure id="feature-section">
 
         <div>
-            <p>Pick a Genre <br>
-                    (try... alt-rock, grunge, ambient, classical, jazz, electronic, bluegrass, movies, reggae, world-music ...)</p>
+            <br><br>
+            <p>Genre<br>
+                    (for a list of valid genres, right-click => inspect => console)</p>
             <br>
-            <input type="text" id="genre" name="genre" autocomplete="off" value="Rock">
+            <input type="text" id="genre" name="genre" autocomplete="off" value="techno">
         </div>
 
         <div id="song-controller-button-section">
@@ -38,13 +37,9 @@
                 </div>
             </section>
 
-            <br><br>
-
             <section>
                 <audio controls id="sample-link" controlsList="nodownload noplaybackrate"></audio>
             </section>
-
-            <br><br>
 
             <button id="filters-button">New Song</button>
         </div>
@@ -59,7 +54,7 @@
                 <input class="chart-input energy" orient='270deg' type='range' min='0' value='2' max='10' step='1' />
                 <input class="chart-input valence" orient='270deg' type='range' min='0' value='9' max='10' step='1' />
                 <input class="chart-input acousticness" orient='270deg' type='range' min='0' value='5' max='10' step='1' />
-                <input class="chart-input instrumentalness right-to-left-slider" orient='270deg' type='range' min='0' value='5' max='10' step='1' />
+                <input class="chart-input instrumentalness right-to-left-slider" orient='270deg' type='range' min='0' value='0' max='10' step='1' />
                 <input class="chart-input popularity" orient='270deg' type='range' min='0' value='2' max='10' step='1' />
             
                 <label class="chart-label" orient='90deg' type='range' for="band" before="10" after="0">5</label>
@@ -67,9 +62,6 @@
             </fieldset>
         </div>
     </figure>
-
-    <br><br><br><br><br>
-
 
     <section id="filters-section">
     
@@ -143,7 +135,7 @@
         <div>
             <p>Vocal Presence</p>
             <!-- maybe make this binaryish too -->
-            <input type="range" class="custom-slider right-to-left-slider" id="instrumentalness" name="instrumentalness" min="1" max="101" step="50" value="50">
+            <input type="range" class="custom-slider right-to-left-slider" id="instrumentalness" name="instrumentalness" min="1" max="101" step="100" value="50">
             <!-- <button id="instrumentalness-toggle">Off/On</button> -->
             <form class="leverform" id="instrumentalness-lever">
               <input type="checkbox" name="lever" class="lever pristine" value="lever value" role="switch" aria-label="lever" aria-checked="false" checked>

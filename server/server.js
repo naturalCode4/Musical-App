@@ -78,15 +78,10 @@ const getSongRec = ({ genre, acousticness, danceability, energy, instrumentalnes
 
     if (valence) params += `&target_valence=${valence+generateVariant()}`
 
-    // if (speechiness) params += `&target_speechiness=${speechiness}`
-
-    // if (tempo) params += `&target_tempo=${tempo}`
-
     console.log(params)
 
     const reqConfig = {
         headers: {
-            //later we're going to retreive OAuthToken to front-end to be received by user and passed into header of request
             'Authorization': OAuthToken,
             'Content-Type': 'application/json'
         }}
