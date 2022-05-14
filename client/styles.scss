@@ -621,6 +621,7 @@ button:active {
 #filters-section {
   display: flex;
   justify-content: space-evenly;
+  flex-wrap: wrap;
 }
 
 #filters-section > div {
@@ -668,8 +669,8 @@ button:active {
   color: black;
   font-weight: normal;
   font-family: "Courier New";
-  font-size: 20px;
-  margin: 7px;
+  font-size: 18px;
+  margin: 6px;
   text-shadow: none;
 
 }
@@ -689,6 +690,7 @@ button:active {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
+  flex-wrap: wrap;
 }
 
 #feature-section div p {

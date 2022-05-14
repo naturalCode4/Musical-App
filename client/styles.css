@@ -711,6 +711,8 @@ button:active {
   -webkit-box-pack: space-evenly;
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 
 #filters-section > div {
@@ -790,8 +792,8 @@ button:active {
   color: black;
   font-weight: normal;
   font-family: "Courier New";
-  font-size: 20px;
-  margin: 7px;
+  font-size: 18px;
+  margin: 6px;
   text-shadow: none;
 }
 
@@ -817,6 +819,8 @@ button:active {
   -webkit-box-pack: space-evenly;
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 
 #feature-section div p {
