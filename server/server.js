@@ -28,7 +28,7 @@ app.get('/', (req, res) => {
 //     res.sendFile(path.join(__dirname, '/index.js'))
 // })
 
-const OAuthToken = 'Bearer BQCDeviiY--y6l-g-vapweb6dCNedVpRYxAeeVFIVRpM7UNyfx-NrW5QKYilaShM0OkwvF8k8xsSxP1qAM-h_TTHKCI5x51Yaxy_UnxbWM06hooip5scgz-4R1k-MFPn34f6xwd9_67ZMO9yoKf2BkpmdDcOqcVevxQ'
+const OAuthToken = 'Bearer BQChZbfjXEbQauvkxI06aPZGunP1BXKkRgB9YlZiyJxFA5ghLWKNL4jGT0gllWBzgRbz3-rAj8YaAexDzYeGRr8w776thJrWkWk56et1Elf3d4hmxQVHgNiA-55UH-iAzoGjG7jMGdHjKYn4EzJbcAFlZHEWNoHQjuk'
 const spotifyRecsBaseURL = 'https://api.spotify.com/v1/recommendations/'
 
 app.post('/songRec', async (req, res) => {
@@ -57,7 +57,7 @@ const getSongRec = ({ genre, acousticness, danceability, energy, instrumentalnes
         if (Math.random() < .5) { // this if block deterines whether variant will be positive or negative
             val = -1 
         }
-        return variant = Math.round(val*20*Math.random())/100
+        return variant = Math.round(val*25*Math.random())/100
     }
 
     let params = `?limit=1`
