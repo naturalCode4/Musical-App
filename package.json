@@ -4,6 +4,7 @@
   "description": "",
   "main": "server/server.js",
   "scripts": {
+    "start": "node server/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -23,5 +24,14 @@
       "command": "sass styles.scss styles.css",
       "group": "build"
     }
-  ]
+  ],
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/naturalCode4/Musical-App.git"
+  },
+  "bugs": {
+    "url": "https://github.com/naturalCode4/Musical-App/issues"
+  },
+  "homepage": "https://github.com/naturalCode4/Musical-App#readme"
 }

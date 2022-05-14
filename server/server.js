@@ -16,17 +16,17 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../client/index.html'))
 })
 
-// app.get('/styles', (req, res) => {
-//     res.sendFile(path.join(__dirname, '/styles.css'))
-// })
+app.get('/styles', (req, res) => {
+    res.sendFile(path.join(__dirname, '/styles.css'))
+})
 
-// app.get('/styles', (req, res) => {
-//     res.sendFile(path.join(__dirname, '/styles.scss'))
-// })
+app.get('/styles', (req, res) => {
+    res.sendFile(path.join(__dirname, '/styles.scss'))
+})
 
-// app.get('/js', (req, res) => {
-//     res.sendFile(path.join(__dirname, '/index.js'))
-// })
+app.get('/js', (req, res) => {
+    res.sendFile(path.join(__dirname, '/index.js'))
+})
 
 const OAuthToken = 'Bearer BQChZbfjXEbQauvkxI06aPZGunP1BXKkRgB9YlZiyJxFA5ghLWKNL4jGT0gllWBzgRbz3-rAj8YaAexDzYeGRr8w776thJrWkWk56et1Elf3d4hmxQVHgNiA-55UH-iAzoGjG7jMGdHjKYn4EzJbcAFlZHEWNoHQjuk'
 const spotifyRecsBaseURL = 'https://api.spotify.com/v1/recommendations/'
