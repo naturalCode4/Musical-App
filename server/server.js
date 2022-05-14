@@ -10,34 +10,19 @@ const app = express()
 app.use(express.json())
 app.use(cors())
 
-// app.use('/static', express.static(path.join(__dirname, 'client')))
-
-// app.get('/', (req, res) => {
-//     res.sendFile(path.join(__dirname, '../client/index.html'))
-// })
-
-// app.get('/styles', (req, res) => {
-//     res.sendFile(path.join(__dirname, '/styles.css'))
-// })
-
-// app.get('/styles', (req, res) => {
-//     res.sendFile(path.join(__dirname, '/styles.scss'))
-// })
-
-
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../client/index.html'))
 })
 
 app.get('/js', (req, res) => {
-    res.sendFile(path.join(__dirname, '/index.js'))
+    console.log('trying to hit index.js')
+    res.sendFile(path.join(__dirname, '../client/index.js'))
 })
 
 app.get('/styles', (req, res) => {
-    res.sendFile(path.join(__dirname, '../styles.css'))
+    console.log('trying to hit styles')
+    res.sendFile(path.join(__dirname, '../client/styles.css'))
 })
-
-app.use(express.static(path.join(__dirname, "../")));
 
 const OAuthToken = 'Bearer BQChZbfjXEbQauvkxI06aPZGunP1BXKkRgB9YlZiyJxFA5ghLWKNL4jGT0gllWBzgRbz3-rAj8YaAexDzYeGRr8w776thJrWkWk56et1Elf3d4hmxQVHgNiA-55UH-iAzoGjG7jMGdHjKYn4EzJbcAFlZHEWNoHQjuk'
 const spotifyRecsBaseURL = 'https://api.spotify.com/v1/recommendations/'
