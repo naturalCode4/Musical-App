@@ -24,7 +24,7 @@ app.get('/styles', (req, res) => {
     res.sendFile(path.join(__dirname, '../client/styles.css'))
 })
 
-const OAuthToken = 'Bearer BQChZbfjXEbQauvkxI06aPZGunP1BXKkRgB9YlZiyJxFA5ghLWKNL4jGT0gllWBzgRbz3-rAj8YaAexDzYeGRr8w776thJrWkWk56et1Elf3d4hmxQVHgNiA-55UH-iAzoGjG7jMGdHjKYn4EzJbcAFlZHEWNoHQjuk'
+const OAuthToken = 'Bearer BQDrFH5NOzKeKIOCMdQ6oReRGyAuRN35RAwf3W-4ATKn4RHJAj1cuO8cWXIifZZtt9_TtA5SvWbgUiV1e8Mdu87dNOBV_7wjF2tXs5oVwphcTYJQfJYTGVSzoD2Z7toPljl9_OYZIrVulEh86BvuF8WsIPZIfX4xq8g'
 const spotifyRecsBaseURL = 'https://api.spotify.com/v1/recommendations/'
 
 app.post('/songRec', async (req, res) => {
