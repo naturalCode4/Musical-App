@@ -623,7 +623,7 @@ label span {
   background-position: center;
   border-radius: 4px;
   border: rgba(101, 101, 101, 0.857) solid;
-  /* border-style: inset; */
+  border-style: inset;
 	border-top: 6px solid rgb(46, 49, 54);
 	border-left: 6px solid rgb(33, 48, 61);
 	border-right: 5px solid rgb(112, 82, 82);
