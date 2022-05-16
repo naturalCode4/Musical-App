@@ -826,7 +826,7 @@ button:active, input[type=text]:hover {
 }
 
 #song-controller-button-section section{
-  margin: 90px
+  margin-bottom: 90px
 }
 
 #feature-section {

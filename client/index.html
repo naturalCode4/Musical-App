@@ -51,12 +51,12 @@
                 
                 <label class="chart-label" orient='270deg' type='range' for="band" before="0" after="10">5</label>
                 
-                <input class="chart-input danceability" orient='270deg' type='range' min='0' value='10' max='10' step='1'/>
-                <input class="chart-input energy" orient='270deg' type='range' min='0' value='2' max='10' step='1' />
-                <input class="chart-input valence" orient='270deg' type='range' min='0' value='9' max='10' step='1' />
-                <input class="chart-input acousticness" orient='270deg' type='range' min='0' value='5' max='10' step='1' />
-                <input class="chart-input instrumentalness right-to-left-slider" orient='270deg' type='range' min='0' value='0' max='10' step='1' />
-                <input class="chart-input popularity" orient='270deg' type='range' min='0' value='2' max='10' step='1' />
+                <input class="chart-input danceability" orient='270deg' type='range' min='0' value='8' max='10' step='1'/>
+                <input class="chart-input energy" orient='270deg' type='range' min='0' value='5' max='10' step='1' disabled/>
+                <input class="chart-input valence" orient='270deg' type='range' min='0' value='5' max='10' step='1' disabled/>
+                <input class="chart-input acousticness" orient='270deg' type='range' min='0' value='5' max='10' step='1' disabled/>
+                <input class="chart-input instrumentalness right-to-left-slider" orient='270deg' type='range' min='0' value='5' max='10' step='1' disabled/>
+                <input class="chart-input popularity" orient='270deg' type='range' min='0' value='5' max='10' step='1' disabled/>
             
                 <label class="chart-label" orient='90deg' type='range' for="band" before="10" after="0">5</label>
             
@@ -85,10 +85,10 @@
 
         <div>
             <p>Energy Level</p>
-            <input type="range" class="custom-slider" id="energy" name="energy" min="1" max="100" value="20">
+            <input type="range" class="custom-slider" id="energy" name="energy" min="1" max="100" value="50" disabled>
             <!-- <button id="energy-toggle">Off/On</button> -->
             <form class="leverform" id="energy-lever">
-              <input type="checkbox" name="lever" class="lever pristine" value="lever value" role="switch" aria-label="lever" aria-checked="false" checked>
+              <input type="checkbox" name="lever" class="lever pristine" value="lever value" role="switch" aria-label="lever" aria-checked="false">
               <label for="lever">
                   <span>On</span>
               </label>
@@ -102,10 +102,10 @@
 
         <div>
             <p>Affect</p>
-            <input type="range" class="custom-slider" id="valence" name="valence" min="1" max="100" value="90">
+            <input type="range" class="custom-slider" id="valence" name="valence" min="1" max="100" value="50" disabled>
             <!-- <button id="valence-toggle">Off/On</button> -->
             <form class="leverform" id="valence-lever">
-              <input type="checkbox" name="lever" class="lever pristine" value="lever value" role="switch" aria-label="lever" aria-checked="false" checked>
+              <input type="checkbox" name="lever" class="lever pristine" value="lever value" role="switch" aria-label="lever" aria-checked="false">
               <label for="lever">
                   <span>On</span>
               </label>
@@ -119,10 +119,10 @@
 
         <div>
             <p>Acousticness</p>
-            <input type="range" class="custom-slider" id="acousticness" name="acousticness" min="1" max="101" value="50">
+            <input type="range" class="custom-slider" id="acousticness" name="acousticness" min="1" max="101" value="50" disabled>
             <!-- <button id="acousticness-toggle">Off/On</button> -->
             <form class="leverform" id="acousticness-lever">
-              <input type="checkbox" name="lever" class="lever pristine" value="lever value" role="switch" aria-label="lever" aria-checked="false" checked>
+              <input type="checkbox" name="lever" class="lever pristine" value="lever value" role="switch" aria-label="lever" aria-checked="false">
               <label for="lever">
                   <span>On</span>
               </label>
@@ -136,10 +136,10 @@
         <div>
             <p>Vocal Presence</p>
             <!-- maybe make this binaryish too -->
-            <input type="range" class="custom-slider right-to-left-slider" id="instrumentalness" name="instrumentalness" min="1" max="101" value="50">
+            <input type="range" class="custom-slider right-to-left-slider" id="instrumentalness" name="instrumentalness" min="1" max="101" value="50" disabled>
             <!-- <button id="instrumentalness-toggle">Off/On</button> -->
             <form class="leverform" id="instrumentalness-lever">
-              <input type="checkbox" name="lever" class="lever pristine" value="lever value" role="switch" aria-label="lever" aria-checked="false" checked>
+              <input type="checkbox" name="lever" class="lever pristine" value="lever value" role="switch" aria-label="lever" aria-checked="false">
               <label for="lever">
                   <span>On</span>
               </label>
@@ -153,10 +153,10 @@
 
         <div>   
             <p>Popularity</p>
-            <input type="range" class="custom-slider" id="popularity" name="popularity" min="1" max="100" value="20">
+            <input type="range" class="custom-slider" id="popularity" name="popularity" min="1" max="100" value="50" disabled>
             <!-- <button id="popularity-toggle">Off/On</button> -->
             <form class="leverform" id="popularity-lever">
-              <input type="checkbox" name="lever" class="lever pristine" value="lever value" role="switch" aria-label="lever" aria-checked="false" checked>
+              <input type="checkbox" name="lever" class="lever pristine" value="lever value" role="switch" aria-label="lever" aria-checked="false">
               <label for="lever">
                   <span>On</span>
               </label>
