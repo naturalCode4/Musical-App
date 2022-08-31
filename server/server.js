@@ -2,6 +2,7 @@ const express = require('express')
 const cors = require('cors')
 const axios = require('axios')
 const path = require('path')
+const request = require('request');
 const app = express()
 
 //this line of code routes frontend to backend. useful for getting things to log in terminal
@@ -24,8 +25,13 @@ app.get('/styles', (req, res) => {
     res.sendFile(path.join(__dirname, '../client/styles.css'))
 })
 
-const OAuthToken = 'Bearer BQDrFH5NOzKeKIOCMdQ6oReRGyAuRN35RAwf3W-4ATKn4RHJAj1cuO8cWXIifZZtt9_TtA5SvWbgUiV1e8Mdu87dNOBV_7wjF2tXs5oVwphcTYJQfJYTGVSzoD2Z7toPljl9_OYZIrVulEh86BvuF8WsIPZIfX4xq8g'
+app.get('/authorization', (req, res) => {
+    
+})
+
 const spotifyRecsBaseURL = 'https://api.spotify.com/v1/recommendations/'
+
+const OAuthToken = 'Bearer BQDrFH5NOzKeKIOCMdQ6oReRGyAuRN35RAwf3W-4ATKn4RHJAj1cuO8cWXIifZZtt9_TtA5SvWbgUiV1e8Mdu87dNOBV_7wjF2tXs5oVwphcTYJQfJYTGVSzoD2Z7toPljl9_OYZIrVulEh86BvuF8WsIPZIfX4xq8g'
 
 app.post('/songRec', async (req, res) => {
     console.log('songRec endpoint hit on server')
@@ -43,9 +49,32 @@ app.post('/songRec', async (req, res) => {
     }
 })
 
+////Authorization//////
+
+const client_id = 'f8a2526a0dc7469884edac2d88b21ccd';
+const client_secret = 'e2d91181ac5d4d58a884d1758a01bf1f';
+
+const authOptions = {
+  url: 'https://accounts.spotify.com/api/token',
+  headers: {
+    'Authorization': 'Basic ' + (new Buffer(client_id + ':' + client_secret).toString('base64'))
+  },
+  form: {
+    grant_type: 'client_credentials'
+  },
+  json: true
+};
+
+request.post(authOptions, function(error, response, body) {
+  if (!error && response.statusCode === 200) {
+    const token = body.access_token;
+  }
+});
+
+////Authorization//////
 
 const getSongRec = ({ genre, acousticness, danceability, energy, instrumentalness, liveness, popularity, speechiness, tempo, valence }) => {
-   
+    
     console.log('getSongRec function called on server')
 
     const generateVariant = () => {
