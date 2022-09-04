@@ -74,6 +74,7 @@ const requestSongUsingFilters = async (filters) => {
 }
     
 document.getElementById('filters-button').addEventListener('click', () => {
+    console.log('New Song Button Clicked!')
     let filters = {
         genre: genre.disabled ? null: genre.value,
         acousticness: acousticness.disabled ? null: acousticness.value/100,

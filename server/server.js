@@ -3,6 +3,7 @@ const cors = require('cors')
 const axios = require('axios')
 const path = require('path')
 const request = require('request');
+const { response } = require('express');
 const app = express()
 require('dotenv').config();
 
@@ -66,16 +67,9 @@ const authOptions = {
 
 let token = 'not declared yet'
 
-request.post(authOptions, function(error, response, body) {
-  if (!error && response.statusCode === 200) {
-    token = body.access_token;
-    console.log('token... ', token)
-  }
-});
-
 ////End of Authorization segment of code//////
 
-const getSongRec = ({ genre, acousticness, danceability, energy, instrumentalness, liveness, popularity, speechiness, tempo, valence }) => {
+const getSongRec = ({ genre, acousticness, danceability, energy, instrumentalness, liveness, popularity, valence }) => {
     
     console.log('getSongRec function called on server')
 
@@ -134,7 +128,21 @@ const getSongRec = ({ genre, acousticness, danceability, energy, instrumentalnes
 
             })
             .catch(err => {
-                console.log('ERROR: something went wrong ==>', err.message, err.data)
+                // const gotTokenAndRetried = true
+                console.log('ERROR: here ==>', err.response.status)
+                if (err.response.status === 401) {
+                    console.log('touch')
+                    request.post(authOptions, function(error, response, body) {
+                        if (!error && response.statusCode === 200) {
+                        console.log(response.statusCode)
+                        token = body.access_token;
+                        console.log('token... ', token)
+                        }
+                    })
+                    // if (gotTokenAndRetried) {
+                        // getSongRec()
+                    // }
+                }
             })
     })
 }
