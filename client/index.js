@@ -53,14 +53,6 @@ const displaySongInfo = (songInfo) => {
     }
 }
 
-// const testOrGetToken = () => {
-
-//     //try catch -->
-//     //if 200 success, follow through, get song
-//     //if 401 err, get new token, try again (once)
-
-// }
-
 //asynchronous function making post request to back end
 const requestSongUsingFilters = async (filters) => {
     try {

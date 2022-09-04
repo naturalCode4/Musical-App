@@ -27,22 +27,21 @@ app.get('/styles', (req, res) => {
     res.sendFile(path.join(__dirname, '../client/styles.css'))
 })
 
-// app.get('/authorization', (req, res) => {
-//     console.log('hitting authorization api')
-//     // res.sendFile(path.join(__dirname, '../client/styles.css'))
-// })
-
 let songRec
 
 app.post('/songRec', async (req, res) => {
-    console.log('songRec endpoint hit on server')
+    console.log('11111')
     try {
     console.log(req.body.filters)
     songRec = await getSongRec(req.body.filters)
+    console.log('22222')
 
     // .json (vs .send) makes it a json file. you need to send http requests in json form. if data was already in json you could .send it // could also either of 2 below:
     res.status(200).send(JSON.stringify(songRec))
     // res.status(200).json(songRec)
+
+    console.log('33333')
+
     }
     catch (err) {
         console.log('There was an error ==>:', err)
@@ -69,27 +68,20 @@ const authOptions = {
 
 let token = 'not declared yet'
 
-const reqConfig = {
-    headers: {
-        'Authorization': `Bearer ${token}`,
-        'Content-Type': 'application/json'
-    }}
-
 ////End of Authorization segment of code//////
-// const getParams = ({ genre, acousticness, danceability, energy, instrumentalness, popularity, valence })
+
+let retried = false
 
 const getSongRec = ({ genre, acousticness, danceability, energy, instrumentalness, popularity, valence }) => {
     
     console.log('getSongRec function called on server')
-
-    // getParams()
 
     const generateVariant = () => {
         let val = 1
         if (Math.random() < .5) { // this if block deterines whether variant will be positive or negative
             val = -1 
         }
-        return variant = Math.round(val*25*Math.random())/100
+        return Math.round(val*25*Math.random())/100
     }
 
     let params = `?limit=1`
@@ -110,6 +102,12 @@ const getSongRec = ({ genre, acousticness, danceability, energy, instrumentalnes
 
     console.log(params)
     
+    const reqConfig = {
+        headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+        }}
+
     return new Promise((resolve, reject) => {
         axios.get(`${spotifyRecsBaseURL}${params}`, reqConfig)
             .then(res => {
@@ -127,27 +125,30 @@ const getSongRec = ({ genre, acousticness, danceability, energy, instrumentalnes
             
             //wrapping these items in curly braces makes them an object, where each value has key of same value. e.g. trackname: trackname
             // resolve already as JSON format so dont need JSON.stringify({trackName, artistName, albumName, trackLink, albumCover}))
+
+
             resolve ({trackName, artistName, albumName, trackLink, albumCover, sampleLink})
 
             })
-            .catch(err => {
+            .catch(async err => {
                 console.log('ERROR: here ==>', err.response.status)
-                if (err.response.status === 401) {
+                if (err.response.status === 401 && !retried) {
+                    retried = true
                     console.log('touch')
+                    // get new token vv
                     request.post(authOptions, function(error, response, body) {
                         if (!error && response.statusCode === 200) {
                             console.log(response.statusCode)
                             token = body.access_token;
                             console.log('token... ', token)
                         }
-                    getSongRec({genre, acousticness, danceability, energy, instrumentalness, popularity, valence})
                     })
-                    // let retriedOnce
-                    // if (!retriedOnce) {
-                    //     getSongRec()
-                    //     const retriedOnce = true
-                    // }
+                    // await getSongRec({genre, acousticness, danceability, energy, instrumentalness, popularity, valence})
                 }
+            })
+            .finally(() => {
+                console.log('finally')
+                retried = false
             })
     })
 }
