@@ -5,7 +5,7 @@ const path = require('path')
 const request = require('request');
 const app = express()
 
-//this line of code routes frontend to backend. useful for getting things to log in terminal
+//this below line of code routes frontend to backend. useful for getting things to log in terminal
 // const frontEnd = require('../client/index.js')
 
 app.use(express.json())
@@ -25,22 +25,13 @@ app.get('/styles', (req, res) => {
     res.sendFile(path.join(__dirname, '../client/styles.css'))
 })
 
-app.get('/authorization', (req, res) => {
-    
-})
-
-const spotifyRecsBaseURL = 'https://api.spotify.com/v1/recommendations/'
-
-const OAuthToken = 'Bearer BQDrFH5NOzKeKIOCMdQ6oReRGyAuRN35RAwf3W-4ATKn4RHJAj1cuO8cWXIifZZtt9_TtA5SvWbgUiV1e8Mdu87dNOBV_7wjF2tXs5oVwphcTYJQfJYTGVSzoD2Z7toPljl9_OYZIrVulEh86BvuF8WsIPZIfX4xq8g'
-
 app.post('/songRec', async (req, res) => {
     console.log('songRec endpoint hit on server')
     try {
     console.log(req.body.filters)
     const songRec = await getSongRec(req.body.filters)
-    //.json (vs .send) makes it a json file. you need to send http requests in json form.
-    //if data was already in json you could .send it
-    //could also either of 2 below:
+
+    // .json (vs .send) makes it a json file. you need to send http requests in json form. if data was already in json you could .send it // could also either of 2 below:
     res.status(200).send(JSON.stringify(songRec))
     // res.status(200).json(songRec)
     }
@@ -48,6 +39,8 @@ app.post('/songRec', async (req, res) => {
         console.log('There was an error ==>:', err)
     }
 })
+
+const spotifyRecsBaseURL = 'https://api.spotify.com/v1/recommendations/'
 
 ////Authorization//////
 
@@ -65,13 +58,16 @@ const authOptions = {
   json: true
 };
 
+let token = 'not declared yet'
+
 request.post(authOptions, function(error, response, body) {
   if (!error && response.statusCode === 200) {
-    const token = body.access_token;
+    token = body.access_token;
+    console.log('token... ', token)
   }
 });
 
-////Authorization//////
+////End of Authorization segment of code//////
 
 const getSongRec = ({ genre, acousticness, danceability, energy, instrumentalness, liveness, popularity, speechiness, tempo, valence }) => {
     
@@ -107,7 +103,7 @@ const getSongRec = ({ genre, acousticness, danceability, energy, instrumentalnes
 
     const reqConfig = {
         headers: {
-            'Authorization': OAuthToken,
+            'Authorization': `Bearer ${token}`,
             'Content-Type': 'application/json'
         }}
     

@@ -11,7 +11,7 @@
 </head>
 <body>
 
-    <h2 class="engraved">MUSiC GENERATOR</h2>
+    <h2 class="engraved">MUSIC GENiUS</h2>
 
     <figure id="feature-section">
 
@@ -56,7 +56,7 @@
                 <input class="chart-input valence" orient='270deg' type='range' min='0' value='5' max='10' step='1' disabled/>
                 <input class="chart-input acousticness" orient='270deg' type='range' min='0' value='5' max='10' step='1' disabled/>
                 <input class="chart-input instrumentalness right-to-left-slider" orient='270deg' type='range' min='0' value='5' max='10' step='1' disabled/>
-                <input class="chart-input popularity" orient='270deg' type='range' min='0' value='5' max='10' step='1' disabled/>
+                <input class="chart-input popularity" orient='270deg' type='range' min='0' value='8' max='10' step='1'/>
             
                 <label class="chart-label" orient='90deg' type='range' for="band" before="10" after="0">5</label>
             
@@ -153,10 +153,10 @@
 
         <div>   
             <p>Popularity</p>
-            <input type="range" class="custom-slider" id="popularity" name="popularity" min="1" max="100" value="50" disabled>
+            <input type="range" class="custom-slider" id="popularity" name="popularity" min="1" max="100" value="80">
             <!-- <button id="popularity-toggle">Off/On</button> -->
             <form class="leverform" id="popularity-lever">
-              <input type="checkbox" name="lever" class="lever pristine" value="lever value" role="switch" aria-label="lever" aria-checked="false">
+              <input type="checkbox" name="lever" class="lever pristine" value="lever value" role="switch" aria-label="lever" aria-checked="false" checked>
               <label for="lever">
                   <span>On</span>
               </label>
@@ -168,11 +168,9 @@
 
     </section>
 
-
-
 </body>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<!-- ^ajax. not latest framework, but matches circular dial's code's version^ -->
+<!-- ^ajax. not latest framework, but matches circular dial's code version^ -->
 <script src="/js"></script>
 </html>

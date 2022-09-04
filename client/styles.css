@@ -682,7 +682,7 @@ label span {
 }
 
 body {
-  background-color: #232323;
+  background-color: #221d22;
   width: 100%;
   text-align: center;
   margin-top: 30px;
@@ -693,14 +693,16 @@ h2, p {
   font-family: "Century Gothic", "Helvetica", sans-serif;
   font-size: 120px;
   text-align: center;
-  color: #393838;
-  text-shadow: 0.25px 1px 0.25px #828282, -0.75px -2px 1px black;
+  color: #634f6f;
+  text-shadow: 3px 4px 1px #452b54, -5px 0px 1px #695a72;
 }
 
 p {
   font-size: 42px;
   font-weight: bold;
   font-family: 'HelveticaNeue-UltraLight', 'Helvetica Neue UltraLight', Roboto, Arial, Sans-serif;
+  text-shadow: 1px 2px 1px #3d264a, -2px 0px 1px #5d4f65;
+
 }
 
 button, input[type=text] {
