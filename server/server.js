@@ -32,11 +32,13 @@ app.get('/styles', (req, res) => {
 //     // res.sendFile(path.join(__dirname, '../client/styles.css'))
 // })
 
+let songRec
+
 app.post('/songRec', async (req, res) => {
     console.log('songRec endpoint hit on server')
     try {
     console.log(req.body.filters)
-    const songRec = await getSongRec(req.body.filters)
+    songRec = await getSongRec(req.body.filters)
 
     // .json (vs .send) makes it a json file. you need to send http requests in json form. if data was already in json you could .send it // could also either of 2 below:
     res.status(200).send(JSON.stringify(songRec))
@@ -67,11 +69,20 @@ const authOptions = {
 
 let token = 'not declared yet'
 
-////End of Authorization segment of code//////
+const reqConfig = {
+    headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json'
+    }}
 
-const getSongRec = ({ genre, acousticness, danceability, energy, instrumentalness, liveness, popularity, valence }) => {
+////End of Authorization segment of code//////
+// const getParams = ({ genre, acousticness, danceability, energy, instrumentalness, popularity, valence })
+
+const getSongRec = ({ genre, acousticness, danceability, energy, instrumentalness, popularity, valence }) => {
     
     console.log('getSongRec function called on server')
+
+    // getParams()
 
     const generateVariant = () => {
         let val = 1
@@ -93,19 +104,11 @@ const getSongRec = ({ genre, acousticness, danceability, energy, instrumentalnes
 
     if (instrumentalness) params += `&target_instrumentalness=${instrumentalness+generateVariant()}`
 
-    if (liveness) params += `&target_liveness=${liveness}`
-
     if (popularity) params += `&target_popularity=${popularity+(100*generateVariant())}`
 
     if (valence) params += `&target_valence=${valence+generateVariant()}`
 
     console.log(params)
-
-    const reqConfig = {
-        headers: {
-            'Authorization': `Bearer ${token}`,
-            'Content-Type': 'application/json'
-        }}
     
     return new Promise((resolve, reject) => {
         axios.get(`${spotifyRecsBaseURL}${params}`, reqConfig)
@@ -128,19 +131,21 @@ const getSongRec = ({ genre, acousticness, danceability, energy, instrumentalnes
 
             })
             .catch(err => {
-                // const gotTokenAndRetried = true
                 console.log('ERROR: here ==>', err.response.status)
                 if (err.response.status === 401) {
                     console.log('touch')
                     request.post(authOptions, function(error, response, body) {
                         if (!error && response.statusCode === 200) {
-                        console.log(response.statusCode)
-                        token = body.access_token;
-                        console.log('token... ', token)
+                            console.log(response.statusCode)
+                            token = body.access_token;
+                            console.log('token... ', token)
                         }
+                    getSongRec({genre, acousticness, danceability, energy, instrumentalness, popularity, valence})
                     })
-                    // if (gotTokenAndRetried) {
-                        // getSongRec()
+                    // let retriedOnce
+                    // if (!retriedOnce) {
+                    //     getSongRec()
+                    //     const retriedOnce = true
                     // }
                 }
             })
