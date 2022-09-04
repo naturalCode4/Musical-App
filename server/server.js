@@ -4,6 +4,7 @@ const axios = require('axios')
 const path = require('path')
 const request = require('request');
 const app = express()
+require('dotenv').config();
 
 //this below line of code routes frontend to backend. useful for getting things to log in terminal
 // const frontEnd = require('../client/index.js')
@@ -24,6 +25,11 @@ app.get('/styles', (req, res) => {
     console.log('trying to hit styles')
     res.sendFile(path.join(__dirname, '../client/styles.css'))
 })
+
+// app.get('/authorization', (req, res) => {
+//     console.log('hitting authorization api')
+//     // res.sendFile(path.join(__dirname, '../client/styles.css'))
+// })
 
 app.post('/songRec', async (req, res) => {
     console.log('songRec endpoint hit on server')

@@ -35,7 +35,7 @@ const instrumentalnessChart = document.getElementsByClassName('instrumentalness'
 const popularityChart = document.getElementsByClassName('popularity')[0]
 
 const displaySongInfo = (songInfo) => {
-    console.log(songInfo.sampleLink)
+    console.log(songInfo.trackLink)
 
     trackName.textContent = "TRACK: " + songInfo.trackName
     artistName.textContent = "ARTIST: " + songInfo.artistName
@@ -53,20 +53,27 @@ const displaySongInfo = (songInfo) => {
     }
 }
 
+// const testOrGetToken = () => {
+
+//     //try catch -->
+//     //if 200 success, follow through, get song
+//     //if 401 err, get new token, try again (once)
+
+// }
 
 //asynchronous function making post request to back end
 const requestSongUsingFilters = async (filters) => {
     try {
         //second argument of axios.post request is body
-        const res = await axios.post('http://localhost:4444/songRec', {filters})
+        const res = await axios.post('/songRec', {filters})
         displaySongInfo(res.data)
     } catch (err) {
         console.log('Here was the error ==>:', err)
+        // if (err instanceof )
     }
 }
     
 document.getElementById('filters-button').addEventListener('click', () => {
-    
     let filters = {
         genre: genre.disabled ? null: genre.value,
         acousticness: acousticness.disabled ? null: acousticness.value/100,
