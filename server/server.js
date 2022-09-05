@@ -1,8 +1,9 @@
 const express = require('express')
 const cors = require('cors')
-const axios = require('axios')
+const axios = require('axios').default
 const path = require('path')
-const request = require('request');
+// const request = require('request')
+const qs = require('querystring');
 const { response } = require('express');
 const app = express()
 require('dotenv').config();
@@ -30,17 +31,15 @@ app.get('/styles', (req, res) => {
 let songRec
 
 app.post('/songRec', async (req, res) => {
-    console.log('11111')
+    console.log('hit 1')
     try {
     console.log(req.body.filters)
     songRec = await getSongRec(req.body.filters)
-    console.log('22222')
-
+    console.log('hit 2')
     // .json (vs .send) makes it a json file. you need to send http requests in json form. if data was already in json you could .send it // could also either of 2 below:
     res.status(200).send(JSON.stringify(songRec))
     // res.status(200).json(songRec)
-
-    console.log('33333')
+    console.log('hit 3')
 
     }
     catch (err) {
@@ -55,16 +54,29 @@ const spotifyRecsBaseURL = 'https://api.spotify.com/v1/recommendations/'
 const client_id = 'f8a2526a0dc7469884edac2d88b21ccd';
 const client_secret = 'e2d91181ac5d4d58a884d1758a01bf1f';
 
+// const authOptions = {
+//   url: 'https://accounts.spotify.com/api/token',
+//   headers: {
+//     'Authorization': 'Basic ' + (new Buffer(client_id + ':' + client_secret).toString('base64'))
+//   },
+//   form: {
+//     grant_type: 'client_credentials'
+//   },
+//   json: true
+// };
+
+const tokenURL = 'https://accounts.spotify.com/api/token'
 const authOptions = {
-  url: 'https://accounts.spotify.com/api/token',
-  headers: {
-    'Authorization': 'Basic ' + (new Buffer(client_id + ':' + client_secret).toString('base64'))
-  },
-  form: {
-    grant_type: 'client_credentials'
-  },
-  json: true
-};
+    headers: {
+      'Authorization': 'Basic ' + (new Buffer(client_id + ':' + client_secret).toString('base64'))
+    },
+    form: {
+      grant_type: 'client_credentials'
+    },
+    json: true
+  };
+
+const data = qs.stringify({'grant_type':'client_credentials'});
 
 let token = 'not declared yet'
 
@@ -126,24 +138,29 @@ const getSongRec = ({ genre, acousticness, danceability, energy, instrumentalnes
             //wrapping these items in curly braces makes them an object, where each value has key of same value. e.g. trackname: trackname
             // resolve already as JSON format so dont need JSON.stringify({trackName, artistName, albumName, trackLink, albumCover}))
 
-
             resolve ({trackName, artistName, albumName, trackLink, albumCover, sampleLink})
 
             })
             .catch(async err => {
                 console.log('ERROR: here ==>', err.response.status)
                 if (err.response.status === 401 && !retried) {
-                    retried = true
                     console.log('touch')
-                    // get new token vv
-                    request.post(authOptions, function(error, response, body) {
-                        if (!error && response.statusCode === 200) {
-                            console.log(response.statusCode)
-                            token = body.access_token;
-                            console.log('token... ', token)
-                        }
-                    })
-                    // await getSongRec({genre, acousticness, danceability, energy, instrumentalness, popularity, valence})
+                    // get new token below
+                    try {
+                        const tokenRes = await axios.post(tokenURL, data, authOptions) 
+                        token = tokenRes.data.access_token
+                        console.log('token 1: ', token)
+                    }
+                    catch(err){
+                        console.log('err ', err)
+                    }
+
+                    console.log('token 2: ', token)
+                    if (token !== 'not declared yet') {
+                        const retriedSongRec = await getSongRec({genre, acousticness, danceability, energy, instrumentalness, popularity, valence})
+                        console.log('retriedSongRec: ', retriedSongRec)
+                        resolve (retriedSongRec)
+                    } else {console.log('something went wrong')}
                 }
             })
             .finally(() => {
