@@ -19,28 +19,23 @@ app.get('/', (req, res) => {
 })
 
 app.get('/js', (req, res) => {
-    console.log('trying to hit index.js')
     res.sendFile(path.join(__dirname, '../client/index.js'))
 })
 
 app.get('/styles', (req, res) => {
-    console.log('trying to hit styles')
     res.sendFile(path.join(__dirname, '../client/styles.css'))
 })
 
 let songRec
 
 app.post('/songRec', async (req, res) => {
-    console.log('hit 1')
     try {
     console.log(req.body.filters)
     songRec = await getSongRec(req.body.filters)
-    console.log('hit 2')
+
     // .json (vs .send) makes it a json file. you need to send http requests in json form. if data was already in json you could .send it // could also either of 2 below:
     res.status(200).send(JSON.stringify(songRec))
     // res.status(200).json(songRec)
-    console.log('hit 3')
-
     }
     catch (err) {
         console.log('There was an error ==>:', err)
@@ -54,18 +49,8 @@ const spotifyRecsBaseURL = 'https://api.spotify.com/v1/recommendations/'
 const client_id = 'f8a2526a0dc7469884edac2d88b21ccd';
 const client_secret = 'e2d91181ac5d4d58a884d1758a01bf1f';
 
-// const authOptions = {
-//   url: 'https://accounts.spotify.com/api/token',
-//   headers: {
-//     'Authorization': 'Basic ' + (new Buffer(client_id + ':' + client_secret).toString('base64'))
-//   },
-//   form: {
-//     grant_type: 'client_credentials'
-//   },
-//   json: true
-// };
-
 const tokenURL = 'https://accounts.spotify.com/api/token'
+const data = qs.stringify({'grant_type':'client_credentials'});
 const authOptions = {
     headers: {
       'Authorization': 'Basic ' + (new Buffer(client_id + ':' + client_secret).toString('base64'))
@@ -75,8 +60,6 @@ const authOptions = {
     },
     json: true
   };
-
-const data = qs.stringify({'grant_type':'client_credentials'});
 
 let token = 'not declared yet'
 
@@ -144,12 +127,10 @@ const getSongRec = ({ genre, acousticness, danceability, energy, instrumentalnes
             .catch(async err => {
                 console.log('ERROR: here ==>', err.response.status)
                 if (err.response.status === 401 && !retried) {
-                    console.log('touch')
                     // get new token below
                     try {
                         const tokenRes = await axios.post(tokenURL, data, authOptions) 
                         token = tokenRes.data.access_token
-                        console.log('token 1: ', token)
                     }
                     catch(err){
                         console.log('err ', err)
@@ -158,13 +139,11 @@ const getSongRec = ({ genre, acousticness, danceability, energy, instrumentalnes
                     console.log('token 2: ', token)
                     if (token !== 'not declared yet') {
                         const retriedSongRec = await getSongRec({genre, acousticness, danceability, energy, instrumentalness, popularity, valence})
-                        console.log('retriedSongRec: ', retriedSongRec)
                         resolve (retriedSongRec)
                     } else {console.log('something went wrong')}
                 }
             })
             .finally(() => {
-                console.log('finally')
                 retried = false
             })
     })

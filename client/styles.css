@@ -661,12 +661,12 @@ label span {
 }
 
 .custom-slider:disabled {
-  background: #2d2d2d;
+  background: #4d4d4d;
   box-shadow: none;
-  border-top: 6px solid rgb(37, 37, 37);
-	border-left: 6px solid rgb(37, 37, 37);
-	border-right: 5px solid rgb(57, 57, 57);
-	border-bottom: 5px solid rgb(50, 50, 50);
+  border-top: 6px solid rgb(48, 48, 48);
+	border-left: 6px solid rgb(86, 86, 86);
+	border-right: 5px solid rgb(60, 60, 60);
+	border-bottom: 5px solid rgb(83, 83, 83);
 }
 
 
@@ -682,7 +682,7 @@ label span {
 }
 
 body {
-  background-color: #221d22;
+  background-color: #3d3a40;
   width: 100%;
   text-align: center;
   margin-top: 30px;
@@ -693,15 +693,16 @@ h2, p {
   font-family: "Century Gothic", "Helvetica", sans-serif;
   font-size: 120px;
   text-align: center;
-  color: #634f6f;
-  text-shadow: 3px 4px 1px #452b54, -5px 0px 1px #695a72;
+  color: #625d66;
+  text-shadow: 1.25px 1.25px 0px rgba(222,222,222,.4), -1.25px -1.25px 0px rgba(30,30,30,.7)
+
 }
 
 p {
-  font-size: 42px;
+  font-size: 44px;
   font-weight: bold;
   font-family: 'HelveticaNeue-UltraLight', 'Helvetica Neue UltraLight', Roboto, Arial, Sans-serif;
-  text-shadow: 1px 2px 1px #3d264a, -2px 0px 1px #5d4f65;
+  text-shadow: .25px .5px 0px rgba(222,222,222,.4), -1px -1px 0px rgba(30,30,30,.7)
 
 }
 
