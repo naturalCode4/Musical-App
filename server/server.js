@@ -29,6 +29,7 @@ app.get('/styles', (req, res) => {
 let songRec
 
 app.post('/songRec', async (req, res) => {
+    console.log('songRec endpoint')
     try {
     console.log(req.body.filters)
     songRec = await getSongRec(req.body.filters)
