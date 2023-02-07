@@ -9,7 +9,7 @@ const trackLink = document.getElementById('track-link')
 const sampleLink = document.getElementById('sample-link')
 const sampleLinkP = document.getElementById("sample-link-p")
 
-// these pertain to the inputs for each filter
+// inputs for each filter
 const genre = document.getElementById('genre')
 const acousticness = document.getElementById('acousticness')
 const danceability = document.getElementById('danceability')
@@ -18,6 +18,7 @@ const instrumentalness = document.getElementById('instrumentalness')
 const popularity = document.getElementById('popularity')
 const valence = document.getElementById('valence')
 
+// levers
 const acousticnessLeverInput = document.querySelector("form#acousticness-lever input")
 const danceabilityLeverInput = document.querySelector('form#danceability-lever input')
 const energyLeverInput = document.querySelector('form#energy-lever input')
@@ -25,6 +26,7 @@ const instrumentalnessLeverInput = document.querySelector('form#instrumentalness
 const popularityLeverInput = document.querySelector('form#popularity-lever input')
 const valenceLeverInput = document.querySelector('form#valence-lever input')
 
+// chart filters
 const acousticnessChart = document.getElementsByClassName('acousticness')[0]
 const danceabilityChart = document.getElementsByClassName('danceability')[0]
 const energyChart = document.getElementsByClassName('energy')[0]
@@ -33,7 +35,6 @@ const instrumentalnessChart = document.getElementsByClassName('instrumentalness'
 const popularityChart = document.getElementsByClassName('popularity')[0]
 
 const displaySongInfo = (songInfo) => {
-    console.log('Here is your song: ', songInfo.trackLink)
 
     trackName.textContent = "TRACK: " + songInfo.trackName
     artistName.textContent = "ARTIST: " + songInfo.artistName
@@ -44,27 +45,24 @@ const displaySongInfo = (songInfo) => {
     Listen on Spotify</a>`
 
     if (songInfo.sampleLink != null) {
-        sampleLinkP.hidden = true // hide sample link if not hidden
+        sampleLinkP.hidden = true
         sampleLink.src = songInfo.sampleLink
     } else {
-        sampleLinkP.hidden = false //started hidden. When sample link is null, removes attribute to display
+        sampleLinkP.hidden = false
     }
 }
 
-//asynchronous function making post request to back end
-const requestSongUsingFilters = async (filters) => {
+const requestNewSong = async (filters) => {
     try {
-        //second argument of axios.post request is body
         const res = await axios.post('/songRec', {filters})
         displaySongInfo(res.data)
     } catch (err) {
-        console.log('Here was the error ==>:', err)
-        // if (err instanceof )
+        console.log('There was an error ==>:', err)
     }
 }
     
 document.getElementById('filters-button').addEventListener('click', () => {
-    console.log('New Song Button Clicked!')
+    console.log('Getting new song!')
     let filters = {
         genre: genre.disabled ? null: genre.value,
         acousticness: acousticness.disabled ? null: acousticness.value/100,
@@ -75,13 +73,11 @@ document.getElementById('filters-button').addEventListener('click', () => {
         valence: valence.disabled ? null: valence.value/100,
     }
 
-    requestSongUsingFilters(filters)
-
+    requestNewSong(filters)
 })
 
-// lever animation //
-
-const addLeverFunctionality = (...filtersLeversAndCharts) => {
+// lever animation js//
+const giveLeverJavascriptFunctionality = (...filtersLeversAndCharts) => {
     filtersLeversAndCharts.forEach(filterLeverAndChart => {
 
     let filter = filterLeverAndChart[0]
@@ -104,14 +100,13 @@ const addLeverFunctionality = (...filtersLeversAndCharts) => {
 
         let ac = "aria-checked";
         lever.setAttribute(ac, lever.getAttribute(ac) == "true" ? "false" : "true");
-
         })
     })
 }
 
-addLeverFunctionality([acousticness, acousticnessLeverInput, acousticnessChart], [danceability, danceabilityLeverInput, danceabilityChart], [energy, energyLeverInput, energyChart], [instrumentalness, instrumentalnessLeverInput, instrumentalnessChart], [popularity, popularityLeverInput, popularityChart], [valence, valenceLeverInput, valenceChart])
+giveLeverJavascriptFunctionality([acousticness, acousticnessLeverInput, acousticnessChart], [danceability, danceabilityLeverInput, danceabilityChart], [energy, energyLeverInput, energyChart], [instrumentalness, instrumentalnessLeverInput, instrumentalnessChart], [popularity, popularityLeverInput, popularityChart], [valence, valenceLeverInput, valenceChart])
 
-const connectFilterInputs = (...inputsAndCharts) => {
+const connectSliderAndChartFilters = (...inputsAndCharts) => {
     inputsAndCharts.forEach(inputAndChart => {
 
         let input = inputAndChart[0]
@@ -129,37 +124,25 @@ const connectFilterInputs = (...inputsAndCharts) => {
     })
 }
 
-connectFilterInputs([acousticness, acousticnessChart], [valence, valenceChart], [danceability, danceabilityChart], [energy, energyChart], [instrumentalness, instrumentalnessChart], [popularity, popularityChart])  
+connectSliderAndChartFilters([acousticness, acousticnessChart], [valence, valenceChart], [danceability, danceabilityChart], [energy, energyChart], [instrumentalness, instrumentalnessChart], [popularity, popularityChart])  
 
+const dropdownContent = document.getElementsByClassName('dropdown-content')[0]
 
-//add function to eventlistener of genre (the input filter) and to individual divs)
-
-// const displayOn = document.getElementById("displayOn");
-// const displayOff = document.getElementById("displayOff");
-
-const dropdownContent = document.getElementsByClassName('dropdown-content')
-
-dropdownContent[0].addEventListener('mouseover', toggleDisplayDropdownContentOnMouseoverAndMouseout)
-dropdownContent[0].addEventListener('mouseout', toggleDisplayDropdownContentOnMouseoverAndMouseout)
+dropdownContent.addEventListener('mouseover', toggleDisplayDropdownContentOnMouseoverAndMouseout)
+dropdownContent.addEventListener('mouseout', toggleDisplayDropdownContentOnMouseoverAndMouseout)
 genre.addEventListener('mouseover', toggleDisplayDropdownContentOnMouseoverAndMouseout)
 genre.addEventListener('mouseout', toggleDisplayDropdownContentOnMouseoverAndMouseout)
 
 function toggleDisplayDropdownContentOnMouseoverAndMouseout() {
     console.log('entered toggledisplay')
-    if (dropdownContent[0].style.display === "block") {
-        dropdownContent[0].style.display = "none"
+    if (dropdownContent.style.display === "block") {
+        dropdownContent.style.display = "none"
     } else {
-        dropdownContent[0].style.display = "block"
+        dropdownContent.style.display = "block"
     }
 }
 
-// let genreItems = document.getElementsByClassName('dropdown-content-item');
 let genreItems = document. querySelectorAll(".dropdown-content div")
-console.log('genreItems', genreItems)
 for (let i=0; i<genreItems.length; i++) {
-    genreItems[i].addEventListener("click", () => {
-        console.log('click, genreItem.innerHTMl: ', genreItems[i].innerHTML)
-        genre.value=genreItems[i].innerHTML
-        console.log('genre.value:', genre.value)
-    })
+    genreItems[i].addEventListener("click", () => {genre.value=genreItems[i].innerHTML})
 }

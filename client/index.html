@@ -20,7 +20,6 @@
                 <input type="text" id="genre" name="genre" autocomplete="off" value="techno">
                 <div class="dropdown-content">
                     <div>acoustic</div>
-                    <!-- <div>afrobeat</div> -->
                     <div>alt-rock</div>
                     <div>alternative</div>
                     <div>ambient</div>
@@ -45,7 +44,6 @@
                     <div>death-metal</div>
                     <div>deep-house</div>
                     <div>detroit-techno</div>
-                    <!-- <div>disco</div> -->
                     <div>disney</div>
                     <div>drum-and-bass</div>
                     <div>dubstep</div>
@@ -150,6 +148,7 @@
         </div>
 
         <div id="song-controller-button-section">
+
             <section id="song-section">
                 <div>
                     <img id="album-cover">
@@ -160,7 +159,6 @@
                     <p id="album-name">
                     <p id="track-link"></p>
                     <p id="sample-link-p" hidden>(no sample available)</p>
-
                 </div>
             </section>
 
@@ -169,11 +167,11 @@
             </section>
 
             <button id="filters-button">New Song</button>
+
         </div>
 
         <div>
             <fieldset id="filters-chart">
-                <!-- <legend>· Da En Af Ac Vp Po ·4</legend> -->
                 
                 <label class="chart-label" orient='270deg' type='range' for="band" before="0" after="10">5</label>
                 
@@ -195,91 +193,66 @@
         <div>
             <p class="engraved">Danceability</p>
             <input type="range" class="custom-slider" id="danceability" name="danceability" value='80' min="1" max="100">
-            <!-- <button id="danceability-toggle">Off/On</button> -->
             <form class="leverform" id="danceability-lever">
               <input type="checkbox" name="lever" class="lever pristine" value="lever value" role="switch" aria-label="lever" aria-checked="false" checked>
               <label for="lever">
                   <span>On</span>
               </label>
-              <!-- <label for="lever">
-                <span>Off</span>
-              </label> -->
             </form>
         </div>
 
         <div>
             <p class="engraved">Energy Level</p>
             <input type="range" class="custom-slider" id="energy" name="energy" min="1" max="100" value="50" disabled>
-            <!-- <button id="energy-toggle">Off/On</button> -->
             <form class="leverform" id="energy-lever">
               <input type="checkbox" name="lever" class="lever pristine" value="lever value" role="switch" aria-label="lever" aria-checked="false">
               <label for="lever">
                   <span>On</span>
               </label>
-              <!-- <label for="lever">
-                  <span>Off</span>
-              </label> -->
             </form>
         </div>
 
         <div>
             <p class="engraved">Affect</p>
             <input type="range" class="custom-slider" id="valence" name="valence" min="1" max="100" value="50" disabled>
-            <!-- <button id="valence-toggle">Off/On</button> -->
             <form class="leverform" id="valence-lever">
               <input type="checkbox" name="lever" class="lever pristine" value="lever value" role="switch" aria-label="lever" aria-checked="false">
               <label for="lever">
                   <span>On</span>
               </label>
-              <!-- <label for="lever">
-                  <span>Off</span>
-              </label> -->
             </form>
         </div>
 
         <div>
             <p class="engraved">Acousticness</p>
             <input type="range" class="custom-slider" id="acousticness" name="acousticness" min="1" max="101" value="50" disabled>
-            <!-- <button id="acousticness-toggle">Off/On</button> -->
             <form class="leverform" id="acousticness-lever">
               <input type="checkbox" name="lever" class="lever pristine" value="lever value" role="switch" aria-label="lever" aria-checked="false">
               <label for="lever">
                   <span>On</span>
               </label>
-              <!-- <label for="lever">
-                  <span>Off</span>
-              </label> -->
             </form>
         </div>
 
         <div>
             <p class="engraved">Vocal Presence</p>
-            <!-- maybe make this binaryish too -->
             <input type="range" class="custom-slider right-to-left-slider" id="instrumentalness" name="instrumentalness" min="1" max="101" value="50" disabled>
-            <!-- <button id="instrumentalness-toggle">Off/On</button> -->
             <form class="leverform" id="instrumentalness-lever">
               <input type="checkbox" name="lever" class="lever pristine" value="lever value" role="switch" aria-label="lever" aria-checked="false">
               <label for="lever">
                   <span>On</span>
               </label>
-              <!-- <label for="lever">j
-                  <span>Off</span>
-              </label> -->
             </form>
         </div>
 
         <div>   
             <p class="engraved">Popularity</p>
             <input type="range" class="custom-slider" id="popularity" name="popularity" min="1" max="100" value="80">
-            <!-- <button id="popularity-toggle">Off/On</button> -->
             <form class="leverform" id="popularity-lever">
               <input type="checkbox" name="lever" class="lever pristine" value="lever value" role="switch" aria-label="lever" aria-checked="false" checked>
               <label for="lever">
                   <span>On</span>
               </label>
-              <!-- <label for="lever">
-                  <span>Off</span>
-              </label> -->
             </form>
         </div>
 
@@ -288,6 +261,5 @@
 </body>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<!-- ^ajax. not latest framework, but matches circular dial's code version^ -->
 <script src="/js"></script>
 </html>

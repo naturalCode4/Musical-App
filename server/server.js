@@ -2,14 +2,9 @@ const express = require('express')
 const cors = require('cors')
 const axios = require('axios').default
 const path = require('path')
-// const request = require('request')
 const qs = require('querystring');
-const { response } = require('express');
 const app = express()
 require('dotenv').config();
-
-//this below line of code routes frontend to backend. useful for getting things to log in terminal
-// const frontEnd = require('../client/index.js')
 
 app.use(express.json())
 app.use(cors())
@@ -26,20 +21,15 @@ app.get('/styles', (req, res) => {
     res.sendFile(path.join(__dirname, '../client/styles.css'))
 })
 
-let songRec
+let songRecommendation
 
 app.post('/songRec', async (req, res) => {
-    console.log('songRec endpoint')
     try {
-    console.log(req.body.filters)
-    songRec = await getSongRec(req.body.filters)
-
-    // .json (vs .send) makes it a json file. you need to send http requests in json form. if data was already in json you could .send it // could also either of 2 below:
-    res.status(200).send(JSON.stringify(songRec))
-    // res.status(200).json(songRec)
+        songRecommendation = await getSongRecommendation(req.body.filters)
+        res.status(200).send(JSON.stringify(songRecommendation))
     }
     catch (err) {
-        console.log('There was an error ==>:', err)
+        console.log('There was an error with /songRec endpoint==>:', err)
     }
 })
 
@@ -64,14 +54,10 @@ const authOptions = {
 
 let token = 'not declared yet'
 
-////End of Authorization segment of code//////
-
 let retried = false
 
-const getSongRec = ({ genre, acousticness, danceability, energy, instrumentalness, popularity, valence }) => {
+const getSongRecommendation = ({ genre, acousticness, danceability, energy, instrumentalness, popularity, valence }) => {
     
-    console.log('getSongRec function called on server')
-
     const generateVariant = () => {
         let val = 1
         if (Math.random() < .5) { // this if block deterines whether variant will be positive or negative
@@ -80,32 +66,32 @@ const getSongRec = ({ genre, acousticness, danceability, energy, instrumentalnes
         return Math.round(val*25*Math.random())/100
     }
 
-    let params = `?limit=1`
+    let parameters = `?limit=1`
 
-    if (genre) params += `&seed_genres=${genre.toLowerCase()}`
+    if (genre) parameters += `&seed_genres=${genre.toLowerCase()}`
     
-    if (acousticness) params += `&target_acousticness=${acousticness+generateVariant()}`
+    if (acousticness) parameters += `&target_acousticness=${acousticness+generateVariant()}`
     
-    if (danceability) params += `&target_danceability=${danceability+generateVariant()}`
+    if (danceability) parameters += `&target_danceability=${danceability+generateVariant()}`
 
-    if (energy) params += `&target_energy=${energy+generateVariant()}`
+    if (energy) parameters += `&target_energy=${energy+generateVariant()}`
 
-    if (instrumentalness) params += `&target_instrumentalness=${instrumentalness+generateVariant()}`
+    if (instrumentalness) parameters += `&target_instrumentalness=${instrumentalness+generateVariant()}`
 
-    if (popularity) params += `&target_popularity=${popularity+(100*generateVariant())}`
+    if (popularity) parameters += `&target_popularity=${popularity+(100*generateVariant())}`
 
-    if (valence) params += `&target_valence=${valence+generateVariant()}`
+    if (valence) parameters += `&target_valence=${valence+generateVariant()}`
 
-    console.log(params)
+    console.log(parameters)
     
-    const reqConfig = {
+    const requestConfiguration = {
         headers: {
             'Authorization': `Bearer ${token}`,
             'Content-Type': 'application/json'
         }}
 
     return new Promise((resolve, reject) => {
-        axios.get(`${spotifyRecsBaseURL}${params}`, reqConfig)
+        axios.get(`${spotifyRecsBaseURL}${parameters}`, requestConfiguration)
             .then(res => {
             const trackName = res.data.tracks[0].name
             const artistName = res.data.tracks[0].artists[0].name
@@ -113,22 +99,13 @@ const getSongRec = ({ genre, acousticness, danceability, energy, instrumentalnes
             const trackLink = res.data.tracks[0].external_urls.spotify
             const albumCover = res.data.tracks[0].album.images[1].url
             const sampleLink = res.data.tracks[0].preview_url
-
-            console.log('track:', trackName, ', artist:', artistName, ', album:', albumName)
-            console.log('trackLink:', trackLink)
-            console.log('albumCover:', albumCover)
-            console.log('sampleLink:', sampleLink)
             
-            //wrapping these items in curly braces makes them an object, where each value has key of same value. e.g. trackname: trackname
-            // resolve already as JSON format so dont need JSON.stringify({trackName, artistName, albumName, trackLink, albumCover}))
-
             resolve ({trackName, artistName, albumName, trackLink, albumCover, sampleLink})
-
             })
             .catch(async err => {
-                console.log('ERROR: here ==>', err.response.status)
+                console.log('Error getting song recommendation ==>', err.response.status)
                 if (err.response.status === 401 && !retried) {
-                    // get new token below
+                    // get new token below on fail
                     try {
                         const tokenRes = await axios.post(tokenURL, data, authOptions) 
                         token = tokenRes.data.access_token
@@ -136,11 +113,9 @@ const getSongRec = ({ genre, acousticness, danceability, energy, instrumentalnes
                     catch(err){
                         console.log('err ', err)
                     }
-
-                    console.log('token 2: ', token)
                     if (token !== 'not declared yet') {
-                        const retriedSongRec = await getSongRec({genre, acousticness, danceability, energy, instrumentalness, popularity, valence})
-                        resolve (retriedSongRec)
+                        const retriedSongRecommendation = await getSongRecommendation({genre, acousticness, danceability, energy, instrumentalness, popularity, valence})
+                        resolve (retriedSongRecommendation)
                     } else {console.log('something went wrong')}
                 }
             })
