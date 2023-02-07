@@ -10,6 +10,7 @@
   margin-left: 50px;
   margin-right: 50px;
   padding-top: 20px;
+  scale: 1.2;
 }
 
 fieldset {
@@ -75,8 +76,11 @@ legend {
   box-shadow: 0 0 0 .15em #6FC5F0;
 }
 
-/* ## Orientation tweak, with [orient] attribute in degrees */
-/* > I know it's not standard, but that's the cleaner way I was thinking of. */
+.chart-input:disabled:hover {
+  -webkit-box-shadow: 0 0 0 .15em #4D4D4D;
+  box-shadow: 0 0 0 .15em #4D4D4D;
+}
+
 .chart-input {
   /* > Would be cool heh :-) : */
   -webkit-transform: rotate(attr(orient));
@@ -145,7 +149,6 @@ legend {
   box-sizing: border-box;
   border: none;
   background-color: #6FC5F0;
-  /* background-color: red; */
   -webkit-box-shadow: -10em 0 0 0 #313131, -9em 0 0 0 #313131, -8em 0 0 0 #2F343F, -7em 0 0 0 #283F6B, -6em 0 0 0 #214893, -5em 0 0 0 #1A52BC, -4em 0 0 0 #2769D3, -3em 0 0 0 #3E87DC, -2em 0 0 0 #55A5E6, -1em 0 0 0 #6FC5F0, 1em 0 0 0 #181818, 2em 0 0 0 #181818, 3em 0 0 0 #181818, 4em 0 0 0 #181818, 5em 0 0 0 #181818, 6em 0 0 0 #181818, 7em 0 0 0 #181818, 8em 0 0 0 #181818, 9em 0 0 0 #181818;
   box-shadow: -10em 0 0 0 #313131, -9em 0 0 0 #313131, -8em 0 0 0 #2F343F, -7em 0 0 0 #283F6B, -6em 0 0 0 #214893, -5em 0 0 0 #1A52BC, -4em 0 0 0 #2769D3, -3em 0 0 0 #3E87DC, -2em 0 0 0 #55A5E6, -1em 0 0 0 #6FC5F0, 1em 0 0 0 #181818, 2em 0 0 0 #181818, 3em 0 0 0 #181818, 4em 0 0 0 #181818, 5em 0 0 0 #181818, 6em 0 0 0 #181818, 7em 0 0 0 #181818, 8em 0 0 0 #181818, 9em 0 0 0 #181818;
   cursor: ew-resize;
@@ -682,54 +685,113 @@ label span {
 }
 
 body {
-  background-color: #3d3a40;
+  background-color: #26212c;
   width: 100%;
   text-align: center;
   margin-top: 30px;
 }
 
-h2, p {
-  margin: auto;
+.engraved {
   font-family: "Century Gothic", "Helvetica", sans-serif;
-  font-size: 120px;
   text-align: center;
-  color: #625d66;
-  text-shadow: 1.25px 1.25px 0px rgba(222,222,222,.4), -1.25px -1.25px 0px rgba(30,30,30,.7)
-
+  color: #9586af;
 }
 
 p {
-  font-size: 44px;
-  font-weight: bold;
-  font-family: 'HelveticaNeue-UltraLight', 'Helvetica Neue UltraLight', Roboto, Arial, Sans-serif;
-  text-shadow: .25px .5px 0px rgba(222,222,222,.4), -1px -1px 0px rgba(30,30,30,.7)
-
+  margin: auto;
+  font-size: calc(4vw + 10px);
+  text-shadow: -3px -1.25px 3px #d0b7eb, 5px 2.25px 3px #533e6b;
 }
 
-button, input[type=text] {
+
+.header {
+  margin-bottom: 90px;
+  font-size: 180px;
+  text-shadow: -4px -2px 3px #d0b7eb, 5px 2px 3px #533e6b
+}
+
+#filters-button {
   background-color: #9586af;
-  color: black;
-  font-size: 42px;
+  color: #26212c;
+  font-size: 80px;
   font-family: "Courier New";
+  text-align: center;
   border-radius: 6px;
   border-style: inset;
   border-width: 2px;
   border-color: #8b7f96;
   box-shadow: 0px 0px 20px 10px #8261aa;
-  padding: 15px 25px 15px 25px;
-  text-align: center;
+  padding: 25px 35px 25px 35px;
+  cursor: pointer
   /* cursor: url('/images/musicalnotes.png'); */
 }
 
-button {
-  cursor: pointer
-}
-
-button:active, input[type=text]:hover {
+#filters-button:active {
   background-color: #4694bb;
   border-color: #3f636f;
-  /* -webkit-box-shadow: 0px 0px 6px 4px #214893; */
   box-shadow: 0px 0px 20px 10px #214893;
+}
+
+input[type=text] {
+  background-color: #9586af;
+  color: #26212c;
+  font-size: 42px;
+  font-family: "Courier New";
+  text-align: center;
+  padding: 25px 25px 25px 25px;
+  margin-top: 50px;
+  border-radius: 6px;
+  border-style: inset;
+  border-width: 2px;
+  border-color: #8b7f96;
+  box-shadow: 0px 0px 20px 10px #8261aa;
+  /* cursor: url('/images/musicalnotes.png'); */
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+  z-index: 101;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #6cbce4;
+  min-width: 200px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  width: 100%;
+  height: 90vh;
+  overflow: scroll;
+  margin: 0px !important;
+  border-color: #3f636f;
+  box-shadow: 0px 0px 80px 5px #2754a8;
+  border-radius: 6px;
+}
+
+.dropdown-content div {
+  color: black;
+  font-size: 55px;
+  text-decoration: none;
+  display: block;
+  padding: 25px;
+  margin: 0 !important;
+  border: .5px solid #4694bb;
+  /* box-shadow: 7px 0px 4px #4694bb, 0px 7px 4px #4694bb, -7px 0px 4px #4694bb, 0px -7px 4px #4694bb; */
+}
+
+input[type=text]:hover {
+  background-color: #4694bb;
+  border-color: #3f636f;
+  box-shadow: 0px 0px 20px 10px #214893;
+  cursor: pointer;
+}
+
+.dropdown-content div:hover {
+  border: .5px solid #897ba2;
+  background-color: #9586af;
+  box-shadow: 7px 0px 4px #897ba2, 0px 7px 4px #897ba2, -7px 0px 4px #897ba2, 0px -7px 4px #897ba2;
 }
 
 #filters-section {
@@ -746,6 +808,7 @@ button:active, input[type=text]:hover {
 #filters-section > div {
   /* min-height: 350px; */
   height: 800px;
+  width: 16.6667%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -783,7 +846,7 @@ button:active, input[type=text]:hover {
   margin: auto;
   border-radius: 5px;
   border-style: inset;
-  border-width: 1.5px;
+  border-width: 2px;
   border-color: #3f636f;
   /* -webkit-box-shadow: 0px 0px 6px 4px #214893; */
           box-shadow: 0px 0px 80px 5px #2754a8;
@@ -828,8 +891,12 @@ button:active, input[type=text]:hover {
   text-shadow: none;
 }
 
+#song-controller-button-section {
+  margin: 0 auto;
+}
+
 #song-controller-button-section section{
-  margin-bottom: 90px
+  margin-bottom: 70px
 }
 
 #feature-section {
@@ -847,11 +914,12 @@ button:active, input[type=text]:hover {
       flex-wrap: wrap;
   align-items: center;
   margin: auto;
-  margin-right: 24px
+  margin-bottom: 124px
 }
 
-#feature-section div {
-  margin: 50px;
+#feature-section > * {
+  margin: auto;
+  margin-top: 90px
 }
 
 #feature-section div p {
@@ -867,20 +935,26 @@ audio {
   border-color: #3f636f;
   /* -webkit-box-shadow: 0px 0px 7px 4px #214893; */
   box-shadow: 0px 0px 20px 3px #2754a8;
-  -webkit-transform: scale(1.5);
-          transform: scale(1.5);
+  -webkit-transform: scale(2);
+          transform: scale(2);
 }
 
 audio::-webkit-media-controls-panel {
   background: #6cbce4;
 }
 
-audio::-webkit-media-controls-current-time-display {
-  color: #ffffff;
-  font-family: "Courier New";
+audio::-webkit-media-controls-play-button {
+  width:  50px;
 }
 
+audio::-webkit-media-controls-current-time-display {
+  font-size: 25px;
+  color: #9586af;
+  font-family: "Courier New";
+
+}
 audio::-webkit-media-controls-time-remaining-display {
   font-family: "Courier New";
+  font-size: 25px;
 }
 /*# sourceMappingURL=styles.css.map */

@@ -4,28 +4,154 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link rel="stylesheet" href="./styles.css"> -->
     <link rel="stylesheet" href="/styles">
 
     <title>Music Genius</title>
 </head>
 <body>
 
-    <h2 class="engraved">MUSIC GENiUS</h2>
+    <h2 class="engraved header test">MUSIC GENiUS</h2>
 
     <figure id="feature-section">
 
         <div>
-            <br><br>
-            <p>Genre<br>
-                    (for a list of valid genres, right-click => inspect => console)</p>
-            <br>
-            <input type="text" id="genre" name="genre" autocomplete="off" value="techno">
+            <p class="engraved">Select Your Genre</p>
+            <div class="dropdown">
+                <input type="text" id="genre" name="genre" autocomplete="off" value="techno">
+                <div class="dropdown-content">
+                    <div>acoustic</div>
+                    <!-- <div>afrobeat</div> -->
+                    <div>alt-rock</div>
+                    <div>alternative</div>
+                    <div>ambient</div>
+                    <div>anime</div>
+                    <div>black-metal</div>
+                    <div>bluegrass</div>
+                    <div>blues</div>
+                    <div>bossanova</div>
+                    <div>brazil</div>
+                    <div>breakbeat</div>
+                    <div>british</div>
+                    <div>cantopop</div>
+                    <div>chicago-house</div>
+                    <div>children</div>
+                    <div>chill</div>
+                    <div>classical</div>
+                    <div>club</div>
+                    <div>comedy</div>
+                    <div>country</div>
+                    <div>dance</div>
+                    <div>dancehall</div>
+                    <div>death-metal</div>
+                    <div>deep-house</div>
+                    <div>detroit-techno</div>
+                    <!-- <div>disco</div> -->
+                    <div>disney</div>
+                    <div>drum-and-bass</div>
+                    <div>dubstep</div>
+                    <div>edm</div>
+                    <div>electro</div>
+                    <div>electronic</div>
+                    <div>emo</div>
+                    <div>folk</div>
+                    <div>forro</div>
+                    <div>french</div>
+                    <div>funk</div>
+                    <div>garage</div>
+                    <div>german</div>
+                    <div>gospel</div>
+                    <div>goth</div>
+                    <div>grindcore</div>
+                    <div>groove</div>
+                    <div>grunge</div>
+                    <div>guitar</div>
+                    <div>happy</div>
+                    <div>hard-rock</div>
+                    <div>hardcore</div>
+                    <div>hardstyle</div>
+                    <div>heavy-metal</div>
+                    <div>hip-hop</div>
+                    <div>holidays</div>
+                    <div>honky-tonk</div>
+                    <div>house</div>
+                    <div>idm</div>
+                    <div>indian</div>
+                    <div>indie</div>
+                    <div>indie-pop</div>
+                    <div>industrial</div>
+                    <div>iranian</div>
+                    <div>j-dance</div>
+                    <div>j-idol</div>
+                    <div>j-pop</div>
+                    <div>j-rock</div>
+                    <div>jazz</div>
+                    <div>k-pop</div>
+                    <div>kids</div>
+                    <div>latin</div>
+                    <div>latino</div>
+                    <div>malay</div>
+                    <div>mandopop</div>
+                    <div>metal</div>
+                    <div>metal-misc</div>
+                    <div>metalcore</div>
+                    <div>minimal-techno</div>
+                    <div>movies</div>
+                    <div>mpb</div>
+                    <div>new-age</div>
+                    <div>new-release</div>
+                    <div>opera</div>
+                    <div>pagode</div>
+                    <div>party</div>
+                    <div>philippines-opm</div>
+                    <div>piano</div>
+                    <div>pop</div>
+                    <div>pop-film</div>
+                    <div>post-dubstep</div>
+                    <div>power-pop</div>
+                    <div>progressive-house</div>
+                    <div>psych-rock</div>
+                    <div>punk</div>
+                    <div>punk-rock</div>
+                    <div>r-n-b</div>
+                    <div>rainy-day</div>
+                    <div>reggae</div>
+                    <div>reggaeton</div>
+                    <div>road-trip</div>
+                    <div>rock</div>
+                    <div>rock-n-roll</div>
+                    <div>rockabilly</div>
+                    <div>romance</div>
+                    <div>sad</div>
+                    <div>salsa</div>
+                    <div>samba</div>
+                    <div>sertanejo</div>
+                    <div>show-tunes</div>
+                    <div>singer-songwriter</div>
+                    <div>ska</div>
+                    <div>sleep</div>
+                    <div>songwriter</div>
+                    <div>soul</div>
+                    <div>soundtracks</div>
+                    <div>spanish</div>
+                    <div>study</div>
+                    <div>summer</div>
+                    <div>swedish</div>
+                    <div>synth-pop</div>
+                    <div>tango</div>
+                    <div>techno</div>
+                    <div>trance</div>
+                    <div>trip-hop</div>
+                    <div>turkish</div>
+                    <div>work-out</div>
+                    <div>world-music</div>
+                </div>
+            </div>
+
         </div>
 
         <div id="song-controller-button-section">
             <section id="song-section">
-                <div id="">
+                <div>
                     <img id="album-cover">
                 </div>
                 <div id="song-text">
@@ -67,7 +193,7 @@
     <section id="filters-section">
     
         <div>
-            <p>Danceability</p>
+            <p class="engraved">Danceability</p>
             <input type="range" class="custom-slider" id="danceability" name="danceability" value='80' min="1" max="100">
             <!-- <button id="danceability-toggle">Off/On</button> -->
             <form class="leverform" id="danceability-lever">
@@ -81,10 +207,8 @@
             </form>
         </div>
 
-        <br><br><br><br><br><br><br><br>
-
         <div>
-            <p>Energy Level</p>
+            <p class="engraved">Energy Level</p>
             <input type="range" class="custom-slider" id="energy" name="energy" min="1" max="100" value="50" disabled>
             <!-- <button id="energy-toggle">Off/On</button> -->
             <form class="leverform" id="energy-lever">
@@ -98,10 +222,8 @@
             </form>
         </div>
 
-        <br><br><br><br><br><br><br><br>
-
         <div>
-            <p>Affect</p>
+            <p class="engraved">Affect</p>
             <input type="range" class="custom-slider" id="valence" name="valence" min="1" max="100" value="50" disabled>
             <!-- <button id="valence-toggle">Off/On</button> -->
             <form class="leverform" id="valence-lever">
@@ -115,10 +237,8 @@
             </form>
         </div>
 
-        <br><br><br><br><br><br><br><br>
-
         <div>
-            <p>Acousticness</p>
+            <p class="engraved">Acousticness</p>
             <input type="range" class="custom-slider" id="acousticness" name="acousticness" min="1" max="101" value="50" disabled>
             <!-- <button id="acousticness-toggle">Off/On</button> -->
             <form class="leverform" id="acousticness-lever">
@@ -131,10 +251,9 @@
               </label> -->
             </form>
         </div>
-        <br><br><br><br><br><br><br><br>
 
         <div>
-            <p>Vocal Presence</p>
+            <p class="engraved">Vocal Presence</p>
             <!-- maybe make this binaryish too -->
             <input type="range" class="custom-slider right-to-left-slider" id="instrumentalness" name="instrumentalness" min="1" max="101" value="50" disabled>
             <!-- <button id="instrumentalness-toggle">Off/On</button> -->
@@ -143,16 +262,14 @@
               <label for="lever">
                   <span>On</span>
               </label>
-              <!-- <label for="lever">
+              <!-- <label for="lever">j
                   <span>Off</span>
               </label> -->
             </form>
         </div>
 
-        <br><br><br><br><br><br><br><br>
-
         <div>   
-            <p>Popularity</p>
+            <p class="engraved">Popularity</p>
             <input type="range" class="custom-slider" id="popularity" name="popularity" min="1" max="100" value="80">
             <!-- <button id="popularity-toggle">Off/On</button> -->
             <form class="leverform" id="popularity-lever">
